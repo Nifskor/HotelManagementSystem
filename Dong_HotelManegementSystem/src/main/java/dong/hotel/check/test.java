@@ -9,6 +9,6 @@ package dong.hotel.check;
  * @author nifskorea
  */
 public class test {
-    test
+    
     
 }
