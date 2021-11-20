@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package dong.hotel.manegement;
-
+/* 이클래스는 호텔 돈에 관련된 정보를 저장하고 있는 클래스입니다 */
 /**
  *
  * @author nifskorea
