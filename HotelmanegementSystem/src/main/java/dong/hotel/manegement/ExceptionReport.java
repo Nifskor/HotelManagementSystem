@@ -38,16 +38,16 @@ public class ExceptionReport extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(132, 132, 132)
+                .addGap(131, 131, 131)
                 .addComponent(jLabel1)
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(15, 15, 15)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(233, Short.MAX_VALUE))
+                .addContainerGap(242, Short.MAX_VALUE))
         );
 
         pack();

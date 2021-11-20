@@ -38,16 +38,16 @@ public class DesignatedPeriodShare extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(107, 107, 107)
+                .addGap(114, 114, 114)
                 .addComponent(jLabel1)
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(231, Short.MAX_VALUE))
+                .addContainerGap(241, Short.MAX_VALUE))
         );
 
         pack();
