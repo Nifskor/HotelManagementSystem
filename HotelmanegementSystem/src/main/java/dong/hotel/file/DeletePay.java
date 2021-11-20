@@ -8,6 +8,6 @@ package dong.hotel.file;
  *
  * @author nifskorea
  */
-public class PeakSeasonChargeInfoSave {
+public class DeletePay {
     
 }
