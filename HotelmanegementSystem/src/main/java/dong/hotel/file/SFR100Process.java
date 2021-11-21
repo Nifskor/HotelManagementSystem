@@ -24,11 +24,11 @@ import dong.hotel.manegement.LoginDataInfo;
 public class SFR100Process implements Fileinterface ,Cloneable{
     /* 개발 환경 차이로인해 사전 환경 경로 지정 */ 
 String macosxadmin = "/Users/nifskorea/Desktop/DB/adminID.txt"; 
-String macosxstaffid = " "; 
+String macosxstaffid = "/Users/nifskorea/Desktop/DB/staffID.txt"; 
 String windowsadminid = " ";
 String windowsstaffid = " ";
 String macosloginlog = " ";
-String windowsloginlog = " ";
+String windowsloginlog = "/Users/nifskorea/Desktop/DB/loginlog.txt";
 
 String line ="";  // 파일 공백시 
 int ossystem = 1 ; // 코드 환경 변수 제어문 (맥 1 / 윈도우 2 )
@@ -169,7 +169,7 @@ ArrayList<LoginDataInfo> logininformation = new ArrayList<LoginDataInfo>(); // l
             line  = readinformaton.get(i);
             String[] str = line.split(" "); // 공백 문자열을 기준으로 문자열을 분리한다 값분리 
             logininformation.add(new LoginDataInfo(str[0],str[1])); //0 번째 아이디 2 패스워드 
-            System.out.printf("%s,%s",str[0],str[1]);
+            System.out.printf("%s,%s",str[i],str[i]);
         }
        
     }

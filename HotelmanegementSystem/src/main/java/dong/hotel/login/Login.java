@@ -173,11 +173,11 @@ Boolean alla;
                }
                
             }
-            if(alla = false){
+            
+        }
+        if(alla = false){
             JOptionPane.showMessageDialog(null, "로그인에 실패하였습니다. ");
         }
-        }
-        
     }//GEN-LAST:event_Login_BUTTActionPerformed
     // 로그인 처리부 함수 끝 
     /**
