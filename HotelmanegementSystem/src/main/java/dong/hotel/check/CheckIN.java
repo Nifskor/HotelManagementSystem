@@ -4,6 +4,8 @@
  */
 package dong.hotel.check;
 
+import dong.hotel.mainmenu.MainMenu;
+import dong.hotel.reservation.ReservationMenu;
 /**
  *
  * @author nifskorea
@@ -44,6 +46,11 @@ public class CheckIN extends javax.swing.JFrame {
         jLabel1.setText("체크인");
 
         Not_Reservation_BUTT.setText("비예약 고객");
+        Not_Reservation_BUTT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Not_Reservation_BUTTActionPerformed(evt);
+            }
+        });
 
         Reservation_BUTT.setText("예약 고객");
 
@@ -54,6 +61,11 @@ public class CheckIN extends javax.swing.JFrame {
         jLabel4.setText("호수");
 
         Back_BUTT.setText("이전");
+        Back_BUTT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Back_BUTTActionPerformed(evt);
+            }
+        });
 
         CheckIn_BUTT.setText("체크인");
 
@@ -84,7 +96,6 @@ public class CheckIN extends javax.swing.JFrame {
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(CheckIn_BUTT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Reservation_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(70, 70, 70)
                         .addComponent(Not_Reservation_BUTT)))
@@ -122,6 +133,18 @@ public class CheckIN extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Back_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Back_BUTTActionPerformed
+        MainMenu back = new MainMenu();
+        back.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_Back_BUTTActionPerformed
+
+    private void Not_Reservation_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Not_Reservation_BUTTActionPerformed
+        ReservationMenu next = new ReservationMenu();
+        next.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_Not_Reservation_BUTTActionPerformed
 
     /**
      * @param args the command line arguments

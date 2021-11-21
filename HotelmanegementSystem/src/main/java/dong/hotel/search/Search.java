@@ -5,6 +5,8 @@
  */
 package dong.hotel.search;
 
+import dong.hotel.mainmenu.MainMenu;
+
 /**
  *
  * @author heehe
@@ -69,6 +71,11 @@ public class Search extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         Back_Button.setText("이전");
+        Back_Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Back_ButtonActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -137,6 +144,13 @@ public class Search extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Back_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Back_ButtonActionPerformed
+        // TODO add your handling code here:
+        MainMenu back = new MainMenu();
+        back.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_Back_ButtonActionPerformed
 
     /**
      * @param args the command line arguments

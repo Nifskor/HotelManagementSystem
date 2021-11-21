@@ -52,7 +52,6 @@
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="Reservation_BUTT" min="-2" pref="89" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                       <Component id="Not_Reservation_BUTT" min="-2" max="-2" attributes="0"/>
@@ -111,6 +110,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xbe44;&#xc608;&#xc57d; &#xace0;&#xac1d;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Not_Reservation_BUTTActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Reservation_BUTT">
       <Properties>
@@ -142,6 +144,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xc774;&#xc804;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Back_BUTTActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="CheckIn_BUTT">
       <Properties>

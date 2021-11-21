@@ -37,19 +37,19 @@
               <EmptySpace pref="78" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="CheckIn_BUTT" min="-2" pref="110" max="-2" attributes="0"/>
+                      <Component id="CHECKIN_BUTT" min="-2" pref="110" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="CheckOut_BUTT" min="-2" pref="110" max="-2" attributes="0"/>
+                      <Component id="CHECKOUT_BUTT" min="-2" pref="110" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="Reaservation_BUTT" min="-2" pref="110" max="-2" attributes="0"/>
+                      <Component id="RESERVATION_BUTT" min="-2" pref="110" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="Search_BUTT" min="-2" pref="110" max="-2" attributes="0"/>
+                      <Component id="SEARCH_BUTT" min="-2" pref="110" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="Edit_BUTT" min="-2" pref="110" max="-2" attributes="0"/>
+                      <Component id="EDIT_BUTT" min="-2" pref="110" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="LogOut_BUTT" min="-2" pref="110" max="-2" attributes="0"/>
+                      <Component id="LOGOUT_BUTT" min="-2" pref="110" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
@@ -68,18 +68,18 @@
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="Search_BUTT" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                  <Component id="Reaservation_BUTT" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="SEARCH_BUTT" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="RESERVATION_BUTT" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="CheckOut_BUTT" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                  <Component id="CheckIn_BUTT" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="CHECKOUT_BUTT" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="CHECKIN_BUTT" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="LogOut_BUTT" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                  <Component id="Edit_BUTT" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="LOGOUT_BUTT" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="EDIT_BUTT" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
           </Group>
@@ -87,20 +87,20 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="Search_BUTT">
+    <Component class="javax.swing.JButton" name="SEARCH_BUTT">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xc608;&#xc57d; &#xc870;&#xd68c;"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Search_BUTTActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SEARCH_BUTTActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="Reaservation_BUTT">
+    <Component class="javax.swing.JButton" name="RESERVATION_BUTT">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xc608;&#xc57d;"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Reaservation_BUTTActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RESERVATION_BUTTActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -111,31 +111,37 @@
         <Property name="text" type="java.lang.String" value="&#xd638;&#xd154; &#xad00;&#xb9ac; &#xc2dc;&#xc2a4;&#xd15c;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="CheckIn_BUTT">
+    <Component class="javax.swing.JButton" name="CHECKIN_BUTT">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xccb4;&#xd06c;&#xc778;"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CheckIn_BUTTActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CHECKIN_BUTTActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="CheckOut_BUTT">
+    <Component class="javax.swing.JButton" name="CHECKOUT_BUTT">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xccb4;&#xd06c;&#xc544;&#xc6c3;"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CheckOut_BUTTActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CHECKOUT_BUTTActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="Edit_BUTT">
+    <Component class="javax.swing.JButton" name="EDIT_BUTT">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xad00;&#xb9ac; &#xbc0f; &#xbcf4;&#xace0;&#xc11c;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EDIT_BUTTActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="LogOut_BUTT">
+    <Component class="javax.swing.JButton" name="LOGOUT_BUTT">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xb85c;&#xadf8;&#xc544;&#xc6c3;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LOGOUT_BUTTActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

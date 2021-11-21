@@ -4,6 +4,8 @@
  */
 package dong.hotel.check;
 
+import dong.hotel.mainmenu.MainMenu;
+
 /**
  *
  * @author nifskorea
@@ -135,7 +137,9 @@ public class CheckOut extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Back_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Back_BUTTActionPerformed
-        // TODO add your handling code here:
+        MainMenu back = new MainMenu();
+        back.setVisible(true);
+        dispose();
     }//GEN-LAST:event_Back_BUTTActionPerformed
 
     /**

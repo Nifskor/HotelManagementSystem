@@ -5,6 +5,13 @@
  */
 package dong.hotel.mainmenu;
 
+import dong.hotel.reservation.ReservationMenu;
+import dong.hotel.search.Search;
+import dong.hotel.check.CheckIN;
+import dong.hotel.check.CheckOut;
+import dong.hotel.manegement.ManegementMainMenu;
+import dong.hotel.login.Login;
+
 /**
  *
  * @author heehe
@@ -28,53 +35,63 @@ public class MainMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        Search_BUTT = new javax.swing.JButton();
-        Reaservation_BUTT = new javax.swing.JButton();
+        SEARCH_BUTT = new javax.swing.JButton();
+        RESERVATION_BUTT = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        CheckIn_BUTT = new javax.swing.JButton();
-        CheckOut_BUTT = new javax.swing.JButton();
-        Edit_BUTT = new javax.swing.JButton();
-        LogOut_BUTT = new javax.swing.JButton();
+        CHECKIN_BUTT = new javax.swing.JButton();
+        CHECKOUT_BUTT = new javax.swing.JButton();
+        EDIT_BUTT = new javax.swing.JButton();
+        LOGOUT_BUTT = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("굴림", 1, 25)); // NOI18N
         jLabel1.setText("호텔 관리 시스템");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Search_BUTT.setText("예약 조회");
-        Search_BUTT.addActionListener(new java.awt.event.ActionListener() {
+        SEARCH_BUTT.setText("예약 조회");
+        SEARCH_BUTT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Search_BUTTActionPerformed(evt);
+                SEARCH_BUTTActionPerformed(evt);
             }
         });
 
-        Reaservation_BUTT.setText("예약");
-        Reaservation_BUTT.addActionListener(new java.awt.event.ActionListener() {
+        RESERVATION_BUTT.setText("예약");
+        RESERVATION_BUTT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Reaservation_BUTTActionPerformed(evt);
+                RESERVATION_BUTTActionPerformed(evt);
             }
         });
 
         jLabel2.setFont(new java.awt.Font("굴림", 1, 25)); // NOI18N
         jLabel2.setText("호텔 관리 시스템");
 
-        CheckIn_BUTT.setText("체크인");
-        CheckIn_BUTT.addActionListener(new java.awt.event.ActionListener() {
+        CHECKIN_BUTT.setText("체크인");
+        CHECKIN_BUTT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CheckIn_BUTTActionPerformed(evt);
+                CHECKIN_BUTTActionPerformed(evt);
             }
         });
 
-        CheckOut_BUTT.setText("체크아웃");
-        CheckOut_BUTT.addActionListener(new java.awt.event.ActionListener() {
+        CHECKOUT_BUTT.setText("체크아웃");
+        CHECKOUT_BUTT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CheckOut_BUTTActionPerformed(evt);
+                CHECKOUT_BUTTActionPerformed(evt);
             }
         });
 
-        Edit_BUTT.setText("관리 및 보고서");
+        EDIT_BUTT.setText("관리 및 보고서");
+        EDIT_BUTT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EDIT_BUTTActionPerformed(evt);
+            }
+        });
 
-        LogOut_BUTT.setText("로그아웃");
+        LOGOUT_BUTT.setText("로그아웃");
+        LOGOUT_BUTT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LOGOUT_BUTTActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,17 +101,17 @@ public class MainMenu extends javax.swing.JFrame {
                 .addContainerGap(78, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(CheckIn_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CHECKIN_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(CheckOut_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(CHECKOUT_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Reaservation_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(RESERVATION_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(Search_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(SEARCH_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Edit_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(EDIT_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(LogOut_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(LOGOUT_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(74, 74, 74))
             .addGroup(layout.createSequentialGroup()
                 .addGap(90, 90, 90)
@@ -108,37 +125,57 @@ public class MainMenu extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Search_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Reaservation_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SEARCH_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RESERVATION_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CheckOut_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CheckIn_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CHECKOUT_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CHECKIN_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LogOut_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Edit_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(LOGOUT_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EDIT_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(66, 66, 66))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Reaservation_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reaservation_BUTTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Reaservation_BUTTActionPerformed
+    private void RESERVATION_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RESERVATION_BUTTActionPerformed
+        ReservationMenu next = new ReservationMenu();
+        next.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_RESERVATION_BUTTActionPerformed
 
-    private void Search_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Search_BUTTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Search_BUTTActionPerformed
+    private void SEARCH_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SEARCH_BUTTActionPerformed
+        Search next = new Search();
+        next.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_SEARCH_BUTTActionPerformed
 
-    private void CheckIn_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckIn_BUTTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CheckIn_BUTTActionPerformed
+    private void CHECKIN_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CHECKIN_BUTTActionPerformed
+        CheckIN next = new CheckIN();
+        next.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_CHECKIN_BUTTActionPerformed
 
-    private void CheckOut_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOut_BUTTActionPerformed
+    private void CHECKOUT_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CHECKOUT_BUTTActionPerformed
+        CheckOut next = new CheckOut();
+        next.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_CHECKOUT_BUTTActionPerformed
+
+    private void EDIT_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EDIT_BUTTActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CheckOut_BUTTActionPerformed
+        //관리자만 접근가능하도록!
+    }//GEN-LAST:event_EDIT_BUTTActionPerformed
+
+    private void LOGOUT_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGOUT_BUTTActionPerformed
+        // TODO add your handling code here:
+        Login next = new Login();
+        next.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_LOGOUT_BUTTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,12 +213,12 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CheckIn_BUTT;
-    private javax.swing.JButton CheckOut_BUTT;
-    private javax.swing.JButton Edit_BUTT;
-    private javax.swing.JButton LogOut_BUTT;
-    private javax.swing.JButton Reaservation_BUTT;
-    private javax.swing.JButton Search_BUTT;
+    private javax.swing.JButton CHECKIN_BUTT;
+    private javax.swing.JButton CHECKOUT_BUTT;
+    private javax.swing.JButton EDIT_BUTT;
+    private javax.swing.JButton LOGOUT_BUTT;
+    private javax.swing.JButton RESERVATION_BUTT;
+    private javax.swing.JButton SEARCH_BUTT;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
