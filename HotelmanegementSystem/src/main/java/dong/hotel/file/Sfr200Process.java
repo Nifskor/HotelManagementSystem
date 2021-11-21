@@ -23,9 +23,10 @@ public class Sfr200Process  implements Fileinterface { // 고객 정보 예약 �
     private ArrayList<String> readInfo = new ArrayList();
     private ArrayList<CustomerInfor> guestInfo = new ArrayList<CustomerInfor>();
  /* 개발 환경 차이로인해 사전 환경 경로 지정 */ 
-String macosxbooking = "/Users/nifskorea/Desktop/DB/"; 
-String windowsbooking = "C:\\DB\\";
-String line ="";  // 파일 공백시 
+private String macosxbooking = "/Users/nifskorea/Desktop/DB/"; 
+private String windowsbooking = "C:\\DB\\";
+private String line ="";  // 파일 공백시 
+
 
 SFR100Process fileae = new SFR100Process();
     @Override
