@@ -23,7 +23,7 @@ import dong.hotel.manegement.LoginDataInfo;
 
 public class SFR100Process implements Fileinterface ,Cloneable{
     /* 개발 환경 차이로인해 사전 환경 경로 지정 */ 
-String macosxadmin = " "; 
+String macosxadmin = "/Users/nifskorea/Desktop/DB/adminID.txt"; 
 String macosxstaffid = " "; 
 String windowsadminid = " ";
 String windowsstaffid = " ";
@@ -93,7 +93,7 @@ ArrayList<LoginDataInfo> logininformation = new ArrayList<LoginDataInfo>(); // l
           
        }catch(FileNotFoundException a) { // 오류가 발생해서 예외처리하는 구문 
           a.printStackTrace(); //에러의 발생근원지를 찾아서 단계별로 에러를 출력합니다.
-          System.out.println("파일이 존재하지않습니다 경로를 확인해주세요 1");
+          System.out.println("파일이 존재하지않습니다 경로를 확인해주세요 ");
        
        }catch(IOException e ) { // 입출력 예외상황 발생 
            e.printStackTrace();
@@ -159,6 +159,7 @@ ArrayList<LoginDataInfo> logininformation = new ArrayList<LoginDataInfo>(); // l
         log.flush(); // 남아있는 데이터를 모두 출력 
         log.close(); // 스트림 클로스 
     }
+    
     @Override
     public void sPlite() {
         String line;
@@ -168,9 +169,13 @@ ArrayList<LoginDataInfo> logininformation = new ArrayList<LoginDataInfo>(); // l
             line  = readinformaton.get(i);
             String[] str = line.split(" "); // 공백 문자열을 기준으로 문자열을 분리한다 값분리 
             logininformation.add(new LoginDataInfo(str[0],str[1])); //0 번째 아이디 2 패스워드 
+            System.out.printf("%s,%s",str[0],str[1]);
         }
        
     }
-    
+   
+    public ArrayList<LoginDataInfo> returnLoginDataInfo() throws IOException {
+        return logininformation;
+    }
     
 }

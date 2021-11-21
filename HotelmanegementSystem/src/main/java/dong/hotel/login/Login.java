@@ -8,13 +8,22 @@ import dong.hotel.file.SFR100Process;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import dong.hotel.file.SFR100Process;
+import dong.hotel.manegement.LoginDataInfo;
+import dong.hotel.mainmenu.MainMenu; // 다음클래스호출 창넘김 용도 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane; // 메세지 박스 띄우는 용도용 임포트 
+import javax.swing.UnsupportedLookAndFeelException;
 /**
  *
  * @author heehe
  */
 public class Login extends javax.swing.JFrame {
-
+ArrayList<LoginDataInfo> loginfo = new ArrayList<>();  // 객체 복사용도 
+Boolean alla;
     /**
      * Creates new form Logingui
      */
@@ -111,15 +120,66 @@ public class Login extends javax.swing.JFrame {
     private void Login_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Login_BUTTActionPerformed
     /* 여기서부터 메인 코드 시작 */
       SFR100Process filea = new SFR100Process();  // sfr 100 클래스 객체 생성 
-      
+      filea.fRead();
+      filea.sPlite();
+    /*  
+      //예외 처리문 시작 
+      try { 
+          loginfo = filea.returnLoginDataInfo();// sfr100 배열 값들을 그대로 넘겨받는거임 객체복사 아이디 패스워드를 그대로 가져옴 
+          
+      }catch(IOException a ){
+          //로그인 이벤트 발생 입출력 오류 발생시 오류를 기록하는 로그기록장치 
+          Logger.getLogger(Login.class.getName()).log(Level.SEVERE,null,a);
+          // 심각한 오류 발생시 로그로 정보 기록 해당 클래스 이름과 같이 
+      }
         String id;
         String pw;
 
         id = F_ID.getText();
         pw = F_PW.getText();                              
        
+        alla = false; // 초기 불리언 타임 초기화  로그인 성공여부 판별 
+        
+        for(int first = 0 ; first < loginfo.size(); first++){
+            if(loginfo.get(first).getId().equals(id)&& loginfo.get(first).getPs().equals(pw)){
+               if(first ==0 ){ // 어드민 순서는 무조건 첫번째로 오기때문 
+                   JOptionPane.showMessageDialog(null, "관리자 로그인 성공");
+                   
+                   try {
+                       filea.fWrite(id);
+                       
+                   }catch (IOException ea){
+                        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ea); // 로그인 과정중 파일 입출력 오류 발생기록 
+                   }
+                   MainMenu nextclass = new MainMenu() ; // 메인메뉴 창 호출 
+                   nextclass.setVisible(true); //메인 메뉴 컴포넌트 표시 
+                   dispose(); // 현재 프레임 종료 +
+                   alla = true; // 로그인 성공함 
+                   break; // 현재 코드 끝 
+                     
+               }else { //0 번째 들어간 값이아닌 나머지 경우 전부다 스테프로 인식 처리 
+                    JOptionPane.showMessageDialog(null, "직원(staff) 로그인 성공! ");
+                   
+                    try{
+                        filea.fWrite(id);// 로그인 로그 기록 
+                    }catch(IOException ea){//파일 읽다가 예외 경우 발생시 처리구문 
+                         Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ea);
+                    }
+                    MainMenu nextclass = new MainMenu() ; // 메인메뉴 창 호출 
+                   nextclass.setVisible(true); //메인 메뉴 컴포넌트 표시 
+                   dispose(); // 현재 프레임 종료 +
+                   alla = true ; // 로그인 성공함 
+                   break; // 현재 코드 끝 
+               }
+               
+            }
+            if(alla = false){
+            JOptionPane.showMessageDialog(null, "로그인에 실패하였습니다. ");
+        }
+        }*/
+        
     }//GEN-LAST:event_Login_BUTTActionPerformed
-
+    // 로그인 처리부 함수 끝 
     /**
      * @param args the command line arguments
      */
@@ -147,9 +207,27 @@ public class Login extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+        // 기본인터페이스가 마음에 안들어서 nimbus형 인터페이스로 변환 
+        try{ // 경로못찾을 경우대비 예외 처리문 사용 시스템 환경에 따라 ui 인터페이스 조정하는 옵션 
+            for(javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()){
+                // 현재 사용가능한 테마를 확인후 사용가능한 테마를 리턴형을 확인 할때까지 반복 개선된 for문 
+                if("Nimbus".equals(info.getName())){
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName()); // 테마를 찾았으면 해당 태마로 설정 하는구문 
+                }
+            }
+        }
+        /* 자동 생성이긴한데 만약에 클래스이름을 못가져왔을경우 발생하는걸 자동으로 예외 처리를 하고 위험 경고 로그를 자동으로 기록시킴*/ 
+        catch (InstantiationException ex) {
+        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (UnsupportedLookAndFeelException ex) {
+        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+    }
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() { // 실행시켰을때 창을 자동으로 키게하라는 기본으로 만들어져있는거임 
             public void run() {
                 new Login().setVisible(true);
             }
