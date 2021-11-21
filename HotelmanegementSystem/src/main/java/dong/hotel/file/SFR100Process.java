@@ -166,7 +166,7 @@ ArrayList<LoginDataInfo> logininformation = new ArrayList<LoginDataInfo>(); // l
         for(int i = 0 ; i <readinformaton.size(); i ++){
             
             line  = readinformaton.get(i);
-            String[] str = line.split(" "); // 공백 문자열을 기준으로 문자열을 분리한다 값분리 
+            String[] str = line.split(" ㅓ"); // 공백 문자열을 기준으로 문자열을 분리한다 값분리 
             logininformation.add(new LoginDataInfo(str[0],str[1])); //0 번째 아이디 2 패스워드 
         }
        
