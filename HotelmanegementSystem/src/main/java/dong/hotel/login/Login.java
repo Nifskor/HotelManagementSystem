@@ -122,7 +122,7 @@ Boolean alla;
       SFR100Process filea = new SFR100Process();  // sfr 100 클래스 객체 생성 
       filea.fRead();
       filea.sPlite();
-    /* 
+    
       //예외 처리문 시작 
       try { 
           loginfo = filea.returnLoginDataInfo();// sfr100 배열 값들을 그대로 넘겨받는거임 객체복사 아이디 패스워드를 그대로 가져옴 
@@ -176,7 +176,7 @@ Boolean alla;
             if(alla = false){
             JOptionPane.showMessageDialog(null, "로그인에 실패하였습니다. ");
         }
-        }*/
+        }
         
     }//GEN-LAST:event_Login_BUTTActionPerformed
     // 로그인 처리부 함수 끝 
