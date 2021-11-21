@@ -24,6 +24,9 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class Login extends javax.swing.JFrame {
 ArrayList<LoginDataInfo> loginfo = new ArrayList<>();  // 객체 복사용도 
 Boolean alla;
+static int logintype =0 ; // 0이면 관리자 , 1이면 스탭 
+
+
     /**
      * Creates new form Logingui
      */
@@ -46,6 +49,7 @@ Boolean alla;
         jLabel3 = new javax.swing.JLabel();
         Login_BUTT = new javax.swing.JButton();
         F_PW = new javax.swing.JPasswordField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,18 +75,17 @@ Boolean alla;
             }
         });
 
+        jButton1.setText("이전");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(145, 145, 145)
-                .addComponent(Login_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(166, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(94, 94, 94))
             .addGroup(layout.createSequentialGroup()
                 .addGap(125, 125, 125)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -91,6 +94,16 @@ Boolean alla;
                     .addComponent(F_ID, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                     .addComponent(F_PW))
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(99, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Login_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(94, 94, 94))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,9 +118,11 @@ Boolean alla;
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(F_PW, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(Login_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Login_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();
@@ -155,6 +170,7 @@ Boolean alla;
                    nextclass.setVisible(true); //메인 메뉴 컴포넌트 표시 
                    dispose(); // 현재 프레임 종료 +
                    alla = true; // 로그인 성공함 
+                   logintype = 0; // 관리자로 로그인했음을 알림 
                    break; // 현재 코드 끝 님
                      
                }else { //0 번째 들어간 값이아닌 나머지 경우 전부다 스테프로 인식 처리 
@@ -169,25 +185,37 @@ Boolean alla;
                    nextclass.setVisible(true); //메인 메뉴 컴포넌트 표시 
                    dispose(); // 현재 프레임 종료 +
                    alla = true ; // 로그인 성공함 
+                   logintype = 1; // 직원으로 로그인했음을 알림 
                    break; // 현재 코드 끝 
                }
                
             } 
             
         }
-        /*if(alla == false){
-            JOptionPane.showMessageDialog(null, "로그인에 실패하였습니다. ");
-        }*/
+        if(alla == false){
+            JOptionPane.showMessageDialog(null, "로그인에 실패하였습니다 id , ps 를 확인해주세요 . ");
+        }
         if (id.length() ==0 ){
              JOptionPane.showMessageDialog(null, "id 를 입력하여 주십시오 . ");
         }else if (pw.length() ==0 ){
              JOptionPane.showMessageDialog(null, "ps 를 입력하여 주십시오 . ");
-        }else {
-            JOptionPane.showMessageDialog(null, "id,ps 잘못입력하셨습니다 다시 입력해주세요. ");
         }
+        
+        
        
     }//GEN-LAST:event_Login_BUTTActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        //이전 개발환경 선택 관련 옵션 이동 소스 
+       OssystemSelect choose = new OssystemSelect();
+       choose.setVisible(true); //메인 메뉴 컴포넌트 표시 
+       dispose(); // 현재 프레임 종료 +
+    }//GEN-LAST:event_jButton1ActionPerformed
     // 로그인 처리부 함수 끝 
+    public int getLogintype(){
+    return logintype;
+}
     /**
      * @param args the command line arguments
      */
@@ -246,6 +274,7 @@ Boolean alla;
     private javax.swing.JTextField F_ID;
     private javax.swing.JPasswordField F_PW;
     private javax.swing.JButton Login_BUTT;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

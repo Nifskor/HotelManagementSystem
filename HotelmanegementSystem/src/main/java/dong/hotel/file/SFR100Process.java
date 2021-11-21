@@ -25,13 +25,20 @@ public class SFR100Process implements Fileinterface ,Cloneable{
     /* 개발 환경 차이로인해 사전 환경 경로 지정 */ 
 String macosxadmin = "/Users/nifskorea/Desktop/DB/adminID.txt"; 
 String macosxstaffid = "/Users/nifskorea/Desktop/DB/staffID.txt"; 
-String windowsadminid = " ";
-String windowsstaffid = " ";
+String windowsadminid = "C:\\DB\\adminID.txt";
+String windowsstaffid = "C:\\DB\\staffID.txt";
 String macosloginlog = "/Users/nifskorea/Desktop/DB/loginlog.txt";
-String windowsloginlog = "";
+String windowsloginlog = "C:\\DB\\loginlog.txt";
 
 String line ="";  // 파일 공백시 
-int ossystem = 1 ; // 코드 환경 변수 제어문 (맥 1 / 윈도우 2 )
+static int ossystem =0 ; // 코드 환경 변수 제어문 (맥 1 / 윈도우 2 )
+// --------------------------------------------------  ( 환경제어를 위한 get set)
+public int getOssystem(){
+    return ossystem;
+}
+public void setOssystem(int os){
+    this.ossystem = os;
+}
 // ---------------------------------------------------
 // 배열 지정공간  // ArrayList<>(); 이게 이번버젼의 문법 
 ArrayList<String> readinformaton = new ArrayList<String>(); // 문장형 타입으로 고정 설정 

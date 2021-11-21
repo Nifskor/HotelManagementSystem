@@ -11,6 +11,7 @@ import dong.hotel.check.CheckIN;
 import dong.hotel.check.CheckOut;
 import dong.hotel.manegement.ManegementMainMenu;
 import dong.hotel.login.Login;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -168,9 +169,15 @@ public class MainMenu extends javax.swing.JFrame {
     private void EDIT_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EDIT_BUTTActionPerformed
         // TODO add your handling code here:
         //관리자만 접근가능하도록!
-        ManegementMainMenu next = new ManegementMainMenu();
+        Login logas = new Login();
+        if(logas.getLogintype() ==0){ // 관리자 식별 
+            ManegementMainMenu next = new ManegementMainMenu();
         next.setVisible(true);
         dispose();
+        }else {
+            JOptionPane.showMessageDialog(null, "관리자가 아닌 스태프 권환이므로 접근권환이 없습니다. 관리자에게 문의하십시오. ");
+        }
+        
     }//GEN-LAST:event_EDIT_BUTTActionPerformed
 
     private void LOGOUT_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGOUT_BUTTActionPerformed
