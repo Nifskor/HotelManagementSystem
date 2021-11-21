@@ -5,6 +5,7 @@
 package dong.hotel.login;
 import dong.hotel.file.SFR100Process;
 import javax.swing.JOptionPane;
+import dong.hotel.file.SFR100Process;
 /**
  *
  * @author nifskorea

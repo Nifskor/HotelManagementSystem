@@ -413,6 +413,11 @@ public class ReservationMenu extends javax.swing.JFrame {
         );
 
         jButton5.setText("예약");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         BACK_BUTT.setText("이전");
         BACK_BUTT.addActionListener(new java.awt.event.ActionListener() {
@@ -671,7 +676,7 @@ public class ReservationMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_ShowPrice_BUTTActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       ShowPrice.setVisible(false);//요금정보창닫음
+       ShowPrice.setVisible(false);//요금정보창닫음??? <- 이거 어떤 버튼인지 확인 필요 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void Close_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Close_BUTTActionPerformed
@@ -687,6 +692,11 @@ public class ReservationMenu extends javax.swing.JFrame {
     private void change_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_change_BUTTActionPerformed
         ReservationChange.setVisible(true);
     }//GEN-LAST:event_change_BUTTActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
