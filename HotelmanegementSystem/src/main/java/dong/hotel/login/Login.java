@@ -192,7 +192,7 @@ static int logintype =0 ; // 0이면 관리자 , 1이면 스탭
             } 
             
         }
-        if(alla == false){
+        if(alla == false ){
             JOptionPane.showMessageDialog(null, "로그인에 실패하였습니다 id , ps 를 확인해주세요 . ");
         }
         if (id.length() ==0 ){
