@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package dong.hotel.login;
-
+import dong.hotel.file.SFR100Process;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -109,17 +109,15 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_F_IDActionPerformed
 
     private void Login_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Login_BUTTActionPerformed
-
-
-        // TODO add your handling code here:
-   
-        /*
+    /* 여기서부터 메인 코드 시작 */
+      SFR100Process filea = new SFR100Process();  // sfr 100 클래스 객체 생성 
+      
         String id;
         String pw;
 
         id = F_ID.getText();
         pw = F_PW.getText();                              
-        */
+       
     }//GEN-LAST:event_Login_BUTTActionPerformed
 
     /**

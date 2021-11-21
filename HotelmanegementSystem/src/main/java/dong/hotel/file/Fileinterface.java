@@ -4,10 +4,15 @@
  */
 package dong.hotel.file;
 
+import java.io.IOException;
+
 /**
  *
  * @author nifskorea
  */
-public interface Fileinterface {
+public interface Fileinterface { // 추상클래스에 인터페이스 구현 
     
+    void fRead();
+    void fWrite()throws IOException;
+    void sPlite();
 }
