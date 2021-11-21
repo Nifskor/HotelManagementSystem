@@ -168,6 +168,9 @@ public class MainMenu extends javax.swing.JFrame {
     private void EDIT_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EDIT_BUTTActionPerformed
         // TODO add your handling code here:
         //관리자만 접근가능하도록!
+        ManegementMainMenu next = new ManegementMainMenu();
+        next.setVisible(true);
+        dispose();
     }//GEN-LAST:event_EDIT_BUTTActionPerformed
 
     private void LOGOUT_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGOUT_BUTTActionPerformed

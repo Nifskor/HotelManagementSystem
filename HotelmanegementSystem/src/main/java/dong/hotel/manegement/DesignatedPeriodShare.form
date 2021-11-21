@@ -26,7 +26,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="118" max="32767" attributes="0"/>
+              <EmptySpace pref="182" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -46,7 +46,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="&#xad74;&#xb9bc;" size="24" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&#xc9c0;&#xc815;&#xae30;&#xac04;&#xc810;&#xc720;&#xc728;"/>
+        <Property name="text" type="java.lang.String" value="&#xac1d;&#xc2e4; &#xc218;&#xc785;"/>
       </Properties>
     </Component>
   </SubComponents>

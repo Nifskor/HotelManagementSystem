@@ -619,7 +619,6 @@ public class ReservationMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void BACK_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BACK_BUTTActionPerformed
-        // TODO add your handling code here:
         MainMenu back = new MainMenu();
         back.setVisible(true);
         dispose();

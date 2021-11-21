@@ -29,8 +29,8 @@ public class CreateNewId extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Back_BUTT = new javax.swing.JButton();
+        CreateB = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
 
@@ -43,9 +43,19 @@ public class CreateNewId extends javax.swing.JFrame {
 
         jLabel3.setText("PW :");
 
-        jButton1.setText("뒤로");
+        Back_BUTT.setText("뒤로");
+        Back_BUTT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Back_BUTTActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("생성하기");
+        CreateB.setText("생성하기");
+        CreateB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CreateBActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -53,9 +63,9 @@ public class CreateNewId extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Back_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(CreateB, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
@@ -89,13 +99,27 @@ public class CreateNewId extends javax.swing.JFrame {
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(Back_BUTT)
+                    .addComponent(CreateB))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Back_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Back_BUTTActionPerformed
+        ManegementMainMenu back = new ManegementMainMenu();
+        back.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_Back_BUTTActionPerformed
+
+    private void CreateBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateBActionPerformed
+        // TODO add your handling code here:
+        //중복 id아니고 새로운아이디일경우 생성되었다는 창뜨고 확인누르면 관리메뉴로 넘어감
+        ManegementMainMenu back = new ManegementMainMenu();
+        back.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_CreateBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,8 +157,8 @@ public class CreateNewId extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton Back_BUTT;
+    private javax.swing.JButton CreateB;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
