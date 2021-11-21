@@ -143,7 +143,7 @@ Boolean alla;
         for(int first = 0 ; first < loginfo.size(); first++){
             if(loginfo.get(first).getId().equals(id)&& loginfo.get(first).getPs().equals(pw)){
                if(first ==0 ){ // 어드민 순서는 무조건 첫번째로 오기때문 
-                   JOptionPane.showMessageDialog(null, "관리자 로그인 성공");
+                   JOptionPane.showMessageDialog(null, "관리자님 로그인 성공");
                    
                    try {
                        filea.fWrite(id);
@@ -155,10 +155,10 @@ Boolean alla;
                    nextclass.setVisible(true); //메인 메뉴 컴포넌트 표시 
                    dispose(); // 현재 프레임 종료 +
                    alla = true; // 로그인 성공함 
-                   break; // 현재 코드 끝 
+                   break; // 현재 코드 끝 님
                      
                }else { //0 번째 들어간 값이아닌 나머지 경우 전부다 스테프로 인식 처리 
-                    JOptionPane.showMessageDialog(null, "직원(staff) 로그인 성공! ");
+                    JOptionPane.showMessageDialog(null, "직원(staff님) 로그인 성공! ");
                    
                     try{
                         filea.fWrite(id);// 로그인 로그 기록 
@@ -172,12 +172,20 @@ Boolean alla;
                    break; // 현재 코드 끝 
                }
                
-            }
+            } 
             
         }
-        if(alla = false){
+        /*if(alla == false){
             JOptionPane.showMessageDialog(null, "로그인에 실패하였습니다. ");
+        }*/
+        if (id.length() ==0 ){
+             JOptionPane.showMessageDialog(null, "id 를 입력하여 주십시오 . ");
+        }else if (pw.length() ==0 ){
+             JOptionPane.showMessageDialog(null, "ps 를 입력하여 주십시오 . ");
+        }else {
+            JOptionPane.showMessageDialog(null, "id,ps 잘못입력하셨습니다 다시 입력해주세요. ");
         }
+       
     }//GEN-LAST:event_Login_BUTTActionPerformed
     // 로그인 처리부 함수 끝 
     /**
