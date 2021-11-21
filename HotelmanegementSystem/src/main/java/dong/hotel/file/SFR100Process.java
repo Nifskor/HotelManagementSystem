@@ -21,14 +21,17 @@ import dong.hotel.manegement.LoginDataInfo;
 
 
 
-public class SFR100Process implements Fileinterface {
+public class SFR100Process implements Fileinterface ,Cloneable{
     /* 개발 환경 차이로인해 사전 환경 경로 지정 */ 
 String macosxadmin = " "; 
 String macosxstaffid = " "; 
 String windowsadminid = " ";
 String windowsstaffid = " ";
+String macosloginlog = " ";
+String windowsloginlog = " ";
+
 String line ="";  // 파일 공백시 
-int ossystem = 0 ; // 코드 환경 변수 제어문 (맥 1 / 윈도우 2 )
+int ossystem = 1 ; // 코드 환경 변수 제어문 (맥 1 / 윈도우 2 )
 // ---------------------------------------------------
 // 배열 지정공간  // ArrayList<>(); 이게 이번버젼의 문법 
 ArrayList<String> readinformaton = new ArrayList<String>(); // 문장형 타입으로 고정 설정 
@@ -102,12 +105,70 @@ ArrayList<LoginDataInfo> logininformation = new ArrayList<LoginDataInfo>(); // l
     
 
     @Override
-    public void fWrite() throws IOException{
+    public void fWrite(String a) throws IOException {
        /* 오류가 발생했을때 ioexception 에서 오류처리를 던지는경우고 */ 
+       String oslocation ="";
+       if(ossystem ==1){
+      oslocation = macosloginlog;
+  
+       }
+       else if (ossystem ==2 ){
+           oslocation = windowsloginlog;
+          
+       }
+      BufferedWriter log = new BufferedWriter(new FileWriter( oslocation,false));
+        //PrintWriter pw = new PrintWriter(log,true);
+        log.write(a+"\n"); // 출력 
+        log.flush(); // 남아있는 데이터를 모두 출력 
+        log.close(); // 스트림 클로스 
+      
+       
+    }
+   
+    public void AWrite (String a) throws IOException { //admin 패스워드 아이디 기록 
+         String oslocation ="";
+       if(ossystem ==1){
+      oslocation = macosxadmin;
+  
+       }
+       else if (ossystem ==2 ){
+           oslocation = windowsadminid;
+          
+       }
+     BufferedWriter log = new BufferedWriter(new FileWriter( oslocation,false));
+        //PrintWriter pw = new PrintWriter(log,true);
+        log.write(a+"\n"); // 출력 
+        log.flush(); // 남아있는 데이터를 모두 출력 
+        log.close(); // 스트림 클로스 
+      
     }
 
+    public void SWrite (String a )throws IOException {
+          String oslocation ="";
+       if(ossystem ==1){
+      oslocation = macosxstaffid;
+  
+       }
+       else if (ossystem ==2 ){
+           oslocation = windowsstaffid;
+          
+       }
+        BufferedWriter log = new BufferedWriter(new FileWriter( oslocation,false));
+        //PrintWriter pw = new PrintWriter(log,true);
+        log.write(a+"\n"); // 출력 
+        log.flush(); // 남아있는 데이터를 모두 출력 
+        log.close(); // 스트림 클로스 
+    }
     @Override
     public void sPlite() {
+        String line;
+        
+        for(int i = 0 ; i <readinformaton.size(); i ++){
+            
+            line  = readinformaton.get(i);
+            String[] str = line.split(" "); // 공백 문자열을 기준으로 문자열을 분리한다 값분리 
+            logininformation.add(new LoginDataInfo(str[0],str[1])); //0 번째 아이디 2 패스워드 
+        }
        
     }
     

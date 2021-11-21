@@ -11,4 +11,14 @@ package dong.hotel.manegement;
  */
 public class LoginDataInfo {
     
+    private String id ; 
+    private String ps;
+    
+    
+    public LoginDataInfo(String id , String ps ){
+        this.id = id ;
+        this.ps = ps; 
+        
+    }
+    
 }

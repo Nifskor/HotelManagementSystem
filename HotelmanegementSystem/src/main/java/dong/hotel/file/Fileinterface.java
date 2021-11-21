@@ -13,6 +13,6 @@ import java.io.IOException;
 public interface Fileinterface { // 추상클래스에 인터페이스 구현 
     
     void fRead();
-    void fWrite()throws IOException;
+    void fWrite(String a )throws IOException;
     void sPlite();
 }
