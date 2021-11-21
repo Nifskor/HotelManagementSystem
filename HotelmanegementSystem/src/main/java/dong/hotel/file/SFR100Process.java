@@ -90,7 +90,7 @@ ArrayList<LoginDataInfo> logininformation = new ArrayList<LoginDataInfo>(); // l
           
        }catch(FileNotFoundException a) { // 오류가 발생해서 예외처리하는 구문 
           a.printStackTrace(); //에러의 발생근원지를 찾아서 단계별로 에러를 출력합니다.
-          System.out.println("파일이 존재하지않습니다 경로를 확인해주세요 ");
+          System.out.println("파일이 존재하지않습니다 경로를 확인해주세요 1");
        
        }catch(IOException e ) { // 입출력 예외상황 발생 
            e.printStackTrace();
