@@ -83,7 +83,7 @@ public class ManagementMainMenu extends javax.swing.JFrame {
             }
         });
 
-        Edit_BUTT.setText("정보수정");
+        Edit_BUTT.setText("관리");
         Edit_BUTT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Edit_BUTTActionPerformed(evt);

@@ -140,7 +140,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="Edit_BUTT">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#xc815;&#xbcf4;&#xc218;&#xc815;"/>
+        <Property name="text" type="java.lang.String" value="&#xad00;&#xb9ac;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Edit_BUTTActionPerformed"/>
