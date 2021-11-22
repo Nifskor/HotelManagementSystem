@@ -2,25 +2,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package dong.hotel.manegement;
+package dong.hotel.management;
 
 import dong.hotel.mainmenu.MainMenu;
-import dong.hotel.manegement.CertainPeriod;
-import dong.hotel.manegement.CreateNewId;
-import dong.hotel.manegement.DesignatedPeriodShare;
-import dong.hotel.manegement.ExceptionReport;
-import dong.hotel.manegement.HotelServiceCertainPeriod;
-import dong.hotel.manegement.EtcEdit;
+import dong.hotel.management.CertainPeriod;
+import dong.hotel.management.CreateNewId;
+import dong.hotel.management.DesignatedPeriodShare;
+import dong.hotel.management.ExceptionReport;
+import dong.hotel.management.HotelServiceCertainPeriod;
+import dong.hotel.management.EtcEdit;
 /**
  *
  * @author nifskorea
  */
-public class ManegementMainMenu extends javax.swing.JFrame {
+public class ManagementMainMenu extends javax.swing.JFrame {
 
     /**
      * Creates new form ManegementMainMenu
      */
-    public ManegementMainMenu() {
+    public ManagementMainMenu() {
         initComponents();
     }
 
@@ -215,20 +215,21 @@ public class ManegementMainMenu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManegementMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagementMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManegementMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagementMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManegementMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagementMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ManegementMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ManagementMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ManegementMainMenu().setVisible(true);
+                new ManagementMainMenu().setVisible(true);
             }
         });
     }

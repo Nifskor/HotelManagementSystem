@@ -9,7 +9,7 @@ import dong.hotel.reservation.ReservationMenu;
 import dong.hotel.search.Search;
 import dong.hotel.check.CheckIN;
 import dong.hotel.check.CheckOut;
-import dong.hotel.manegement.ManegementMainMenu;
+import dong.hotel.management.ManagementMainMenu;
 import dong.hotel.login.Login;
 import javax.swing.JOptionPane;
 
@@ -171,7 +171,7 @@ public class MainMenu extends javax.swing.JFrame {
         //관리자만 접근가능하도록!
         Login logas = new Login();
         if(logas.getLogintype() ==0){ // 관리자 식별 
-            ManegementMainMenu next = new ManegementMainMenu();
+            ManagementMainMenu next = new ManagementMainMenu();
         next.setVisible(true);
         dispose();
         }else {

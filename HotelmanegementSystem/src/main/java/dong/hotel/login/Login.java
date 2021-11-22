@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import dong.hotel.file.SFR100Process;
-import dong.hotel.manegement.LoginDataInfo;
+import dong.hotel.management.LoginDataInfo;
 import dong.hotel.mainmenu.MainMenu; // 다음클래스호출 창넘김 용도 
 import java.util.ArrayList;
 import java.util.logging.Level;

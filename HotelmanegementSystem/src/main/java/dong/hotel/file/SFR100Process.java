@@ -12,7 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import dong.hotel.manegement.LoginDataInfo;
+import dong.hotel.management.LoginDataInfo;
 /* 이클래스는 직원 , 관리자 아이디 패스워드 분활 처리하는 클래스입니다 */
 /**
  *

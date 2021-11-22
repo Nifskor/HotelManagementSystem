@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package dong.hotel.manegement;
+package dong.hotel.management;
 
 /**
  *
@@ -108,7 +108,7 @@ public class CreateNewId extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Back_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Back_BUTTActionPerformed
-        ManegementMainMenu back = new ManegementMainMenu();
+        ManagementMainMenu back = new ManagementMainMenu();
         back.setVisible(true);
         dispose();
     }//GEN-LAST:event_Back_BUTTActionPerformed
@@ -116,7 +116,7 @@ public class CreateNewId extends javax.swing.JFrame {
     private void CreateBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateBActionPerformed
         // TODO add your handling code here:
         //중복 id아니고 새로운아이디일경우 생성되었다는 창뜨고 확인누르면 관리메뉴로 넘어감
-        ManegementMainMenu back = new ManegementMainMenu();
+        ManagementMainMenu back = new ManagementMainMenu();
         back.setVisible(true);
         dispose();
     }//GEN-LAST:event_CreateBActionPerformed
