@@ -38,7 +38,7 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="jButton1" min="-2" pref="84" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="Login_BUTT" min="-2" pref="89" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   </Group>
@@ -62,9 +62,9 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="F_PW" min="-2" pref="25" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="Login_BUTT" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="Login_BUTT" pref="32" max="32767" attributes="0"/>
+                  <Component id="jButton1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="52" max="32767" attributes="0"/>
           </Group>

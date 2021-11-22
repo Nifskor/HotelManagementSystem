@@ -98,7 +98,7 @@ static int logintype =0 ; // 0이면 관리자 , 1이면 스탭
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(Login_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12))
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -118,9 +118,9 @@ static int logintype =0 ; // 0이면 관리자 , 1이면 스탭
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(F_PW, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Login_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Login_BUTT, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
@@ -192,18 +192,19 @@ static int logintype =0 ; // 0이면 관리자 , 1이면 스탭
             } 
             
         }
-       
+        
         if(alla == false ){
-            JOptionPane.showMessageDialog(null, "로그인에 실패하였습니다 id , ps 를 확인해주세요 . ");
-        }
-        if (id.length() ==0 ){
-             JOptionPane.showMessageDialog(null, "id 를 입력하여 주십시오 . ");
-        }else if (pw.length() ==0 ){
-             JOptionPane.showMessageDialog(null, "ps 를 입력하여 주십시오 . ");
-        }
+            if (id.length() ==0 && pw.length() ==0 ){
+                JOptionPane.showMessageDialog(null, "ID, PW를 입력하여 주십시오 .","로그인 실패",JOptionPane.WARNING_MESSAGE);               
+            }else if (id.length() ==0 ){
+                JOptionPane.showMessageDialog(null, "ID를 입력하여 주십시오 .","로그인 실패",JOptionPane.WARNING_MESSAGE);
+            }else if (pw.length() ==0 ){
+               JOptionPane.showMessageDialog(null, "PW를 입력하여 주십시오 .","로그인 실패",JOptionPane.WARNING_MESSAGE);
+           }else{
+            JOptionPane.showMessageDialog(null, "ID, PW를 확인해주세요 .","로그인 실패",JOptionPane.WARNING_MESSAGE);                
+            }
+        }  
         
-        
-       
     }//GEN-LAST:event_Login_BUTTActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
