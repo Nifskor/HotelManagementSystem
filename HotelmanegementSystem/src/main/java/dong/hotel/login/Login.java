@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 import dong.hotel.file.SFR100Process;
 import dong.hotel.manegement.LoginDataInfo;
 import dong.hotel.mainmenu.MainMenu; // 다음클래스호출 창넘김 용도 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -166,6 +165,7 @@ static int logintype =0 ; // 0이면 관리자 , 1이면 스탭
                    }catch (IOException ea){
                         Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ea); // 로그인 과정중 파일 입출력 오류 발생기록 
                    }
+                   
                    MainMenu nextclass = new MainMenu() ; // 메인메뉴 창 호출 
                    nextclass.setVisible(true); //메인 메뉴 컴포넌트 표시 
                    dispose(); // 현재 프레임 종료 +
@@ -192,6 +192,7 @@ static int logintype =0 ; // 0이면 관리자 , 1이면 스탭
             } 
             
         }
+       
         if(alla == false ){
             JOptionPane.showMessageDialog(null, "로그인에 실패하였습니다 id , ps 를 확인해주세요 . ");
         }
