@@ -15,15 +15,22 @@ public class RoomState {
     private String booker;          //예약자명
     private String guestNum;        //인원
     private String cInDate;         //체크인 날짜
+    private String cInTime;         //체크인 시간
+    private String realInTime;      //실제 체크인 시간
+    private String cOutDate;        //체크아웃 날짜
     private String cOutTime;        //체크아웃 시간
 
-    public RoomState(String index, String room, String roomState, String booker, String guestNum, String cInDate, String cOutTime) {
+    public RoomState(String index, String room, String roomState, String booker, String guestNum,
+            String cInDate, String cInTime, String realInTime, String cOutDate, String cOutTime) {
         this.index = index;
         this.room = room;
         this.roomState = roomState;
         this.booker = booker;
         this.guestNum = guestNum;
         this.cInDate = cInDate;
+        this.cInTime = cInTime;
+        this.realInTime = realInTime;
+        this.cOutDate = cOutDate;
         this.cOutTime = cOutTime;
     }
 
@@ -73,6 +80,30 @@ public class RoomState {
 
     public void setcInDate(String cInDate) {
         this.cInDate = cInDate;
+    }
+
+    public String getcInTime() {
+        return cInTime;
+    }
+
+    public void setcInTime(String cInTime) {
+        this.cInTime = cInTime;
+    }
+
+    public String getRealInTime() {
+        return realInTime;
+    }
+
+    public void setRealInTime(String realInTime) {
+        this.realInTime = realInTime;
+    }
+
+    public String getcOutDate() {
+        return cOutDate;
+    }
+
+    public void setcOutDate(String cOutDate) {
+        this.cOutDate = cOutDate;
     }
 
     public String getcOutTime() {

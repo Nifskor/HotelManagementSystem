@@ -15,20 +15,27 @@ public class CheckOutInformation {
     private String booker;          //예약자명
     private String guestNum;        //인원
     private String inDate;          //체크인 날짜
+    private String cInTime;         //체크인 시간
+    private String realInTime;      //실제 체크인 시간
+    private String cOutDate;        //체크아웃 날짜
     private String outTime;         //체크아웃 시간
     private String realOutTime;     //실제 체크아웃 시간
 
     public CheckOutInformation(String index, String room, String roomState, String booker, String guestNum, 
-            String inDate, String outTime, String realOutTime) {
+            String inDate, String cInTime, String realInTime, String cOutDate, String outTime, String realOutTime) {
         this.index = index;
         this.room = room;
         this.roomState = roomState;
         this.booker = booker;
         this.guestNum = guestNum;
         this.inDate = inDate;
+        this.cInTime = cInTime;
+        this.realInTime = realInTime;
+        this.cOutDate = cOutDate;
         this.outTime = outTime;
         this.realOutTime = realOutTime;
     }
+
 
     public String getIndex() {
         return index;
@@ -76,6 +83,30 @@ public class CheckOutInformation {
 
     public void setInDate(String inDate) {
         this.inDate = inDate;
+    }
+
+    public String getcInTime() {
+        return cInTime;
+    }
+
+    public void setcInTime(String cInTime) {
+        this.cInTime = cInTime;
+    }
+
+    public String getRealInTime() {
+        return realInTime;
+    }
+
+    public void setRealInTime(String realInTime) {
+        this.realInTime = realInTime;
+    }
+
+    public String getcOutDate() {
+        return cOutDate;
+    }
+
+    public void setcOutDate(String cOutDate) {
+        this.cOutDate = cOutDate;
     }
 
     public String getOutTime() {

@@ -106,13 +106,11 @@ public class Sfr300Process implements Fileinterface { // 체크인 관련 처리
         }
     }
 
-    /* 다른 클래스 기본생성자 메개변수 타입 미정으로 현재 에러발생 */
-
     public void CSplite() {
         for (int i = 0; i < readInfo.size(); i++) {
             line = readInfo.get(i);
             String[] str = line.split(" ");
-            checkout.add(new CheckOutInformation(str[0], str[1], str[2], str[3], str[4], str[5], str[6], str[7]));
+            checkout.add(new CheckOutInformation(str[0], str[1], str[2], str[3], str[4], str[5], str[6], str[7], str[8], str[9], str[10]));
         }
     }
 
@@ -122,7 +120,7 @@ public class Sfr300Process implements Fileinterface { // 체크인 관련 처리
         for (int i = 0; i < readInfo.size(); i++) {
             line = readInfo.get(i);
             String[] str = line.split(" ");
-            roomstate.add(new RoomState(str[0], str[1], str[2], str[3], str[4], str[5], str[6]));
+            roomstate.add(new RoomState(str[0], str[1], str[2], str[3], str[4], str[5], str[6], str[7], str[8], str[9]));
         }
     }
 
