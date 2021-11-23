@@ -119,14 +119,6 @@ public class ReservationMenu extends javax.swing.JFrame {
         CarLastNuOne = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         CarLastNumTwo = new javax.swing.JTextField();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        Cuslocaone = new javax.swing.JTextField();
-        Cuslocatwo = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
 
         ShowPrice.setMinimumSize(new java.awt.Dimension(430, 350));
 
@@ -409,7 +401,7 @@ public class ReservationMenu extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(printPrice_BUTT)
                     .addComponent(ShowPrice_BUTT))
-                .addGap(51, 51, 51))
+                .addContainerGap())
         );
 
         jButton5.setText("예약");
@@ -541,74 +533,6 @@ public class ReservationMenu extends javax.swing.JFrame {
                 .addGap(62, 62, 62))
         );
 
-        jLabel17.setText("* 입력예시 ) 부산광역시 부산진구 양정2로 양정로 동의대학교  ");
-
-        jLabel16.setText("주 소");
-
-        jLabel18.setText("상세주소");
-
-        Cuslocaone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CuslocaoneActionPerformed(evt);
-            }
-        });
-
-        Cuslocatwo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CuslocatwoActionPerformed(evt);
-            }
-        });
-
-        jLabel19.setText("* 입력예시 ) 정보공학관 912호   ");
-
-        jLabel24.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
-        jLabel24.setText("주소 정보");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel18)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel16)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel17)
-                    .addComponent(Cuslocaone, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
-                    .addComponent(Cuslocatwo))
-                .addGap(99, 99, 99))
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel24)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel17)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Cuslocaone, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16))
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel18))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Cuslocatwo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel19))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -617,7 +541,6 @@ public class ReservationMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 458, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -630,10 +553,8 @@ public class ReservationMenu extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -650,14 +571,6 @@ public class ReservationMenu extends javax.swing.JFrame {
     private void Cus_peoplenumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cus_peoplenumActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Cus_peoplenumActionPerformed
-
-    private void CuslocatwoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CuslocatwoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CuslocatwoActionPerformed
-
-    private void CuslocaoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CuslocaoneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CuslocaoneActionPerformed
 
     private void CarNumOneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CarNumOneActionPerformed
         // TODO add your handling code here:
@@ -751,8 +664,6 @@ public class ReservationMenu extends javax.swing.JFrame {
     private javax.swing.JButton Close_BUTT;
     private javax.swing.JComboBox<String> Cus_peoplenum;
     private javax.swing.JComboBox<String> CuscardCa;
-    private javax.swing.JTextField Cuslocaone;
-    private javax.swing.JTextField Cuslocatwo;
     private javax.swing.JTextField Cusname;
     private javax.swing.JTable FeeTable;
     private javax.swing.JDialog ReservationChange;
@@ -769,16 +680,11 @@ public class ReservationMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -789,7 +695,6 @@ public class ReservationMenu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField phone;
