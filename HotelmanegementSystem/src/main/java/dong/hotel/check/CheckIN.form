@@ -353,6 +353,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xccb4;&#xd06c;&#xc778;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CheckIn_BUTTActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
