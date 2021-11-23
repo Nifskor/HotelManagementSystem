@@ -31,6 +31,7 @@ import javax.swing.JTextField;
 import java.util.stream.Stream;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import dong.hotel.file.CustomerInforSave; // 고객 정보 저장용 
 
 /**
  *
@@ -95,11 +96,12 @@ public class ReservationMenu extends javax.swing.JFrame {
         phthree = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        Cus_peoplenum = new javax.swing.JComboBox<>();
+        cusPeoplenum = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
         RoomText = new javax.swing.JTextField();
         phtwo = new javax.swing.JTextField();
         ShowPrice_BUTT = new javax.swing.JButton();
+        exMoney = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
         BACK_BUTT = new javax.swing.JButton();
@@ -108,17 +110,17 @@ public class ReservationMenu extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         change_BUTT = new javax.swing.JButton();
-        CuscardCa = new javax.swing.JComboBox<>();
-        CarNumOne = new javax.swing.JTextField();
+        cuscardCa = new javax.swing.JComboBox<>();
+        carNumOne = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        CarNumTwo = new javax.swing.JTextField();
+        carNumTwo = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        CarNumFor = new javax.swing.JTextField();
-        CarNumThree = new javax.swing.JTextField();
+        carNumFor = new javax.swing.JTextField();
+        carNumThree = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
-        CarLastNuOne = new javax.swing.JTextField();
+        carLastNuOne = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
-        CarLastNumTwo = new javax.swing.JTextField();
+        carLastNumTwo = new javax.swing.JTextField();
 
         ShowPrice.setMinimumSize(new java.awt.Dimension(430, 350));
 
@@ -300,6 +302,11 @@ public class ReservationMenu extends javax.swing.JFrame {
         phone.setText("010");
 
         printPrice_BUTT.setText("예상 금액 확인");
+        printPrice_BUTT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printPrice_BUTTActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("인원수");
 
@@ -314,10 +321,10 @@ public class ReservationMenu extends javax.swing.JFrame {
 
         jLabel11.setText("-");
 
-        Cus_peoplenum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" }));
-        Cus_peoplenum.addActionListener(new java.awt.event.ActionListener() {
+        cusPeoplenum.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11" }));
+        cusPeoplenum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Cus_peoplenumActionPerformed(evt);
+                cusPeoplenumActionPerformed(evt);
             }
         });
 
@@ -336,6 +343,8 @@ public class ReservationMenu extends javax.swing.JFrame {
             }
         });
 
+        exMoney.setText("예상금액표시");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -344,36 +353,41 @@ public class ReservationMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(RoomText, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(69, 69, 69)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Cusname, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Cus_peoplenum, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel10)
-                                .addGap(4, 4, 4)
-                                .addComponent(phtwo, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(phthree, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(RoomText, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(69, 69, 69)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(Cusname, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cusPeoplenum, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel10)
+                                        .addGap(4, 4, 4)
+                                        .addComponent(phtwo, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(phthree, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(57, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(ShowPrice_BUTT)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
-                        .addComponent(printPrice_BUTT)))
-                .addGap(32, 32, 32))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(exMoney)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(printPrice_BUTT)
+                        .addGap(15, 15, 15))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -388,7 +402,7 @@ public class ReservationMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(Cus_peoplenum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cusPeoplenum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -400,7 +414,8 @@ public class ReservationMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(printPrice_BUTT)
-                    .addComponent(ShowPrice_BUTT))
+                    .addComponent(ShowPrice_BUTT)
+                    .addComponent(exMoney))
                 .addContainerGap())
         );
 
@@ -434,11 +449,11 @@ public class ReservationMenu extends javax.swing.JFrame {
             }
         });
 
-        CuscardCa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "국민은행", "신한은행", "농협은행", "카카오뱅크", "부산은행", "신협", "한국투자증권", "새마을금고" }));
+        cuscardCa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "국민은행", "신한은행", "농협은행", "카카오뱅크", "부산은행", "신협", "한국투자증권", "새마을금고" }));
 
-        CarNumOne.addActionListener(new java.awt.event.ActionListener() {
+        carNumOne.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CarNumOneActionPerformed(evt);
+                carNumOneActionPerformed(evt);
             }
         });
 
@@ -469,33 +484,33 @@ public class ReservationMenu extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(CarLastNuOne, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(carLastNuOne, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel23)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CarLastNumTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(carLastNumTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(CuscardCa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cuscardCa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(CarNumOne, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(carNumOne, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel20)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(CarNumTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(carNumTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel21)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(CarNumThree, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(carNumThree, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel22)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(CarNumFor, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(carNumFor, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(62, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -507,24 +522,24 @@ public class ReservationMenu extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CuscardCa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cuscardCa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(CarNumOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(carNumOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel20)
-                    .addComponent(CarNumTwo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(carNumTwo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel21)
-                    .addComponent(CarNumFor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CarNumThree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(carNumFor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(carNumThree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(CarLastNuOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(carLastNuOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel23)
-                    .addComponent(CarLastNumTwo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(carLastNumTwo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5)
@@ -568,13 +583,13 @@ public class ReservationMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_RoomTextActionPerformed
 
-    private void Cus_peoplenumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cus_peoplenumActionPerformed
+    private void cusPeoplenumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cusPeoplenumActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Cus_peoplenumActionPerformed
+    }//GEN-LAST:event_cusPeoplenumActionPerformed
 
-    private void CarNumOneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CarNumOneActionPerformed
+    private void carNumOneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carNumOneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CarNumOneActionPerformed
+    }//GEN-LAST:event_carNumOneActionPerformed
 
     private void BACK_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BACK_BUTTActionPerformed
         // 이전 화면 돌아가기 
@@ -603,13 +618,69 @@ public class ReservationMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_BChangeActionPerformed
 
     private void change_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_change_BUTTActionPerformed
+        // 예약 수정 화면 버튼 
         ReservationChange.setVisible(true);
     }//GEN-LAST:event_change_BUTTActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        // 예약하기 버튼 코드
+       Sfr200Process filea = new Sfr200Process();
+       Sfr300Process filea2 = new Sfr300Process();
+       
+       filea.fRead();
+       filea2.fRead();
+       
+       try {
+           filea.sPlite();
+           filea2.sPlite();
+           guestInfo = filea.returnGuestInfo(); // 객체값 복사하는 과정 
+           roomstate = filea2.returnRoomState(); //객체값 복사하는 과정 
+       }catch (IOException e){
+            Logger.getLogger(ReservationMenu.class.getName()).log(Level.SEVERE, null, e);
+       }
+       /* guestinfomation정보 save 하기위한 지역 변수 선언 */ 
+       CustomerInforSave save = new  CustomerInforSave(); /// 고객정보 호출 
+       
+       /* 고객 정보 임시  저장용 변수 */ 
+        // -> 메소드 생성시 낙터법 및 소문자 -> 대문자 문법규칙 준수 
+       String customInfo; String code;  String name; String roomNum;  String cusNum; String cusPhonenum;    String inYear ,inMonth,inDay; // 1차
+       String outYear,outMonth,outDay; String cardType;   String cardNum; String cardState; /* 카드 유효기간*/ String exprMonth; String expYear;   String money;//2차 
+       
+       /* 다이얼 로그에서 값 불러들임 */
+       money = exMoney.getText(); // 예상금액 뜨는 표시부분 
+       code = Integer.toString(guestInfo.size() +1); // 이건 숫자를 문자열로 변환 고객 정보 배열 사이즈 +1 해줌 스페어 공간 
+       roomNum = RoomText.getText(); //호실 정보 가져옴
+       name = Cusname.getText();
+       cusNum = cusPeoplenum.getSelectedItem().toString(); // jcombobox 값 가져오는 코드 
+       cusPhonenum = phone.getText() + phtwo.getText() +phthree.getText();
+        //신용카드부분
+        cardType = cuscardCa.getSelectedItem().toString();
+        cardNum = carNumOne.getText() + carNumTwo.getText() + carNumThree.getText() + carNumFor.getText();
+        cardState = carLastNuOne.getText() + carLastNumTwo.getText(); //유효기간 
+        // 체크인 체크아웃 처리 부분 
+        inYear = Checkinyear.getSelectedItem().toString();
+        inMonth = Checkinmonth.getSelectedItem().toString();
+        inDay = Checkinday.getSelectedItem().toString();
+        //여기서 부터 체크아웃 
+        outYear = Checkoutyear.getSelectedItem().toString();
+        outMonth = Checkoutmonth.getSelectedItem().toString();
+        outDay = Checkoutday.getSelectedItem().toString();
+        // 다이얼 로그 입력 종료 
+        
+        
+       
+       
+      
+    
+       
         
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void printPrice_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printPrice_BUTTActionPerformed
+        // TODO add your handling code here:
+        // 예상 금액확인 버튼 
+    }//GEN-LAST:event_printPrice_BUTTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -649,12 +720,6 @@ public class ReservationMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BACK_BUTT;
     private javax.swing.JButton BChange;
-    private javax.swing.JTextField CarLastNuOne;
-    private javax.swing.JTextField CarLastNumTwo;
-    private javax.swing.JTextField CarNumFor;
-    private javax.swing.JTextField CarNumOne;
-    private javax.swing.JTextField CarNumThree;
-    private javax.swing.JTextField CarNumTwo;
     private javax.swing.JComboBox<String> Checkinday;
     private javax.swing.JComboBox<String> Checkinmonth;
     private javax.swing.JComboBox<String> Checkinyear;
@@ -662,15 +727,22 @@ public class ReservationMenu extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> Checkoutmonth;
     private javax.swing.JComboBox<String> Checkoutyear;
     private javax.swing.JButton Close_BUTT;
-    private javax.swing.JComboBox<String> Cus_peoplenum;
-    private javax.swing.JComboBox<String> CuscardCa;
     private javax.swing.JTextField Cusname;
     private javax.swing.JTable FeeTable;
     private javax.swing.JDialog ReservationChange;
     private javax.swing.JTextField RoomText;
     private javax.swing.JDialog ShowPrice;
     private javax.swing.JButton ShowPrice_BUTT;
+    private javax.swing.JTextField carLastNuOne;
+    private javax.swing.JTextField carLastNumTwo;
+    private javax.swing.JTextField carNumFor;
+    private javax.swing.JTextField carNumOne;
+    private javax.swing.JTextField carNumThree;
+    private javax.swing.JTextField carNumTwo;
     private javax.swing.JButton change_BUTT;
+    private javax.swing.JComboBox<String> cusPeoplenum;
+    private javax.swing.JComboBox<String> cuscardCa;
+    private javax.swing.JLabel exMoney;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
