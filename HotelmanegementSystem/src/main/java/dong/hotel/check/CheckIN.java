@@ -31,14 +31,14 @@ public class CheckIN extends javax.swing.JFrame {
         ReservationCheckIn = new javax.swing.JDialog();
         CheckIn_panel = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        SearchName = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        SearchRoom = new javax.swing.JTextField();
+        Bsearch = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         Back_B = new javax.swing.JButton();
-        Back_Button1 = new javax.swing.JButton();
+        take_Butt = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         Not_Reservation_BUTT = new javax.swing.JButton();
         Reservation_BUTT = new javax.swing.JButton();
@@ -53,13 +53,11 @@ public class CheckIN extends javax.swing.JFrame {
 
         ReservationCheckIn.setMinimumSize(new java.awt.Dimension(500, 320));
 
-        CheckIn_panel.setMinimumSize(null);
-
         jLabel5.setText("이름");
 
         jLabel6.setText("호실");
 
-        jButton1.setText("검색");
+        Bsearch.setText("검색");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -87,10 +85,10 @@ public class CheckIN extends javax.swing.JFrame {
             }
         });
 
-        Back_Button1.setText("불러오기");
-        Back_Button1.addActionListener(new java.awt.event.ActionListener() {
+        take_Butt.setText("불러오기");
+        take_Butt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Back_Button1ActionPerformed(evt);
+                take_ButtActionPerformed(evt);
             }
         });
 
@@ -104,13 +102,13 @@ public class CheckIN extends javax.swing.JFrame {
                     .addGroup(CheckIn_panelLayout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2))
+                        .addComponent(SearchRoom))
                     .addGroup(CheckIn_panelLayout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(SearchName, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Bsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(119, Short.MAX_VALUE))
             .addGroup(CheckIn_panelLayout.createSequentialGroup()
                 .addContainerGap()
@@ -120,7 +118,7 @@ public class CheckIN extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Back_B, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Back_Button1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(take_Butt, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
         CheckIn_panelLayout.setVerticalGroup(
@@ -129,19 +127,19 @@ public class CheckIN extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(CheckIn_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SearchName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(CheckIn_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(CheckIn_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1)))
+                        .addComponent(SearchRoom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Bsearch)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(CheckIn_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Back_B)
-                    .addComponent(Back_Button1))
+                    .addComponent(take_Butt))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -281,9 +279,9 @@ public class CheckIN extends javax.swing.JFrame {
        ReservationCheckIn.setVisible(true);
     }//GEN-LAST:event_Reservation_BUTTActionPerformed
 
-    private void Back_Button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Back_Button1ActionPerformed
+    private void take_ButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_take_ButtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Back_Button1ActionPerformed
+    }//GEN-LAST:event_take_ButtActionPerformed
 
     private void Back_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Back_BActionPerformed
         ReservationCheckIn.setVisible(false);
@@ -327,7 +325,7 @@ public class CheckIN extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back_B;
     private javax.swing.JButton Back_BUTT;
-    private javax.swing.JButton Back_Button1;
+    private javax.swing.JButton Bsearch;
     private javax.swing.JButton CheckIn_BUTT;
     private javax.swing.JPanel CheckIn_panel;
     private javax.swing.JTextField Guest_Num;
@@ -336,7 +334,8 @@ public class CheckIN extends javax.swing.JFrame {
     private javax.swing.JDialog ReservationCheckIn;
     private javax.swing.JButton Reservation_BUTT;
     private javax.swing.JTextField Room_Num;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField SearchName;
+    private javax.swing.JTextField SearchRoom;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -345,7 +344,6 @@ public class CheckIN extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton take_Butt;
     // End of variables declaration//GEN-END:variables
 }

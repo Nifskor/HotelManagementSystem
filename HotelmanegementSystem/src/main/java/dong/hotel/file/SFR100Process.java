@@ -48,36 +48,34 @@ public void setOssystem(int os){
     public void fRead() {
        /* 자체적으로 예외 상황 만들어서 try catch 문으로 구성 예외 처리를 해주는거지 사용자가 직접 */
        if (ossystem == 1 ){ // mac ox x 
-       try { // 오류가 발생할수있는 코드 
-           BufferedReader fileread = new BufferedReader(new FileReader(macosxadmin)); // 한줄씩 읽어들임 
-          while ((line = fileread.readLine())!=null ){ // 파일을 끝까지 읽고 null 리턴까지 계속 반복해서 읽어라 
-              readinformaton.add(line);
-          }
-          
-       }catch(FileNotFoundException a) { // 오류가 발생해서 예외처리하는 구문 
-          a.printStackTrace(); //에러의 발생근원지를 찾아서 단계별로 에러를 출력합니다.
-          System.out.println("파일이 존재하지않습니다 경로를 확인해주세요 ");
+           //admin
+           try { // 오류가 발생할수있는 코드 
+                BufferedReader fileread = new BufferedReader(new FileReader(macosxadmin)); // 한줄씩 읽어들임 
+                  while ((line = fileread.readLine())!=null ){ // 파일을 끝까지 읽고 null 리턴까지 계속 반복해서 읽어라 
+                     readinformaton.add(line);
+                    }          
+            }catch(FileNotFoundException a) { // 오류가 발생해서 예외처리하는 구문 
+                a.printStackTrace(); //에러의 발생근원지를 찾아서 단계별로 에러를 출력합니다.
+                System.out.println("파일이 존재하지않습니다 경로를 확인해주세요 ");       
+            }catch(IOException e ) { // 입출력 예외상황 발생 
+                e.printStackTrace();           
+            }
+           //staff
+            try { // 오류가 발생할수있는 코드 
+                BufferedReader fileread = new BufferedReader(new FileReader(macosxstaffid)); // 한줄씩 읽어들임 
+                    while ((line = fileread.readLine())!=null ){ // 파일을 끝까지 읽고 null 리턴까지 계속 반복해서 읽어라 
+                        readinformaton.add(line);
+                    }          
+            }catch(FileNotFoundException a) { // 오류가 발생해서 예외처리하는 구문 
+                a.printStackTrace(); //에러의 발생근원지를 찾아서 단계별로 에러를 출력합니다.
+                System.out.println("파일이 존재하지않습니다 경로를 확인해주세요 ");       
+            }catch(IOException e ) { // 입출력 예외상황 발생 
+                e.printStackTrace();  
+            }
+       }
        
-       }catch(IOException e ) { // 입출력 예외상황 발생 
-           e.printStackTrace();
-           
-       }
-        try { // 오류가 발생할수있는 코드 
-           BufferedReader fileread = new BufferedReader(new FileReader(macosxstaffid)); // 한줄씩 읽어들임 
-          while ((line = fileread.readLine())!=null ){ // 파일을 끝까지 읽고 null 리턴까지 계속 반복해서 읽어라 
-              readinformaton.add(line);
-          }
-          
-       }catch(FileNotFoundException a) { // 오류가 발생해서 예외처리하는 구문 
-          a.printStackTrace(); //에러의 발생근원지를 찾아서 단계별로 에러를 출력합니다.
-          System.out.println("파일이 존재하지않습니다 경로를 확인해주세요 ");
-       
-       }catch(IOException e ) { // 입출력 예외상황 발생 
-           e.printStackTrace();
-           
-       }
-       }
        else if(ossystem == 2) { // windows system 
+           //admin
            try { // 오류가 발생할수있는 코드 
            BufferedReader fileread = new BufferedReader(new FileReader(windowsadminid)); // 한줄씩 읽어들임 
           while ((line = fileread.readLine())!=null ){ // 파일을 끝까지 읽고 null 리턴까지 계속 반복해서 읽어라 
@@ -92,6 +90,7 @@ public void setOssystem(int os){
            e.printStackTrace();
            
        }
+           //staff
         try { // 오류가 발생할수있는 코드 
            BufferedReader fileread = new BufferedReader(new FileReader(windowsstaffid)); // 한줄씩 읽어들임 
           while ((line = fileread.readLine())!=null ){ // 파일을 끝까지 읽고 null 리턴까지 계속 반복해서 읽어라 
@@ -112,22 +111,20 @@ public void setOssystem(int os){
     
 
     @Override
-    public void fWrite(String a) throws IOException {
+    public void fWrite(String a) throws IOException {//loginlog
        /* 오류가 발생했을때 ioexception 에서 오류처리를 던지는경우고 */ 
        String oslocation ="";
        if(ossystem ==1){
-      oslocation = macosloginlog;
-  
+            oslocation = macosloginlog;  
        }
        else if (ossystem ==2 ){
-           oslocation = windowsloginlog;
-          
+           oslocation = windowsloginlog;          
        }
       BufferedWriter log = new BufferedWriter(new FileWriter( oslocation,false));
-        //PrintWriter pw = new PrintWriter(log,true);
+        //PrintWriter pw = new PrintWriter(log,true); //true: auto flush->flush() 필요 x
         log.write(a+"\n"); // 출력  여유가 된다면 시간기록되게 하는거 한번 고려 
         log.flush(); // 남아있는 데이터를 모두 출력 
-        log.close(); // 스트림 클로스 
+        log.close(); // 스트림 클로스
       
        
     }
@@ -142,15 +139,15 @@ public void setOssystem(int os){
            oslocation = windowsadminid;
           
        }
-     BufferedWriter log = new BufferedWriter(new FileWriter( oslocation,false));
+        BufferedWriter log = new BufferedWriter(new FileWriter( oslocation,false));
         //PrintWriter pw = new PrintWriter(log,true);
-        log.write(a+"\n"); // 출력 
+        log.write(a+"\n"); // 출력  여유가 된다면 시간기록되게 하는거 한번 고려 
         log.flush(); // 남아있는 데이터를 모두 출력 
         log.close(); // 스트림 클로스 
       
     }
 
-    public void SWrite (String a )throws IOException {
+    public void SWrite (String a )throws IOException {//staffid
           String oslocation ="";
        if(ossystem ==1){
       oslocation = macosxstaffid;
@@ -162,9 +159,9 @@ public void setOssystem(int os){
        }
         BufferedWriter log = new BufferedWriter(new FileWriter( oslocation,false));
         //PrintWriter pw = new PrintWriter(log,true);
-        log.write(a+"\n"); // 출력 
+        log.write(a+"\n"); // 출력  여유가 된다면 시간기록되게 하는거 한번 고려 
         log.flush(); // 남아있는 데이터를 모두 출력 
-        log.close(); // 스트림 클로스 
+        log.close(); // 스트림 클로스
     }
     
     @Override
