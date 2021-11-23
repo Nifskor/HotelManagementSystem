@@ -46,7 +46,7 @@ public class ReservationMenu extends javax.swing.JFrame {
     private ArrayList<RoomState> roomstate = new ArrayList<>();
     private ArrayList<CardInformation> cardInfo = new ArrayList<>();
     // -----------------------------------------------------------
-    private int checkCardbuttona = 0;
+    private int checkCardbuttona = 0; // 카드 버튼 눌렀는지 확인 
     private String checkRoomNuma = "";
     private String checkPeopleNuma = "";
     private boolean isOverNuma = false; 
@@ -631,6 +631,8 @@ public class ReservationMenu extends javax.swing.JFrame {
        filea.fRead();
        filea2.fRead();
        
+       int count = 1 ; // 키운팅 
+       
        try {
            filea.sPlite();
            filea2.sPlite();
@@ -645,7 +647,7 @@ public class ReservationMenu extends javax.swing.JFrame {
        /* 고객 정보 임시  저장용 변수 */ 
         // -> 메소드 생성시 낙터법 및 소문자 -> 대문자 문법규칙 준수 
        String customInfo; String code;  String name; String roomNum;  String cusNum; String cusPhonenum;    String inYear ,inMonth,inDay; // 1차
-       String outYear,outMonth,outDay; String cardType;   String cardNum; String cardState; /* 카드 유효기간*/ String exprMonth; String expYear;   String money;//2차 
+       String outYear,outMonth,outDay; String cardType;   String cardNum;  String guarantee; String exprMonth; String expYear;   String money;//2차 
        
        /* 다이얼 로그에서 값 불러들임 */
        money = exMoney.getText(); // 예상금액 뜨는 표시부분 
@@ -654,10 +656,6 @@ public class ReservationMenu extends javax.swing.JFrame {
        name = Cusname.getText();
        cusNum = cusPeoplenum.getSelectedItem().toString(); // jcombobox 값 가져오는 코드 
        cusPhonenum = phone.getText() + phtwo.getText() +phthree.getText();
-        //신용카드부분
-        cardType = cuscardCa.getSelectedItem().toString();
-        cardNum = carNumOne.getText() + carNumTwo.getText() + carNumThree.getText() + carNumFor.getText();
-        cardState = carLastNuOne.getText() + carLastNumTwo.getText(); //유효기간 
         // 체크인 체크아웃 처리 부분 
         inYear = Checkinyear.getSelectedItem().toString();
         inMonth = Checkinmonth.getSelectedItem().toString();
@@ -666,7 +664,38 @@ public class ReservationMenu extends javax.swing.JFrame {
         outYear = Checkoutyear.getSelectedItem().toString();
         outMonth = Checkoutmonth.getSelectedItem().toString();
         outDay = Checkoutday.getSelectedItem().toString();
-        // 다이얼 로그 입력 종료 
+        // 다이얼 로그 입력 종료  아래 추가 정보 합산 
+        String inDatea = inYear + "|" + inMonth + "|" +inDay;
+        String outDatea = outYear + "|" + outMonth + "|" + outDay ;
+        // 캘린더 처리 
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH) +1; //달력시 0부터 시작해서 1부터로 올려주고 시작 
+        int day = cal.get(Calendar.DAY_OF_MONTH); //달기준으로 날출력 
+        String today = year + "|" + month + "|" +day ; //(오늘 날짜 출력 )
+        
+        
+        if(checkCardbuttona ==1 ){ // 보증고객인지 예약고객인지 식별 
+           //신용카드부분
+        cardType = cuscardCa.getSelectedItem().toString();
+        cardNum = carNumOne.getText() + carNumTwo.getText() + carNumThree.getText() + carNumFor.getText();
+        exprMonth  = carLastNuOne.getText(); 
+           expYear = carLastNumTwo.getText(); //유효기간 
+           guarantee = "보증고객";
+        }
+        else{
+            cardType = "카드없음";
+            cardNum = "카드없음";
+            exprMonth ="MM";
+            expYear ="YYYY";
+            guarantee ="예약고객";
+        }
+        
+        // 고객정볻 데이터 합산 
+        customInfo = code + "|" + name + "|" + roomNum + "|" +inYear + "|" +inMonth + "|" + inDay + "|" + outYear + "|" + outMonth + "|" + outDay + "|" +cusNum+ "|" +
+                cusNum+"|"+cusPhonenum+"|"+cardType + "|"+ exprMonth +"|"+expYear+"|"+guarantee+"|"+money+"|";
+              // 합산 완료 
+              
         
         
        
