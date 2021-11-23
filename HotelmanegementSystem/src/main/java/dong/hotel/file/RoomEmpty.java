@@ -17,7 +17,7 @@ import java.io.InputStreamReader;
  */
 public class RoomEmpty {
 
-    public void Outguest(String indexNum, String roomNum) throws IOException {
+    public void outguest(String indexNum, String roomNum) throws IOException {
         File file = new File("C:\\DB\\roomState.txt");
         String newLine = "";
         try {
@@ -39,9 +39,8 @@ public class RoomEmpty {
             FileWriter fw = new FileWriter("C:\\DB\\roomState.txt");
 
             fw.write(newLine);
-            fw.flush();
+            
             fw.close();
-
             br.close();
 
         } catch (Exception e) {

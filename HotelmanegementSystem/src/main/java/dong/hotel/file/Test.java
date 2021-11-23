@@ -30,7 +30,10 @@ public class Test {
             String index = Integer.toString(i);
             String num = Integer.toString(room);
 
-            a.Outguest(index, num);
+            a.outguest(index, num);
         }*/
+       /*체크인
+       RoomStateSave s = new RoomStateSave();
+       s.inguest("5","105","김희진","4","2021-11-24","15:35","2021-11-25");*/
     }
 }
