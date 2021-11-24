@@ -11,8 +11,10 @@ import dong.hotel.mainmenu.MainMenu;
 import dong.hotel.reservation.CustomerInfor;
 import dong.hotel.reservation.ReservationMenu;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -65,6 +67,11 @@ public class CheckIN extends javax.swing.JFrame {
         jLabel6.setText("호실");
 
         Bsearch.setText("검색");
+        Bsearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BsearchActionPerformed(evt);
+            }
+        });
 
         reservationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -288,35 +295,79 @@ public class CheckIN extends javax.swing.JFrame {
     }//GEN-LAST:event_Not_Reservation_BUTTActionPerformed
 
     private void Reservation_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reservation_BUTTActionPerformed
-
+      SearchName.setText("");
+      SearchRoom.setText("");
+        /* 
+     //  이부분 주석풀면 예약버튼이 안눌림 ㄱ-
+      DefaultTableModel reservation = (DefaultTableModel) reservationTable.getModel();
         try {
             Sfr200Process cF = new Sfr200Process();
             cF.fRead();
             cF.sPlite();
             customerinfor = cF.returnGuestInfo();
-            
-            DefaultTableModel reservation = (DefaultTableModel)reservationTable.getModel();
-            
-            //현재날짜포맷
-            
-            for(int i =0; i<customerinfor.size();i++){
-            //예약일 포맷
-            //두개비교해서
-            //현재날짜부터 예약일인 예약들만 출력!
-            
-                
+
+            try {
+                //현재날짜포맷
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                String date = df.format(System.currentTimeMillis());
+
+                Date systemDate = df.parse(date);
+
+                for (int i = 0; i < customerinfor.size(); i++) {
+                    //예약일 포맷
+                    String checkIn = String.format("%s-%s-%s", customerinfor.get(i).getcInYear(), customerinfor.get(i).getcInMonth(), customerinfor.get(i).getcInDay());
+                    Date inDate = df.parse(checkIn);
+                    String checkOut = String.format("%s-%s-%s", customerinfor.get(i).getcOutYear(), customerinfor.get(i).getcOutMonth(), customerinfor.get(i).getcOutDay());
+                    String stayDate = String.format("%s ~ %s", checkIn, checkOut);
+
+                    if (inDate.compareTo(systemDate) >= 0) {//두개비교해서 현재날짜보다 과거가 아니라면
+                        //테이블에 출력!
+                        reservation.insertRow(reservation.getRowCount(), new Object[]{
+                            customerinfor.get(i).getName(),
+                            customerinfor.get(i).getRoomNum(),
+                            customerinfor.get(i).getCustomerNum(),
+                            customerinfor.get(i).getPhoneNum(),
+                            stayDate
+                        });
+                    }
+                }
+            } catch (ParseException ex) {
+                Logger.getLogger(CheckIN.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            
-            
-            ReservationCheckIn.setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(CheckIN.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
+                ReservationCheckIn.setVisible(true);
+
     }//GEN-LAST:event_Reservation_BUTTActionPerformed
 
     private void take_ButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_take_ButtActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) reservationTable.getModel();
+        
+        int nRow = -1;
+        int nColumn = -1;
+        
+        //테이블에서 선택된 값으로
+        nRow = reservationTable.getSelectedRow();
+        nColumn = reservationTable.getSelectedColumn();
+
+        if (nRow == -1 && nColumn == -1) {//선택안된경우
+            JOptionPane.showMessageDialog(null, "예약정보를 선택해주세요");
+        } else {
+            //해당 table값가져옴
+            Object nameR = model.getValueAt(nRow, 0);
+            Object roomN = model.getValueAt(nRow, 1);
+            Object guestN = model.getValueAt(nRow, 2);
+            
+            String name = nameR.toString();
+            String room = roomN.toString();
+            String guest = guestN.toString();
+
+            Name.setText(name);
+            Room_Num.setText(room);
+            Guest_Num.setText(guest);
+            ReservationCheckIn.setVisible(false);
+        }
     }//GEN-LAST:event_take_ButtActionPerformed
 
     private void Back_BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Back_BActionPerformed
@@ -364,6 +415,35 @@ public class CheckIN extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_CheckIn_BUTTActionPerformed
+
+    private void BsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BsearchActionPerformed
+        String name = SearchName.getText();
+        String room = SearchRoom.getText();
+        
+        //room이랑 name이 빈칸이라면 오류메세지출력
+        if(room.equals("") && name.equals("")){
+            JOptionPane.showMessageDialog(null, "이름 또는 호실을 입력해주세요");
+        }
+        for (int i = 0; i < customerinfor.size(); i++) {
+            //호실 이름 둘다 입력한경우
+            if(!room.equals("") && !name.equals("")){//둘 다 입력된 경우
+                if(customerinfor.get(i).getName().equals(name)&&customerinfor.get(i).getRoomNum().equals(room)){
+                    reservationTable.changeSelection(i, 0, false , false);
+                }
+            }
+            if(room.equals("") && !name.equals("")){//이름만 입력된 경우
+                if(customerinfor.get(i).getName().equals(name)){
+                    reservationTable.changeSelection(i, 0, false , false);
+                }
+            }
+            if(!room.equals("") && name.equals("")){//호실만 입력된경우
+                if(customerinfor.get(i).getName().equals(name)&&customerinfor.get(i).getRoomNum().equals(room)){
+                    reservationTable.changeSelection(i, 0, false , false);
+                }
+            }
+            
+        }
+    }//GEN-LAST:event_BsearchActionPerformed
 
     /**
      * @param args the command line arguments
