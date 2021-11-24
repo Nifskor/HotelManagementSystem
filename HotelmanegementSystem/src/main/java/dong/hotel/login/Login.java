@@ -27,6 +27,10 @@ public class Login extends javax.swing.JFrame {
     ArrayList<LoginDataInfo> loginfo = new ArrayList<>();  // 객체 복사용도 
     Boolean alla;
     static int logintype = 0; // 0이면 관리자 , 1이면 스탭 
+    
+    public int getLogintypestate() {
+        return logintype;
+    }
 
     /**
      * Creates new form Logingui

@@ -53,6 +53,7 @@ public void setOssystem(int os){
                 BufferedReader fileread = new BufferedReader(new FileReader(macosxadmin)); // 한줄씩 읽어들임 
                   while ((line = fileread.readLine())!=null ){ // 파일을 끝까지 읽고 null 리턴까지 계속 반복해서 읽어라 
                      readinformaton.add(line);
+                    
                     }          
             }catch(FileNotFoundException a) { // 오류가 발생해서 예외처리하는 구문 
                 a.printStackTrace(); //에러의 발생근원지를 찾아서 단계별로 에러를 출력합니다.
@@ -171,6 +172,8 @@ public void setOssystem(int os){
         for(int i = 0 ; i <readinformaton.size(); i ++){
             
             line  = readinformaton.get(i);
+            // System.out.println(line);
+           //System.out.println(readinformaton.size());
             String[] str = line.split(" "); // 공백 문자열을 기준으로 문자열을 분리한다 값분리 
             logininformation.add(new LoginDataInfo(str[0],str[1])); //0 번째 아이디 2 패스워드 
             System.out.printf("%s,%s",str[0],str[1]);

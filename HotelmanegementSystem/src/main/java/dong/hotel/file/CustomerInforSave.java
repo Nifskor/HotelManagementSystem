@@ -52,11 +52,11 @@ public class CustomerInforSave { // 고객 정보 저장 담당 클래스
        
     }
    
-   public void InputGuest( String code,  String name,  String roomNum,  String inYear, String inMonth,String inDay, String outYear, 
-                           String outMonth, String outDay, String cusNum , String cusPhonenum,String cardType , String  exprMonth, 
-                           String expYear, String guarantee ,String money )throws IOException  { //고객 정보 입력  받아오는거 
-   
-    
+   public void InputGuest( String code ,String name ,String roomNum ,String cusNum ,String cusPhonenum ,String inYear,String inMonth,
+              String inDay,String outYear,String outMonth,String outDay,String money,String cardType,
+                      String cardNum,String exprMonth,String expYear,String guarantee )throws IOException  { //고객 정보 입력  받아오는거 
+           // 다시 정렬함 
+               
        if(fileae.getOssystem() == 1 ) { //os x 
            try {
               BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(macosxcustom)));
@@ -72,8 +72,9 @@ public class CustomerInforSave { // 고객 정보 저장 담당 클래스
               input.readLine(); // 문자열 다시 받아오고 
               
               //추가삽입 
-              dump += code + "|" + name + "|" + roomNum + "|" +inYear + "|" +inMonth + "|" + inDay + "|" + outYear + "|" + outMonth + "|" + outDay + "|" +cusNum+ "|" +
-                cusPhonenum+"|"+cardType + "|"+ exprMonth +"|"+expYear+"|"+guarantee+"|"+money+"|"; // cus num 중복으로 2번들어감  나머지 체크후 필요시 들어가야함 
+              dump += code + "|" + name + "|" + roomNum + "|" + cusNum + "|" + cusPhonenum + "|" + inYear + "|" + inMonth + "|" + 
+                      inDay + "|" + outYear + "|" + outMonth + "|" + outDay + "|" + money + "|" + cardType + "|" + cardNum+ "|" +
+                      exprMonth + "|" +expYear+ "|" +guarantee+ "|"; // cus num 중복으로 2번들어감  나머지 체크후 필요시 들어가야함 
             //  위에 있던거 그대로 합산  앞 인덱싱 자료후 뒤에 다시 추가함 
               
             while ((line = input.readLine()) != null) {
@@ -108,8 +109,9 @@ public class CustomerInforSave { // 고객 정보 저장 담당 클래스
               input.readLine(); // 문자열 다시 받아오고 
               
               //추가삽입 
-              dump += code + "|" + name + "|" + roomNum + "|" +inYear + "|" +inMonth + "|" + inDay + "|" + outYear + "|" + outMonth + "|" + outDay + "|" +cusNum+ "|" +
-                cusPhonenum+"|"+cardType + "|"+ exprMonth +"|"+expYear+"|"+guarantee+"|"+money+"|"; // cus num 중복으로 2번들어감  나머지 체크후 필요시 들어가야함 
+              dump += code + "|" + name + "|" + roomNum + "|" + cusNum + "|" + cusPhonenum + "|" + inYear + "|" + inMonth + "|" + 
+                      inDay + "|" + outYear + "|" + outMonth + "|" + outDay + "|" + money + "|" + cardType + "|" + cardNum+ "|" +
+                      exprMonth + "|" +expYear+ "|" +guarantee+ "|"; // cus num 중복으로 2번들어감  나머지 체크후 필요시 들어가야함 
             //  위에 있던거 그대로 합산  앞 인덱싱 자료후 뒤에 다시 추가함 
               
             while ((line = input.readLine()) != null) {
@@ -132,10 +134,11 @@ public class CustomerInforSave { // 고객 정보 저장 담당 클래스
        
            
        } //InputGuest 끝 
+  
    
-   public void esstionals( String code,  String name,  String roomNum, String cusNum, String phoneNum, String inYear, String inMonth,
-           String inDay, String outYear, String outMonth , String cardType, String cardNum , String expriMonth, String expriYear , 
-           String guarantee , int index , String money) throws IOException { // 안덱싱 정보 추가 
+   public void esstionals( String code,  String name,  String roomNum, String cusNum, String cusPhonenum, String inYear, String inMonth,
+           String inDay, String outYear, String outMonth ,String outDay, String money, String cardType , String cardNum, String  exprMonth , 
+           String expYear ,String guarantee , int index ) throws IOException { // 안덱싱 정보 추가 
           // windows windowscustom  / mac os x macosxcustom 
      String dump = "";
        if (fileae.getOssystem() == 1 ) {//mac os x 
@@ -151,9 +154,9 @@ public class CustomerInforSave { // 고객 정보 저장 담당 클래스
            
             input2.readLine();
             
-            dump += (code + "|" + name  + "|"+ roomNum + "|"+ cusNum + "|"+phoneNum + "|"+ inYear + "|"+ inMonth + "|"+ inDay + "|"+ 
-                    outYear + "|"+ outMonth + "|"+ cardType + "|"+ cardNum + "|"+ expriMonth + "|"+ expriYear + "|"+ guarantee + "|"+ money
-                    + "|"+ "\r\n");
+            dump += (code + "|" + name + "|" + roomNum + "|" + cusNum + "|" + cusPhonenum + "|" + inYear + "|" + inMonth + "|" + 
+                      inDay + "|" + outYear + "|" + outMonth + "|" + outDay + "|" + money + "|" + cardType + "|" + cardNum+ "|" +
+                      exprMonth + "|" +expYear+ "|" +guarantee+ "|"+ "\r\n");
             // 공백없이 바로 문자로 딱딱 가져오기 좋음 
             
             while ((line = input2 .readLine()) != null) {
@@ -182,9 +185,9 @@ public class CustomerInforSave { // 고객 정보 저장 담당 클래스
            
             input2.readLine();
             
-            dump += (code + "|" + name  + "|"+ roomNum + "|"+ cusNum + "|"+phoneNum + "|"+ inYear + "|"+ inMonth + "|"+ inDay + "|"+ 
-                    outYear + "|"+ outMonth + "|"+ cardType + "|"+ cardNum + "|"+ expriMonth + "|"+ expriYear + "|"+ guarantee + "|"+ money
-                    + "|"+ "\r\n");
+            dump += (code + "|" + name + "|" + roomNum + "|" + cusNum + "|" + cusPhonenum + "|" + inYear + "|" + inMonth + "|" + 
+                      inDay + "|" + outYear + "|" + outMonth + "|" + outDay + "|" + money + "|" + cardType + "|" + cardNum+ "|" +
+                      exprMonth + "|" +expYear+ "|" +guarantee+ "|"+ "\r\n");
             // 공백없이 바로 문자로 딱딱 가져오기 좋음 
             
             while ((line = input2 .readLine()) != null) {

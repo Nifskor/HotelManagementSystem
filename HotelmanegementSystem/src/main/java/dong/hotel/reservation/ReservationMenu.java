@@ -31,6 +31,7 @@ import java.util.stream.Stream;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import dong.hotel.file.CustomerInforSave; // 고객 정보 저장용 
+import dong.hotel.login.Login;
 
 /**
  *
@@ -38,13 +39,14 @@ import dong.hotel.file.CustomerInforSave; // 고객 정보 저장용
  */
 public class ReservationMenu extends javax.swing.JFrame {
 
+    
     // -----------------------------------------------------
     private ArrayList<PeakSeasonChargeInfo> chargeInfo = new ArrayList<>();
     private ArrayList<CustomerInfor> guestInfo = new ArrayList<>();
     private ArrayList<RoomState> roomstate = new ArrayList<>();
     private ArrayList<CardInformation> cardInfo = new ArrayList<>();
     // -----------------------------------------------------------
-    private int checkCardbuttona = 0; // 카드 버튼 눌렀는지 확인 
+    private int checkCardbuttona = 0; // 카드 정보 입력받았는지 체크 카운티 
     private String checkRoomNuma = "";
     private String checkPeopleNuma = "";
     private boolean isOverNuma = false; 
@@ -119,6 +121,7 @@ public class ReservationMenu extends javax.swing.JFrame {
         carLastNuOne = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         carLastNumTwo = new javax.swing.JTextField();
+        checkPersonalData = new javax.swing.JCheckBox();
 
         ShowPrice.setMinimumSize(new java.awt.Dimension(430, 350));
 
@@ -378,7 +381,7 @@ public class ReservationMenu extends javax.swing.JFrame {
                                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(phthree, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(57, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(ShowPrice_BUTT)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -447,7 +450,7 @@ public class ReservationMenu extends javax.swing.JFrame {
             }
         });
 
-        cuscardCa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "국민은행", "신한은행", "농협은행", "카카오뱅크", "부산은행", "신협", "한국투자증권", "새마을금고" }));
+        cuscardCa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "카드선택", "국민은행", "신한은행", "농협은행", "카카오뱅크", "부산은행", "신협", "한국투자증권", "새마을금고", "BC카드" }));
 
         carNumOne.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -463,6 +466,8 @@ public class ReservationMenu extends javax.swing.JFrame {
 
         jLabel23.setText("-");
 
+        checkPersonalData.setText("개인정보 수집 및 이용에 동의합니다.");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -471,22 +476,7 @@ public class ReservationMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(change_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(BACK_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(carLastNuOne, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel23)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(carLastNumTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -507,11 +497,30 @@ public class ReservationMenu extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel22)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(carNumFor, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(62, Short.MAX_VALUE))
+                                        .addComponent(carNumFor, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(change_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(carLastNuOne, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel23)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(carLastNumTwo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addComponent(BACK_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(checkPersonalData)
+                .addGap(37, 37, 37))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -538,12 +547,14 @@ public class ReservationMenu extends javax.swing.JFrame {
                     .addComponent(carLastNuOne, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel23)
                     .addComponent(carLastNumTwo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(checkPersonalData)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
+                    .addComponent(change_BUTT)
                     .addComponent(BACK_BUTT)
-                    .addComponent(change_BUTT))
-                .addGap(62, 62, 62))
+                    .addComponent(jButton5))
+                .addGap(27, 27, 27))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -638,8 +649,8 @@ public class ReservationMenu extends javax.swing.JFrame {
        
        int count = 1 ; // 처리 카운트에따라 작동 
        
-       try {
-           filea.sPlite();
+       try { // 11/25 오류 발생 
+           filea.sPlite(); // 이코드에서 오류 발생 
            filea2.sPlite();
            guestInfo = filea.returnGuestInfo(); // 객체값 복사하는 과정 
            roomstate = filea2.returnRoomState(); //객체값 복사하는 과정 
@@ -679,9 +690,12 @@ public class ReservationMenu extends javax.swing.JFrame {
         int day = cal.get(Calendar.DAY_OF_MONTH); //달기준으로 날출력 
         String today = year + "|" + month + "|" +day ; //(오늘 날짜 출력 )
         
+        /* 카드 운영 로직 별도 함수로 처리 및 호출 아래 들어감 */ 
+        //cardworkingproce();
         
         if(checkCardbuttona ==1 ){ // 보증고객인지 예약고객인지 식별 
            //신용카드부분
+           System.out.println("조건문 통과상태확인 ");
         cardType = cuscardCa.getSelectedItem().toString();
         cardNum = carNumOne.getText() + carNumTwo.getText() + carNumThree.getText() + carNumFor.getText();
         exprMonth  = carLastNuOne.getText(); 
@@ -697,16 +711,23 @@ public class ReservationMenu extends javax.swing.JFrame {
         }
         
         // 고객정볻 데이터 합산 
-        customInfo = code + "|" + name + "|" + roomNum + "|" +inYear + "|" +inMonth + "|" + inDay + "|" + outYear + "|" + outMonth + "|" + outDay + "|" +cusNum+ "|" +
+        //데이터 잘못된거임 아래 다시 타입 수정함 
+        /*customInfo = code + "|" + name + "|" + roomNum + "|" +inYear + "|" +inMonth + "|" + inDay + "|" + outYear + "|" + outMonth + "|" + outDay + "|" +cusNum+ "|" +
                 cusPhonenum+"|"+cardType + "|"+ exprMonth +"|"+expYear+"|"+guarantee+"|"+money+"|"; // cus num 중복으로 2번들어감  나머지 체크후 필요시 들어가야함 
               // 합산 완료 
-              
+              /* 버그로 인해 다시 덤프작성 */ 
+              customInfo = code + "|" + name + "|" + roomNum + "|" + cusNum + "|" + cusPhonenum + "|" + inYear + "|" + inMonth + "|" + 
+                      inDay + "|" + outYear + "|" + outMonth + "|" + outDay + "|" + money + "|" + cardType + "|" + cardNum+ "|" +
+                      exprMonth + "|" +expYear+ "|" +guarantee+ "|" ;
+             
+                    
         try { 
             for(int i =0 ; i<guestInfo.size(); i++){
                 String bookIn = guestInfo.get(i).getcInYear() + "|" + guestInfo.get(i).getcInMonth() + "|" + guestInfo.get(i).getcInDay() + "|";
                 String bookout = guestInfo.get(i).getcOutYear() + "|" + guestInfo.get(i).getcOutMonth()+ "|" + guestInfo.get(i).getcOutDay()+"|";
                 // 부킹인 부킹 아웃 날짜 설정 
-                
+                System.out.println(bookIn);
+                 System.out.println(bookout);
                 compare1 =inDatea.compareTo(bookIn);
                  compare2 =inDatea.compareTo(bookout);
                  compare3 =inDatea.compareTo(bookIn); // 입력된 데이터랑 그리고 파일로 불러온 코드 맞는지 비교 비교하고 동일하면 넘기겠죵
@@ -785,6 +806,42 @@ public class ReservationMenu extends javax.swing.JFrame {
         // 예상 금액확인 버튼 
     }//GEN-LAST:event_printPrice_BUTTActionPerformed
 
+    /* 카드 처리 함수 */ 
+    private void cardworkingproce() {
+        Login checkisps = new Login();
+       
+        int logintypecheck = 0;
+        String loginuser = ""; // 관리자인지 사용자인지 
+       String  cardType = cuscardCa.getSelectedItem().toString();
+        String cardNum = carNumOne.getText() + "-"+ carNumTwo.getText() +"-" + carNumThree.getText() +"-" + carNumFor.getText();
+        String exprMonth  = carLastNuOne.getText(); 
+          String  expYear = carLastNumTwo.getText(); //유효기간 
+          CardInformation getcard = new CardInformation(cardType, cardNum, exprMonth, expYear); // 카드 클래스에 정보넘김 
+           if (cardType.equals("카드선택") || cardNum.length() <= 18
+                || exprMonth.equals("MM") || expYear.equals("YYYY")) {
+            JOptionPane.showMessageDialog(this, "정확하게 입력해주세요 입력값이 유효하지않습니다.", "오류",
+                    JOptionPane.ERROR_MESSAGE);
+           }
+             if (!checkPersonalData.isSelected()) {
+                JOptionPane.showMessageDialog(this, "개인정보 수집 및 이용에 대해 "+ "동의해주세요.", "오류발생",JOptionPane.ERROR_MESSAGE);
+            }
+             else if (checkPersonalData.isSelected()){
+                 logintypecheck = checkisps.getLogintypestate();
+                 if(logintypecheck == 0 )
+                 {
+                     loginuser = "관리자";
+                 }
+                 else if (logintypecheck == 1 ){
+                     loginuser = "직원";
+                 }
+                 JOptionPane.showMessageDialog(this, loginuser+ "님이 개인정보 이용을 동의하셨습니다. " , "개인정보",JOptionPane.ERROR_MESSAGE);
+                 cardInfo.add(getcard);
+                 checkCardbuttona = 1 ;
+                 
+          
+             }
+            
+    }
     /**
      * @param args the command line arguments
      */
@@ -843,6 +900,7 @@ public class ReservationMenu extends javax.swing.JFrame {
     private javax.swing.JTextField carNumThree;
     private javax.swing.JTextField carNumTwo;
     private javax.swing.JButton change_BUTT;
+    private javax.swing.JCheckBox checkPersonalData;
     private javax.swing.JComboBox<String> cusPeoplenum;
     private javax.swing.JComboBox<String> cuscardCa;
     private javax.swing.JLabel exMoney;

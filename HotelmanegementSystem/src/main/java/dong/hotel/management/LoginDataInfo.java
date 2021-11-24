@@ -9,7 +9,7 @@ package dong.hotel.management;
  *
  * @author nifskorea
  */
-public class LoginDataInfo {
+public class LoginDataInfo { /* arraylist로선언 되어져서 일반 선언은 불가 */ 
 
     private String id;
     private String ps;

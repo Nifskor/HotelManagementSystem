@@ -504,7 +504,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace pref="57" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="ShowPrice_BUTT" min="-2" max="-2" attributes="0"/>
@@ -668,25 +668,8 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="change_BUTT" min="-2" pref="78" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                          <Component id="BACK_BUTT" min="-2" pref="77" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jButton5" min="-2" pref="77" max="-2" attributes="0"/>
-                      </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel13" min="-2" pref="60" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="carLastNuOne" min="-2" pref="87" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="carLastNumTwo" min="-2" pref="87" max="-2" attributes="0"/>
-                              </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel8" min="-2" pref="60" max="-2" attributes="0"/>
@@ -695,7 +678,7 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="cuscardCa" min="-2" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Component id="carNumOne" min="-2" pref="75" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
@@ -712,14 +695,37 @@
                                       </Group>
                                   </Group>
                               </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="change_BUTT" min="-2" pref="78" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel13" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="carLastNuOne" min="-2" pref="87" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="carLastNumTwo" min="-2" pref="87" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="BACK_BUTT" min="-2" pref="77" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jButton5" min="-2" pref="77" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace pref="62" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel7" min="-2" pref="92" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="checkPersonalData" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -751,13 +757,15 @@
                       <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="carLastNumTwo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="checkPersonalData" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="BACK_BUTT" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="change_BUTT" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="BACK_BUTT" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton5" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -813,15 +821,17 @@
         <Component class="javax.swing.JComboBox" name="cuscardCa">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="8">
-                <StringItem index="0" value="&#xad6d;&#xbbfc;&#xc740;&#xd589;"/>
-                <StringItem index="1" value="&#xc2e0;&#xd55c;&#xc740;&#xd589;"/>
-                <StringItem index="2" value="&#xb18d;&#xd611;&#xc740;&#xd589;"/>
-                <StringItem index="3" value="&#xce74;&#xce74;&#xc624;&#xbc45;&#xd06c;"/>
-                <StringItem index="4" value="&#xbd80;&#xc0b0;&#xc740;&#xd589;"/>
-                <StringItem index="5" value="&#xc2e0;&#xd611;"/>
-                <StringItem index="6" value="&#xd55c;&#xad6d;&#xd22c;&#xc790;&#xc99d;&#xad8c;"/>
-                <StringItem index="7" value="&#xc0c8;&#xb9c8;&#xc744;&#xae08;&#xace0;"/>
+              <StringArray count="10">
+                <StringItem index="0" value="&#xce74;&#xb4dc;&#xc120;&#xd0dd;"/>
+                <StringItem index="1" value="&#xad6d;&#xbbfc;&#xc740;&#xd589;"/>
+                <StringItem index="2" value="&#xc2e0;&#xd55c;&#xc740;&#xd589;"/>
+                <StringItem index="3" value="&#xb18d;&#xd611;&#xc740;&#xd589;"/>
+                <StringItem index="4" value="&#xce74;&#xce74;&#xc624;&#xbc45;&#xd06c;"/>
+                <StringItem index="5" value="&#xbd80;&#xc0b0;&#xc740;&#xd589;"/>
+                <StringItem index="6" value="&#xc2e0;&#xd611;"/>
+                <StringItem index="7" value="&#xd55c;&#xad6d;&#xd22c;&#xc790;&#xc99d;&#xad8c;"/>
+                <StringItem index="8" value="&#xc0c8;&#xb9c8;&#xc744;&#xae08;&#xace0;"/>
+                <StringItem index="9" value="BC&#xce74;&#xb4dc;"/>
               </StringArray>
             </Property>
           </Properties>
@@ -863,6 +873,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="carLastNumTwo">
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="checkPersonalData">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#xac1c;&#xc778;&#xc815;&#xbcf4; &#xc218;&#xc9d1; &#xbc0f; &#xc774;&#xc6a9;&#xc5d0; &#xb3d9;&#xc758;&#xd569;&#xb2c8;&#xb2e4;."/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
