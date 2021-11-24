@@ -17,7 +17,7 @@ import java.io.IOException;
  */
 public class PeakSeasonPayInfoSave {
      /* 환경 변수 */ 
-      private String macosxpayinfo = "/Users/nifskorea/Desktop/DB/peak.txt";
+      private String macosxpayinfo = "/Users/nifskorea/Desktop/DB/peakpayinfo.txt";
     private String windowspayinfo = "C:\\DB\\peakpayinfo.txt";
     private String line = "";  // 파일 공백시 
     private String dummy =""; //temp

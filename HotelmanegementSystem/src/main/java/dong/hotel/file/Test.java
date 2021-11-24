@@ -17,8 +17,8 @@ public class Test {
      * 파일돌려보는 테스트용코드
      */
     public static void main(String[] args) throws IOException {
-       /*
-       //파일에 빈방싹넣음
+       
+     /*  //파일에 빈방싹넣음
         RoomEmpty a = new RoomEmpty();
         int i, no;
         int height;
@@ -31,9 +31,10 @@ public class Test {
             String num = Integer.toString(room);
 
             a.outguest(index, num);
-        }*/
-       /*체크인
+        }
+       //체크인
        RoomStateSave s = new RoomStateSave();
-       s.inguest("5","105","김희진","4","2021-11-24","15:35","2021-11-25");*/
+       s.inguest("5","105","김희진","4","2021-11-24","15:35","2021-11-25");
+*/
     }
 }

@@ -42,7 +42,6 @@ public class ReservationMenu extends javax.swing.JFrame {
     // -----------------------------------------------------
     private ArrayList<PeakSeasonChargeInfo> chargeInfo = new ArrayList<>();
     private ArrayList<CustomerInfor> guestInfo = new ArrayList<>();
-    private ArrayList<AddressInformation> addressInfo = new ArrayList<>(); // 고객 주소정보 저장 배열 
     private ArrayList<RoomState> roomstate = new ArrayList<>();
     private ArrayList<CardInformation> cardInfo = new ArrayList<>();
     // -----------------------------------------------------------
