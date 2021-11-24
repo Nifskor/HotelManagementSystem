@@ -91,19 +91,28 @@ SFR100Process fileae = new SFR100Process();
           
               //System.out.println(str[0]);
           
-           //if(readInfo.size() ==1){ //아무것도 없을때 애러잡는거임 
-            //   emptyfilech = 1;
-             //  System.out.println("아무것도 입력되지않은상태입니다. 임의값을 넣습니다 ");
-              // String[] str2 = {"-1","이름","이","0","010-1234-1234","2021","00","00","2021","00","00","0","국민은행","1234-1234-1234-1234","0","2021","보증확인"};
-            //    guestInfo.add(new CustomerInfor(str2[0], str2[1], str2[2], str2[3], str2[4], str2[5], str2[6], str2[7], str2[8],
-               //     str2[9], str2[10], str2[11], str2[12], str2[13], str2[14], str2[15], str2[16]));
-         //  } else{
+           if(readInfo.size() ==1){ //아무것도 없을때 애러잡는거임 
+              CustomerInforSave save = new  CustomerInforSave(); /// 고객정보 호출 
+               emptyfilech = 1;
+               System.out.println("아무것도 입력되지않은상태입니다. 임의값을 넣습니다 ");
+               String[] str2 = {"-1","이름","이","0","010-1234-1234","2021","00","00","2021","00","00","0","국민은행","1234-1234-1234-1234","0","2021","보증확인"};
+               String customInfo = "-1" + "|" + "이" + "|" + "이" + "|" + "0" + "|" + "010-1234-1234" + "|" + "2021" + "|" + "00" + "|" + 
+                     "00" + "|" + "2021" + "|" + "00" + "|" + "00" + "|" + "10000" + "|" + "국민은" + "|" + "1234-1234-1234-1234"+ "|" +
+                      "0" + "|" +"2021"+ "|" +"예약확인"+ "|" ;
+               try{
+               save.AddCustom(customInfo);
+               }
+               catch(Exception e) { }
+               guestInfo.add(new CustomerInfor(str2[0], str2[1], str2[2], str2[3], str2[4], str2[5], str2[6], str2[7], str2[8],
+                    str2[9], str2[10], str2[11], str2[12], str2[13], str2[14], str2[15], str2[16]));
+               
+           } else{
             
            guestInfo.add(new CustomerInfor(str[0], str[1], str[2], str[3], str[4], str[5], str[6], str[7], str[8],
                     str[9], str[10], str[11], str[12], str[13], str[14], str[15], str[16]));
                
               
-          // }
+         }
            /*String chechkNum, String name, String roomNum, String customerNum, String phoneNum, 
             String cInYear, String cInMonth, String cInDay, String cOutYear, String cOutMonth, String cOutDay, 
             String roomPrice, String card, String cardNum, String endMonth, String endYear, String guarantee*/

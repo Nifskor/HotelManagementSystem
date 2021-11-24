@@ -692,7 +692,7 @@ public class ReservationMenu extends javax.swing.JFrame {
         String today = year + "|" + month + "|" +day ; //(오늘 날짜 출력 )
         
         /* 카드 운영 로직 별도 함수로 처리 및 호출 아래 들어감 */ 
-        //cardworkingproce();
+        cardworkingproce();
         
         if(checkCardbuttona ==1 ){ // 보증고객인지 예약고객인지 식별 
            //신용카드부분
