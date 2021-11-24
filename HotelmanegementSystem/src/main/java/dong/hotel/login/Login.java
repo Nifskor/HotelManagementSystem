@@ -142,6 +142,9 @@ public class Login extends javax.swing.JFrame {
         //예외 처리문 시작 
         try {
             loginfo = filea.returnLoginDataInfo();// sfr100 배열 값들을 그대로 넘겨받는거임 객체복사 아이디 패스워드를 그대로 가져옴 
+            for(int k = 0 ; k < loginfo.size(); k ++){
+            System.out.println(loginfo.get(k));
+            }
 
         } catch (IOException a) {
             //로그인 이벤트 발생 입출력 오류 발생시 오류를 기록하는 로그기록장치 
