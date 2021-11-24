@@ -5,13 +5,17 @@
 package dong.hotel.check;
 
 import dong.hotel.mainmenu.MainMenu;
+import dong.hotel.reservation.CustomerInfor;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author nifskorea
  */
 public class CheckOut extends javax.swing.JFrame {
-
+    private ArrayList<CustomerInfor> customerinfor = new ArrayList<>();
+    private ArrayList<RoomState> roomstate = new ArrayList<>();
     /**
      * Creates new form CheckOut
      */
@@ -31,13 +35,13 @@ public class CheckOut extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        nameTF = new javax.swing.JTextField();
+        roomTF = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        outTable = new javax.swing.JTable();
+        searchBtn = new javax.swing.JButton();
         Back_BUTT = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        outBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,7 +52,7 @@ public class CheckOut extends javax.swing.JFrame {
 
         jLabel3.setText("호실");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        outTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -64,10 +68,15 @@ public class CheckOut extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane1.setViewportView(jTable1);
+        outTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane1.setViewportView(outTable);
 
-        jButton1.setText("검색");
+        searchBtn.setText("검색");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
 
         Back_BUTT.setText("이전");
         Back_BUTT.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +85,7 @@ public class CheckOut extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("체크아웃");
+        outBtn.setText("체크아웃");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,7 +97,7 @@ public class CheckOut extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(Back_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4))
+                        .addComponent(outBtn))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(155, 155, 155)
                         .addComponent(jLabel1)
@@ -99,13 +108,13 @@ public class CheckOut extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(roomTF, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(nameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
                 .addGap(34, 34, 34))
@@ -118,18 +127,18 @@ public class CheckOut extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nameTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(roomTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchBtn))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Back_BUTT)
-                    .addComponent(jButton4))
+                    .addComponent(outBtn))
                 .addContainerGap())
         );
 
@@ -141,6 +150,35 @@ public class CheckOut extends javax.swing.JFrame {
         back.setVisible(true);
         dispose();
     }//GEN-LAST:event_Back_BUTTActionPerformed
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        String name = nameTF.getText();
+        String room = roomTF.getText();
+        
+        //room이랑 name이 빈칸이라면 오류메세지출력
+        if(room.equals("") && name.equals("")){
+            JOptionPane.showMessageDialog(null, "이름 또는 호실을 입력해주세요");
+        }
+        for (int i = 0; i < customerinfor.size(); i++) {
+            //호실 이름 둘다 입력한경우
+            if(!room.equals("") && !name.equals("")){//둘 다 입력된 경우
+                if(customerinfor.get(i).getName().equals(name)&&customerinfor.get(i).getRoomNum().equals(room)){
+                    outTable.changeSelection(i, 0, false , false);
+                }
+            }
+            if(room.equals("") && !name.equals("")){//이름만 입력된 경우
+                if(customerinfor.get(i).getName().equals(name)){
+                    outTable.changeSelection(i, 0, false , false);
+                }
+            }
+            if(!room.equals("") && name.equals("")){//호실만 입력된경우
+                if(customerinfor.get(i).getName().equals(name)&&customerinfor.get(i).getRoomNum().equals(room)){
+                    outTable.changeSelection(i, 0, false , false);
+                }
+            }
+            
+        }
+    }//GEN-LAST:event_searchBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,14 +217,14 @@ public class CheckOut extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back_BUTT;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField nameTF;
+    private javax.swing.JButton outBtn;
+    private javax.swing.JTable outTable;
+    private javax.swing.JTextField roomTF;
+    private javax.swing.JButton searchBtn;
     // End of variables declaration//GEN-END:variables
 }
