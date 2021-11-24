@@ -33,7 +33,7 @@ public class CustomerInforSave { // 고객 정보 저장 담당 클래스
        
      System.out.println(a);
        if(fileae.getOssystem() == 1 ) { //os x 
-           System.out.println("조건문똑바로들어옴");
+         //  System.out.println("조건문똑바로들어옴");
             BufferedWriter wirtea = new BufferedWriter(new FileWriter(macosxcustom, true));
        // PrintWriter pw = new PrintWriter(log, true);
         wirtea.write(a + "\n");
