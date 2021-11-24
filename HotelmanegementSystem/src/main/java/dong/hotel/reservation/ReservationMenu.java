@@ -636,18 +636,19 @@ public class ReservationMenu extends javax.swing.JFrame {
         // 예약하기 버튼 코드
        Sfr200Process filea = new Sfr200Process();
        Sfr300Process filea2 = new Sfr300Process();
-       /* 정보 비교 용도 변수 */
-       int compare1 = 0 ;
-       int compare2 = 0;
-       int compare3 = 0;
-       int compare4 =0;
-       int compare5 =0;
-       int compare6 = 0;
        /*                */
        filea.fRead();
        filea2.fRead();
        
        int count = 1 ; // 처리 카운트에따라 작동 
+       /* 정보 비교 용도 변수 */
+       int compare1 = 0 ;
+       int compare2 = 0;
+       int compare3 = 0;
+       int compare4 = 0;
+       int compare5 = 0;
+       int compare6 = 0;
+         int compare7 = 0;
        
        try { // 11/25 오류 발생 
            filea.sPlite(); // 이코드에서 오류 발생 
@@ -686,7 +687,7 @@ public class ReservationMenu extends javax.swing.JFrame {
         // 캘린더 처리 
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH) +1; //달력시 0부터 시작해서 1부터로 올려주고 시작 
+        int month = cal.get(Calendar.MONTH)+1; //달력시 0부터 시작해서 1부터로 올려주고 시작 
         int day = cal.get(Calendar.DAY_OF_MONTH); //달기준으로 날출력 
         String today = year + "|" + month + "|" +day ; //(오늘 날짜 출력 )
         
@@ -715,23 +716,35 @@ public class ReservationMenu extends javax.swing.JFrame {
         /*customInfo = code + "|" + name + "|" + roomNum + "|" +inYear + "|" +inMonth + "|" + inDay + "|" + outYear + "|" + outMonth + "|" + outDay + "|" +cusNum+ "|" +
                 cusPhonenum+"|"+cardType + "|"+ exprMonth +"|"+expYear+"|"+guarantee+"|"+money+"|"; // cus num 중복으로 2번들어감  나머지 체크후 필요시 들어가야함 
               // 합산 완료 
-              /* 버그로 인해 다시 덤프작성 */ 
-              customInfo = code + "|" + name + "|" + roomNum + "|" + cusNum + "|" + cusPhonenum + "|" + inYear + "|" + inMonth + "|" + 
+              /* 버그로 인해 다시 덤프작성 */
+     /*  if(filea.getEmptyfilech() ==1 ){
+           code ="0";
+       }
+       else if (filea.getEmptyfilech()==2) {
+           
+       }*/
+        
+             customInfo = code + "|" + name + "|" + roomNum + "|" + cusNum + "|" + cusPhonenum + "|" + inYear + "|" + inMonth + "|" + 
                       inDay + "|" + outYear + "|" + outMonth + "|" + outDay + "|" + money + "|" + cardType + "|" + cardNum+ "|" +
                       exprMonth + "|" +expYear+ "|" +guarantee+ "|" ;
              
                     
         try { 
             for(int i =0 ; i<guestInfo.size(); i++){
+                 if (guestInfo.get(i).getRoomNum().equals(roomNum)) {
                 String bookIn = guestInfo.get(i).getcInYear() + "|" + guestInfo.get(i).getcInMonth() + "|" + guestInfo.get(i).getcInDay() + "|";
                 String bookout = guestInfo.get(i).getcOutYear() + "|" + guestInfo.get(i).getcOutMonth()+ "|" + guestInfo.get(i).getcOutDay()+"|";
                 // 부킹인 부킹 아웃 날짜 설정 
                 System.out.println(bookIn);
                  System.out.println(bookout);
                 compare1 =inDatea.compareTo(bookIn);
+                 System.out.println(compare1);
                  compare2 =inDatea.compareTo(bookout);
-                 compare3 =inDatea.compareTo(bookIn); // 입력된 데이터랑 그리고 파일로 불러온 코드 맞는지 비교 비교하고 동일하면 넘기겠죵
-                 compare4 =inDatea.compareTo(bookout);
+                  System.out.println(compare2);
+                 compare3 =outDatea.compareTo(bookIn); // 입력된 데이터랑 그리고 파일로 불러온 코드 맞는지 비교 비교하고 동일하면 넘기겠죵
+                  System.out.println(compare3);
+                 compare4 =outDatea.compareTo(bookout);
+                  System.out.println(compare4);
                  
                   if (compare1 < 0 && compare2 < 0 && compare3 < 0 && compare4 < 0) { // 각 예약 상황별 0초기화 및 예외 처리 
 //체크 아웃날짜 보다 뒤고 (날짜 애러 잡는 코드 ) 
@@ -763,15 +776,26 @@ public class ReservationMenu extends javax.swing.JFrame {
                    if(Integer.parseInt(cusNum)>Integer.parseInt(chargeInfo.get(i).getMaxpele())) { // 아직 성수기 미구현으로 에러 남  문자열로 변환 
                         isOverNuma=true;   // 고객인원수가 클래스에 기록된거보다 더많은 인원이 들어오면 넘어가는거에 기록 
                    }
+                 }
             }
         }catch (Exception e){ } //위에 처리후 애러가 날경우 에러 처리 
+        
         compare5 = inDatea.compareTo(today); //오늘날짜  
+        compare7 = outDatea.compareTo(today); //오늘날짜 
+        System.out.println(inDatea);
+        System.out.println(today);
+        System.out.println(compare5);
+         System.out.println(compare7);
        compare6 = inDatea.compareTo(outDatea);// 애는 체크아웃 
+       System.out.println(compare6);
        
        if(compare5<0){ // 날자를 잘못입력한경우 변수 0보다 작은경우 
            count = 2; 
        }
-       if(compare6 >= 0){ // 0보다 같거나 체크아웃날짜가 큰경우  애는 한번 봐야할듯 
+       if(compare7 <0){
+            count = 2; 
+       }
+       if(compare6 >=0){ // 0보다 같거나 체크아웃날짜가 큰경우  애는 한번 봐야할듯 
            count =2;
        }
        
@@ -789,7 +813,7 @@ public class ReservationMenu extends javax.swing.JFrame {
         if (count == 1) { // 카운팅 1경우 고객 예약 정보 기록 나머지는 예외 경우 
            try {
                save.AddCustom(customInfo);// 고객정보 넘겨주는거  아직 세이브쪽 미구현 에러남 
-               System.out.println(customInfo);
+              // System.out.println(customInfo);
                 JOptionPane.showMessageDialog(null, "파일/ 기록 입력성공");
                 cardInfo.clear();
             } catch (IOException ex) { // 에러 발생이유 위에 미구현으로 인한 에러임 
