@@ -5,6 +5,7 @@
 package dong.hotel.check;
 
 import dong.hotel.file.RoomStateSave;
+import dong.hotel.file.Sfr200Process;
 import dong.hotel.file.Sfr300Process;
 import dong.hotel.mainmenu.MainMenu;
 import dong.hotel.reservation.CustomerInfor;
@@ -15,15 +16,16 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author nifskorea
  */
 public class CheckIN extends javax.swing.JFrame {
-    
+
     private ArrayList<CustomerInfor> customerinfor = new ArrayList<>();
     private ArrayList<RoomState> roomstate = new ArrayList<>();
-    
+
     public CheckIN() {
         initComponents();
     }
@@ -285,7 +287,7 @@ public class CheckIN extends javax.swing.JFrame {
     }//GEN-LAST:event_Not_Reservation_BUTTActionPerformed
 
     private void Reservation_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reservation_BUTTActionPerformed
-       ReservationCheckIn.setVisible(true);
+        ReservationCheckIn.setVisible(true);
     }//GEN-LAST:event_Reservation_BUTTActionPerformed
 
     private void take_ButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_take_ButtActionPerformed
@@ -297,44 +299,45 @@ public class CheckIN extends javax.swing.JFrame {
     }//GEN-LAST:event_Back_BActionPerformed
 
     private void CheckIn_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckIn_BUTTActionPerformed
-        String name = Name.getText();
-        String room = Room_Num.getText();
-        String guest = Guest_Num.getText();
-        
-              
-        String time = new SimpleDateFormat("HH:mm").format(System.currentTimeMillis());
-        String t = new SimpleDateFormat("HH").format(System.currentTimeMillis());
-        
-        Sfr300Process inF = new Sfr300Process();
-        inF.fRead();
-        inF.sPlite();
         try {
-            roomstate= inF.returnRoomState();
+            String name = Name.getText();
+            String room = Room_Num.getText();
+            String guest = Guest_Num.getText();
+
+            String time = new SimpleDateFormat("HH:mm").format(System.currentTimeMillis());
+            String t = new SimpleDateFormat("HH").format(System.currentTimeMillis());
+            Sfr200Process cF = new Sfr200Process();
+            cF.fRead();
+            cF.sPlite();
+            customerinfor = cF.returnGuestInfo();
+            Sfr300Process rF = new Sfr300Process();
+            rF.fRead();
+            rF.sPlite();
+            roomstate = rF.returnRoomState();
+
+            for (int i = 0; i < roomstate.size(); i++) {
+                if (roomstate.get(i).getRoom().equals(room) && roomstate.get(i).getRoomState().equals("empty")
+                        && Integer.parseInt(t) >= 15) { //선택호실이 비어있고3시이후라면(+체크인날짜와 현재날짜 동일하다면이것도 드가면 조을듯)
+                    RoomStateSave checkIn = new RoomStateSave();
+                    try {
+                        String inDate = String.format("%s-%s-%s", customerinfor.get(i).getcInYear(), customerinfor.get(i).getcInMonth(), customerinfor.get(i).getcInDay());
+                        String outDate = String.format("%s-%s-%s", customerinfor.get(i).getcOutYear(), customerinfor.get(i).getcOutMonth(), customerinfor.get(i).getcOutDay());
+                        checkIn.inguest(roomstate.get(i).getIndex(), room, name, guest, inDate, time, outDate);
+                        JOptionPane.showMessageDialog(null, "체크인 완료되었습니다.");
+                    } catch (IOException ex) {
+                        Logger.getLogger(CheckIN.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else if (roomstate.get(i).getRoom().equals(room) && roomstate.get(i).getRoomState().equals("empty") && Integer.parseInt(t) < 15) {
+                    JOptionPane.showMessageDialog(null, "체크인 가능한 시간이 아닙니다.", "체크인 실패", JOptionPane.ERROR_MESSAGE);
+                } else if (roomstate.get(i).getRoom().equals(room) && roomstate.get(i).getRoomState().equals("full")) {
+                    JOptionPane.showMessageDialog(null, "체크인 완료된 방입니다.", "체크인 실패", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
         } catch (IOException ex) {
             Logger.getLogger(CheckIN.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        for(int i=0;i<roomstate.size();i++){
-            if(roomstate.get(i).getRoom().equals(room)&&roomstate.get(i).getRoomState().equals("empty")
-                    &&Integer.parseInt(t) >= 15){ //선택호실이 비어있고3시이후라면(+체크인날짜와 현재날짜 동일하다면이것도 드가면 조을듯)
-                RoomStateSave checkIn = new RoomStateSave();
-                try {
-                    /*roomstate말고 customerinfor 로*/
-                    checkIn.inguest(roomstate.get(i).getIndex(), room, name, guest, roomstate.get(i).getcInDate(), time, roomstate.get(i).getcOutDate());
-                    ///ㄴ수정해야함
-                    JOptionPane.showMessageDialog(null, "체크인 완료되었습니다.");
-                } catch (IOException ex) {
-                    Logger.getLogger(CheckIN.class.getName()).log(Level.SEVERE, null, ex);
-                }                
-            }
-            else if(roomstate.get(i).getRoom().equals(room)&&roomstate.get(i).getRoomState().equals("empty") &&Integer.parseInt(t) < 15){
-                JOptionPane.showMessageDialog(null, "체크인 가능한 시간이 아닙니다.","체크인 실패",JOptionPane.ERROR_MESSAGE);
-            }
-            else if(roomstate.get(i).getRoom().equals(room)&&roomstate.get(i).getRoomState().equals("full")){
-                JOptionPane.showMessageDialog(null, "체크인 완료된 방입니다.","체크인 실패",JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        
+
     }//GEN-LAST:event_CheckIn_BUTTActionPerformed
 
     /**
