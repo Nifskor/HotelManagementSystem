@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -42,7 +43,7 @@ public class CheckIN extends javax.swing.JFrame {
         SearchRoom = new javax.swing.JTextField();
         Bsearch = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        reservationTable = new javax.swing.JTable();
         Back_B = new javax.swing.JButton();
         take_Butt = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -65,7 +66,7 @@ public class CheckIN extends javax.swing.JFrame {
 
         Bsearch.setText("검색");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        reservationTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -81,8 +82,8 @@ public class CheckIN extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane1.setViewportView(jTable1);
+        reservationTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane1.setViewportView(reservationTable);
 
         Back_B.setText("이전");
         Back_B.addActionListener(new java.awt.event.ActionListener() {
@@ -287,7 +288,31 @@ public class CheckIN extends javax.swing.JFrame {
     }//GEN-LAST:event_Not_Reservation_BUTTActionPerformed
 
     private void Reservation_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reservation_BUTTActionPerformed
-        ReservationCheckIn.setVisible(true);
+
+        try {
+            Sfr200Process cF = new Sfr200Process();
+            cF.fRead();
+            cF.sPlite();
+            customerinfor = cF.returnGuestInfo();
+            
+            DefaultTableModel reservation = (DefaultTableModel)reservationTable.getModel();
+            
+            //현재날짜포맷
+            
+            for(int i =0; i<customerinfor.size();i++){
+            //예약일 포맷
+            //두개비교해서
+            //현재날짜부터 예약일인 예약들만 출력!
+            
+                
+            }
+            
+            
+            
+            ReservationCheckIn.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(CheckIN.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_Reservation_BUTTActionPerformed
 
     private void take_ButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_take_ButtActionPerformed
@@ -396,7 +421,7 @@ public class CheckIN extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable reservationTable;
     private javax.swing.JButton take_Butt;
     // End of variables declaration//GEN-END:variables
 }
