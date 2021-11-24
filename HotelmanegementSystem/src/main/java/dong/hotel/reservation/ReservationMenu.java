@@ -638,7 +638,7 @@ public class ReservationMenu extends javax.swing.JFrame {
        filea.fRead();
        filea2.fRead();
        
-       int count = 1 ; // 키운팅 
+       int count = 1 ; // 처리 카운트에따라 작동 
        
        try {
            filea.sPlite();
@@ -711,7 +711,7 @@ public class ReservationMenu extends javax.swing.JFrame {
                 
                 compare1 =inDatea.compareTo(bookIn);
                  compare2 =inDatea.compareTo(bookout);
-                 compare3 =inDatea.compareTo(bookIn); // 입력된 데이터랑 그리고 파일로 불러온 코드 맞는지 비교 
+                 compare3 =inDatea.compareTo(bookIn); // 입력된 데이터랑 그리고 파일로 불러온 코드 맞는지 비교 비교하고 동일하면 넘기겠죵
                  compare4 =inDatea.compareTo(bookout);
                  
                   if (compare1 < 0 && compare2 < 0 && compare3 < 0 && compare4 < 0) { // 각 예약 상황별 0초기화 및 예외 처리 
@@ -741,7 +741,7 @@ public class ReservationMenu extends javax.swing.JFrame {
                     } else if (compare1 > 0 && compare2 > 0 && compare3 > 0 && compare4 > 0) {
 
                     }
-                   if(Integer.parseInt(cusNum)>Integer.parseInt(chargeInfo.get(i).getMaxpeople())) { // 아직 성수기 미구현으로 에러 남  문자열로 변환 
+                   if(Integer.parseInt(cusNum)>Integer.parseInt(chargeInfo.get(i).getMaxpele())) { // 아직 성수기 미구현으로 에러 남  문자열로 변환 
                         isOverNuma=true;   // 고객인원수가 클래스에 기록된거보다 더많은 인원이 들어오면 넘어가는거에 기록 
                    }
             }
@@ -765,16 +765,16 @@ public class ReservationMenu extends javax.swing.JFrame {
       
     if (isOverNuma == true) { //인원수가 클래스보다 많을경우 
             JOptionPane.showMessageDialog(null, "해당 호실의 최대 인원수를 초과합니다.");
-            count = 0; // 오류나는경우 초기화 
+            count = 0; // 오류나는경우 카운팅 초기화 
         }
-        if (count == 1) {
-            try {
-                save.Addguest(customInfo);// 고객정보 넘겨주는거  아직 세이브쪽 미구현 에러남 
-                JOptionPane.showMessageDialog(null, "입력 성공");
+        if (count == 1) { // 카운팅 1경우 고객 예약 정보 기록 나머지는 예외 경우 
+          /*  try {
+               // save.Addguest(customInfo);// 고객정보 넘겨주는거  아직 세이브쪽 미구현 에러남 
+                JOptionPane.showMessageDialog(null, "파일/ 기록 입력성공");
                 cardInfo.clear();
             } catch (IOException ex) { // 에러 발생이유 위에 미구현으로 인한 에러임 
                 Logger.getLogger(ReservationMenu.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
         }
         
        
