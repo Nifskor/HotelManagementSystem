@@ -627,7 +627,14 @@ public class ReservationMenu extends javax.swing.JFrame {
         // 예약하기 버튼 코드
        Sfr200Process filea = new Sfr200Process();
        Sfr300Process filea2 = new Sfr300Process();
-       
+       /* 정보 비교 용도 변수 */
+       int compare1 = 0 ;
+       int compare2 = 0;
+       int compare3 = 0;
+       int compare4 =0;
+       int compare5 =0;
+       int compare6 = 0;
+       /*                */
        filea.fRead();
        filea2.fRead();
        
@@ -696,14 +703,82 @@ public class ReservationMenu extends javax.swing.JFrame {
                 cusNum+"|"+cusPhonenum+"|"+cardType + "|"+ exprMonth +"|"+expYear+"|"+guarantee+"|"+money+"|";
               // 합산 완료 
               
-        
-        
+        try { 
+            for(int i =0 ; i<guestInfo.size(); i++){
+                String bookIn = guestInfo.get(i).getcInYear() + "|" + guestInfo.get(i).getcInMonth() + "|" + guestInfo.get(i).getcInDay() + "|";
+                String bookout = guestInfo.get(i).getcOutYear() + "|" + guestInfo.get(i).getcOutMonth()+ "|" + guestInfo.get(i).getcOutDay()+"|";
+                // 부킹인 부킹 아웃 날짜 설정 
+                
+                compare1 =inDatea.compareTo(bookIn);
+                 compare2 =inDatea.compareTo(bookout);
+                 compare3 =inDatea.compareTo(bookIn); // 입력된 데이터랑 그리고 파일로 불러온 코드 맞는지 비교 
+                 compare4 =inDatea.compareTo(bookout);
+                 
+                  if (compare1 < 0 && compare2 < 0 && compare3 < 0 && compare4 < 0) { // 각 예약 상황별 0초기화 및 예외 처리 
+
+                    } else if (compare1 < 0 && compare2 < 0 && compare3 == 0 && compare4 < 0) {
+
+                    } else if (compare1 < 0 && compare2 < 0 && compare3 > 0 && compare4 < 0) {
+                        count = 0;
+                    } else if (compare1 == 0 && compare2 < 0 && compare3 > 0 && compare4 > 0) {
+                        count = 0;
+                    } else if (compare1 == 0 && compare2 < 0 && compare3 > 0 && compare4 < 0) {
+                        count = 0;
+                    } else if (compare1 > 0 && compare2 < 0 && compare3 > 0 && compare4 < 0) {
+                        count = 0;
+                    } else if (compare1 > 0 && compare2 < 0 && compare3 > 0 && compare4 == 0) {
+                        count = 0;
+                    } else if (compare1 == 0 && compare2 < 0 && compare3 > 0 && compare4 == 0) {
+                        count = 0;
+                    } else if (compare1 < 0 && compare2 < 0 && compare3 > 0 && compare4 > 0) {
+                        count = 0;
+                    } else if (compare1 < 0 && compare2 < 0 && compare3 > 0 && compare4 == 0) {
+                        count = 0;
+                    } else if (compare1 > 0 && compare2 < 0 && compare3 > 0 && compare4 > 0) {
+                        count = 0;
+                    } else if (compare1 > 0 && compare2 == 0 && compare3 > 0 && compare4 > 0) {
+
+                    } else if (compare1 > 0 && compare2 > 0 && compare3 > 0 && compare4 > 0) {
+
+                    }
+                   if(Integer.parseInt(cusNum)>Integer.parseInt(chargeInfo.get(i).getMaxpeople())) { // 아직 성수기 미구현으로 에러 남  문자열로 변환 
+                        isOverNuma=true;   // 고객인원수가 클래스에 기록된거보다 더많은 인원이 들어오면 넘어가는거에 기록 
+                   }
+            }
+        }catch (Exception e){ } //위에 처리후 애러가 날경우 에러 처리 
+        compare5 = inDatea.compareTo(today); //오늘날짜  
+       compare6 = inDatea.compareTo(outDatea);// 애는 체크아웃 
        
+       if(compare5<0){ // 날자를 잘못입력한경우 변수 0보다 작은경우 
+           count = 2; 
+       }
+       if(compare6 >= 0){ // 0보다 같거나 체크아웃날짜가 큰경우  애는 한번 봐야할듯 
+           count =2;
+       }
        
+       if(count ==0 ){
+             JOptionPane.showMessageDialog(null, "예약된 방입니다 다른방을 확인해주세요.");
+       }
+       if(count ==2){
+            JOptionPane.showMessageDialog(null, "날짜를 잘못입력하셨습니다 재입력 하십시오.");
+       }
       
-    
-       
+    if (isOverNuma == true) { //인원수가 클래스보다 많을경우 
+            JOptionPane.showMessageDialog(null, "해당 호실의 최대 인원수를 초과합니다.");
+            count = 0; // 오류나는경우 초기화 
+        }
+        if (count == 1) {
+            try {
+                save.Addguest(customInfo);// 고객정보 넘겨주는거  아직 세이브쪽 미구현 에러남 
+                JOptionPane.showMessageDialog(null, "입력 성공");
+                cardInfo.clear();
+            } catch (IOException ex) { // 에러 발생이유 위에 미구현으로 인한 에러임 
+                Logger.getLogger(ReservationMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         
+       
+        // 예약 버튼눌렀을시 이벤트 1차 처리완료 
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void printPrice_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printPrice_BUTTActionPerformed

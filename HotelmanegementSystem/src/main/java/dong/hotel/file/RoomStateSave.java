@@ -15,6 +15,7 @@ import java.io.InputStreamReader;
  *
  * @author nifskorea
  */
+/* 환경변수 추가해야함 */ 
 public class RoomStateSave {
      public void inguest(String indexNum, String roomNum, String name,String guest,String inDate, String time, String outDate) throws IOException {
         File file = new File("C:\\DB\\roomState.txt");
