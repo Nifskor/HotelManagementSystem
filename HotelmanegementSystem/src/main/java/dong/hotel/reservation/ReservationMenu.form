@@ -48,14 +48,20 @@
             <Component class="javax.swing.JTable" name="FeeTable">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="3" rowCount="0">
+                  <Table columnCount="4" rowCount="0">
                     <Column editable="false" title="&#xd638;&#xc2e4;" type="java.lang.Object"/>
                     <Column editable="false" title="&#xc778;&#xc6d0;" type="java.lang.Object"/>
                     <Column editable="false" title="&#xc694;&#xae08;" type="java.lang.Object"/>
+                    <Column editable="false" title="&#xae30;&#xd0c0;" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>

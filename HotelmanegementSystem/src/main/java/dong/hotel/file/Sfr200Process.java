@@ -81,7 +81,7 @@ SFR100Process fileae = new SFR100Process();
             line = readInfo.get(i);
             String[] str = line.split("\\|");
             guestInfo.add(new CustomerInfor(str[0], str[1], str[2], str[3], str[4], str[5], str[6], str[7], str[8],
-                     str[9], str[10], str[11], str[12], str[13], str[14], str[15], str[16], str[17]));
+                     str[9], str[10], str[11], str[12], str[13], str[14], str[15], str[16]));
         }
     }
 public ArrayList<CustomerInfor> returnGuestInfo() throws IOException {

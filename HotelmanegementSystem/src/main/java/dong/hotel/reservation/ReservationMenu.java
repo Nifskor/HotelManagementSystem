@@ -6,7 +6,6 @@ package dong.hotel.reservation;
 import dong.hotel.mainmenu.MainMenu;
 import dong.hotel.check.RoomState;
 import dong.hotel.mainmenu.MainMenu;
-import dong.hotel.file.PeakSeasonPay; // 성수기 요금 정보 
 import dong.hotel.file.Sfr200Process;
 import dong.hotel.file.Sfr300Process;
 import java.awt.Color;
@@ -128,11 +127,11 @@ public class ReservationMenu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "호실", "인원", "요금"
+                "호실", "인원", "요금", "기타"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -699,7 +698,7 @@ public class ReservationMenu extends javax.swing.JFrame {
         
         // 고객정볻 데이터 합산 
         customInfo = code + "|" + name + "|" + roomNum + "|" +inYear + "|" +inMonth + "|" + inDay + "|" + outYear + "|" + outMonth + "|" + outDay + "|" +cusNum+ "|" +
-                cusNum+"|"+cusPhonenum+"|"+cardType + "|"+ exprMonth +"|"+expYear+"|"+guarantee+"|"+money+"|";
+                cusPhonenum+"|"+cardType + "|"+ exprMonth +"|"+expYear+"|"+guarantee+"|"+money+"|"; // cus num 중복으로 2번들어감  나머지 체크후 필요시 들어가야함 
               // 합산 완료 
               
         try { 
@@ -714,7 +713,7 @@ public class ReservationMenu extends javax.swing.JFrame {
                  compare4 =inDatea.compareTo(bookout);
                  
                   if (compare1 < 0 && compare2 < 0 && compare3 < 0 && compare4 < 0) { // 각 예약 상황별 0초기화 및 예외 처리 
-
+//체크 아웃날짜 보다 뒤고 (날짜 애러 잡는 코드 ) 
                     } else if (compare1 < 0 && compare2 < 0 && compare3 == 0 && compare4 < 0) {
 
                     } else if (compare1 < 0 && compare2 < 0 && compare3 > 0 && compare4 < 0) {
@@ -767,8 +766,8 @@ public class ReservationMenu extends javax.swing.JFrame {
             count = 0; // 오류나는경우 카운팅 초기화 
         }
         if (count == 1) { // 카운팅 1경우 고객 예약 정보 기록 나머지는 예외 경우 
-          /*  try {
-               // save.Addguest(customInfo);// 고객정보 넘겨주는거  아직 세이브쪽 미구현 에러남 
+           /* try {
+              // save.Addguest(customInfo);// 고객정보 넘겨주는거  아직 세이브쪽 미구현 에러남 
                 JOptionPane.showMessageDialog(null, "파일/ 기록 입력성공");
                 cardInfo.clear();
             } catch (IOException ex) { // 에러 발생이유 위에 미구현으로 인한 에러임 

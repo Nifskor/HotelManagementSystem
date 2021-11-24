@@ -21,7 +21,7 @@ public class CustomerInfor {
     private String cOutMonth;       //체크아웃 월
     private String cOutDay;         //체크아웃 일
     private String roomPrice;       //객실가격
-    private String address;         //주소
+    //private String address;         //주소
     private String card;            //카드사
     private String cardNum;         //카드 번호
     private String endMonth;        //카드 만료 달
@@ -30,7 +30,7 @@ public class CustomerInfor {
 
     public CustomerInfor(String chechkNum, String name, String roomNum, String customerNum, String phoneNum, 
             String cInYear, String cInMonth, String cInDay, String cOutYear, String cOutMonth, String cOutDay, 
-            String roomPrice, String address, String card, String cardNum, String endMonth, String endYear, String guarantee) {
+            String roomPrice, String card, String cardNum, String endMonth, String endYear, String guarantee) {
         this.chechkNum = chechkNum;
         this.name = name;
         this.roomNum = roomNum;
@@ -43,7 +43,7 @@ public class CustomerInfor {
         this.cOutMonth = cOutMonth;
         this.cOutDay = cOutDay;
         this.roomPrice = roomPrice;
-        this.address = address;
+        //this.address = address;
         this.card = card;
         this.cardNum = cardNum;
         this.endMonth = endMonth;
@@ -147,13 +147,7 @@ public class CustomerInfor {
         this.roomPrice = roomPrice;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
+   
 
     public String getCard() {
         return card;
