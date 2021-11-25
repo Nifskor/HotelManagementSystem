@@ -815,12 +815,12 @@ public class ReservationMenu extends javax.swing.JFrame {
        }
        if(count ==2){
             JOptionPane.showMessageDialog(null, "날짜를 잘못입력하셨습니다 재입력 하십시오.");
-       }else if(count2 == 3){
-            JOptionPane.showMessageDialog(this, "정확하게 입력해주세요 입력값이 유효하지않습니다.", "카드 오류",
-                    JOptionPane.ERROR_MESSAGE);
-            count =5 ; // 입력을 수행할수없게 임의로 지정한 코드 
-       }
-       else if(count2 == 4){
+       /*else if(count2 == 3){
+         /*   JOptionPane.showMessageDialog(this, "정확하게 입력해주세요 입력값이 유효하지않습니다.", "카드 오류",
+                    JOptionPane.ERROR_MESSAGE);*/
+            //count =5 ; // 입력을 수행할수없게 임의로 지정한 코드 
+       //}
+       } else if(count2 == 4){
            JOptionPane.showMessageDialog(this, "개인정보 수집 및 이용에 대해 "+ "동의하지않으면 예약을진행할수 없습니다.", "오류발생",JOptionPane.ERROR_MESSAGE);
            count =5 ; // 입력을 수행할수없게 임의로 지정한 코드 
        }
@@ -863,9 +863,12 @@ public class ReservationMenu extends javax.swing.JFrame {
            if (cardType.equals("카드선택") || cardNum.length() <= 18
                 || exprMonth.equals("MM") || expYear.equals("YYYY")) {
                          count2 = 3;
-                         System.out.println("카드정보없");
+                         System.out.println("카드정보없음");
+                         checkCardbuttona =0;
+           }else {
+               checkCardbuttona = 1 ;
            }
-           else if (!checkPersonalData.isSelected()) {
+            if (!checkPersonalData.isSelected()) {
                 count2 =4;  // 예약 진행할지 말지 결정하음는 코드 
             }
              else if (checkPersonalData.isSelected()){
@@ -879,7 +882,6 @@ public class ReservationMenu extends javax.swing.JFrame {
                  }
                  JOptionPane.showMessageDialog(this, loginuser+ "님이 개인정보 이용을 동의하셨습니다. " , "개인정보",JOptionPane.INFORMATION_MESSAGE);
                  cardInfo.add(getcard);
-                 checkCardbuttona = 1 ;
                  count2 =1;
                  
           
