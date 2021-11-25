@@ -234,15 +234,15 @@ public class ReservationMenu extends javax.swing.JFrame {
 
         Checkinyear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2021", "2022", "2023" }));
 
-        Checkinmonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        Checkinmonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
 
-        Checkinday.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        Checkinday.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
         Checkoutyear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2021", "2022", "2023" }));
 
-        Checkoutmonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        Checkoutmonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
 
-        Checkoutday.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        Checkoutday.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -649,6 +649,7 @@ public class ReservationMenu extends javax.swing.JFrame {
        int compare5 = 0;
        int compare6 = 0;
          int compare7 = 0;
+         int compare8 = 0;
        
        try { // 11/25 오류 발생 
            filea.sPlite(); // 이코드에서 오류 발생 
@@ -682,14 +683,17 @@ public class ReservationMenu extends javax.swing.JFrame {
         outMonth = Checkoutmonth.getSelectedItem().toString();
         outDay = Checkoutday.getSelectedItem().toString();
         // 다이얼 로그 입력 종료  아래 추가 정보 합산 
-        String inDatea = inYear + "|" + inMonth + "|" +inDay;
-        String outDatea = outYear + "|" + outMonth + "|" + outDay ;
+        String inDatea = inYear + "|" +   inMonth + "|" + inDay;
+        String outDatea = outYear + "|" +  outMonth  + "|" +  outDay ;
         // 캘린더 처리 
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH)+1; //달력시 0부터 시작해서 1부터로 올려주고 시작 
+       int month = cal.get(Calendar.MONTH)+1; //달력시 0부터 시작해서 1부터로 올려주고 시작 
         int day = cal.get(Calendar.DAY_OF_MONTH); //달기준으로 날출력 
-        String today = year + "|" + month + "|" +day ; //(오늘 날짜 출력 )
+        String syear = Integer.toString(year);
+        String smonth = Integer.toString(month);
+        String sday = Integer.toString(day);
+        String today = syear + "|" +  smonth + "|" +  sday; //(오늘 날짜 출력 )
         
         /* 카드 운영 로직 별도 함수로 처리 및 호출 아래 들어감 */ 
         cardworkingproce();
@@ -785,20 +789,25 @@ public class ReservationMenu extends javax.swing.JFrame {
         compare7 = outDatea.compareTo(today); //오늘날짜 
         //System.out.println(inDatea);
         //System.out.println(today);
-     //   System.out.println(compare5);
-      //   System.out.println(compare7);
        compare6 = inDatea.compareTo(outDatea);// 애는 체크아웃 
-      // System.out.println(compare6);
-       
-       if(compare5<0){ // 날자를 잘못입력한경우 변수 0보다 작은경우 
+      // compare8 = outDatea.compareTo(inDatea);
+       System.out.println("컴페어값6 : "+compare6);
+      
+       if(compare5<0){ // 날자를 잘못입력한경우 변수 0보다 작은경우  채크인 
            count = 2; 
+           
        }
-       if(compare7 <0){
+       if(compare7 <0){ // 체크아웃 
             count = 2; 
-       }
+       } // 체크인 체크아웃은 현재날자보다는 뒤여야하고 그러면서 체크인 날짜보다 체크아웃날짜가 뒤여야함 
+       // 따라서 조건문은 반드시 3중 조건문으로 들어가야할듯 
+      
        if(compare6 >=0){ // 0보다 같거나 체크아웃날짜가 큰경우  애는 한번 봐야할듯 
            count =2;
-       }
+           
+       } 
+        // 날짜 및 예약 파일 처리부분 오류 및 버그 수정 완료 11 . 25
+       
        
        if(count ==0 ){
              JOptionPane.showMessageDialog(null, "예약된 방입니다 다른방을 확인해주세요.");
@@ -815,7 +824,7 @@ public class ReservationMenu extends javax.swing.JFrame {
            try {
                save.AddCustom(customInfo);// 고객정보 넘겨주는거  아직 세이브쪽 미구현 에러남 
                //System.out.println(customInfo);
-                JOptionPane.showMessageDialog(null, "파일/ 기록 입력성공");
+                JOptionPane.showMessageDialog(null, "해당 예약이 기록되었습니다.");
                 cardInfo.clear();
             } catch (IOException ex) { // 에러 발생이유 위에 미구현으로 인한 에러임 
                 Logger.getLogger(ReservationMenu.class.getName()).log(Level.SEVERE, null, ex);
