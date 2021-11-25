@@ -388,6 +388,9 @@ public class CheckIN extends javax.swing.JFrame {
     }//GEN-LAST:event_Back_BActionPerformed
 
     private void CheckIn_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckIn_BUTTActionPerformed
+       //값불러오고 체크인 버튼눌렀을때
+       //값없으면 오류출력
+       //값있으면 체크인 명단에 입력
         try {
             String name = Name.getText();
             String room = Room_Num.getText();
@@ -405,23 +408,30 @@ public class CheckIN extends javax.swing.JFrame {
             roomstate = rF.returnRoomState();
 
             for (int i = 0; i < roomstate.size(); i++) {
-                if (roomstate.get(i).getRoom().equals(room) && roomstate.get(i).getRoomState().equals("empty")
-                        && Integer.parseInt(t) >= 15) { //선택호실이 비어있고3시이후라면(+체크인날짜와 현재날짜 동일하다면이것도 드가면 조을듯)
+             //  try { 
+           //  String inDate = String.format("%s-%s-%s", customerinfor.get(i).getcInYear(), customerinfor.get(i).getcInMonth(), customerinfor.get(i).getcInDay());
+                   //     System.out.println("인날짜포맷");
+                    //    String outDate = String.format("%s-%s-%s", customerinfor.get(i).getcOutYear(), customerinfor.get(i).getcOutMonth(), customerinfor.get(i).getcOutDay());
+                     //   System.out.println("아웃날짜포맷");
+                   if (roomstate.get(i).getRoom().equals(room) && roomstate.get(i).getRoomState().equals("empty")
+                        && Integer.parseInt(t) >= 1) { //선택호실이 비어있고3시이후라면(+체크인날짜와 현재날짜 동일하다면이것도 드가면 조을듯)
+                       System.out.println("if문 들어옴");
                     RoomStateSave checkIn = new RoomStateSave();
-                    try {
-                        String inDate = String.format("%s-%s-%s", customerinfor.get(i).getcInYear(), customerinfor.get(i).getcInMonth(), customerinfor.get(i).getcInDay());
-                        String outDate = String.format("%s-%s-%s", customerinfor.get(i).getcOutYear(), customerinfor.get(i).getcOutMonth(), customerinfor.get(i).getcOutDay());
-                        checkIn.inguest(roomstate.get(i).getIndex(), room, name, guest, inDate, time, outDate);
+                       System.out.println("roomstatesave생성자");
+    //////////////////////여기서부터 문제생김///////////////////////////////////////////////////                       
+                        checkIn.inguest(roomstate.get(i).getIndex(), room, name, guest, customerinfor.get(i).getcInYear()+"-"+customerinfor.get(i).getcInMonth()+"-"+customerinfor.get(i).getcInDay()
+                                , time, customerinfor.get(i).getcOutYear()+"-"+customerinfor.get(i).getcOutMonth()+"-"+customerinfor.get(i).getcOutDay());
+                        System.out.println("checkin함수실행");
                         JOptionPane.showMessageDialog(null, "체크인 완료되었습니다.");
-                    } catch (IOException ex) {
-                        Logger.getLogger(CheckIN.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                       System.out.println("여긴끗ㅌ");
                 } else if (roomstate.get(i).getRoom().equals(room) && roomstate.get(i).getRoomState().equals("empty") && Integer.parseInt(t) < 15) {
                     JOptionPane.showMessageDialog(null, "체크인 가능한 시간이 아닙니다.", "체크인 실패", JOptionPane.ERROR_MESSAGE);
                 } else if (roomstate.get(i).getRoom().equals(room) && roomstate.get(i).getRoomState().equals("full")) {
                     JOptionPane.showMessageDialog(null, "체크인 완료된 방입니다.", "체크인 실패", JOptionPane.ERROR_MESSAGE);
-                }
-            }
+                } //} catch (IOException ex) {
+                   //     Logger.getLogger(CheckIN.class.getName()).log(Level.SEVERE, null, ex);
+                  //  }
+           }
 
         } catch (IOException ex) {
             Logger.getLogger(CheckIN.class.getName()).log(Level.SEVERE, null, ex);
