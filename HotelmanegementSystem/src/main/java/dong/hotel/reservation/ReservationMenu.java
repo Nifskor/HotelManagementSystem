@@ -730,7 +730,7 @@ public class ReservationMenu extends javax.swing.JFrame {
              
                     
         try { 
-            for(int i =0 ; i<guestInfo.size(); i++){
+            for(int i =1 ; i<guestInfo.size(); i++){
                  if (guestInfo.get(i).getRoomNum().equals(roomNum)) {
                 String bookIn = guestInfo.get(i).getcInYear() + "|" + guestInfo.get(i).getcInMonth() + "|" + guestInfo.get(i).getcInDay() + "|";
                 String bookout = guestInfo.get(i).getcOutYear() + "|" + guestInfo.get(i).getcOutMonth()+ "|" + guestInfo.get(i).getcOutDay()+"|";
@@ -813,6 +813,7 @@ public class ReservationMenu extends javax.swing.JFrame {
         if (count == 1) { // 카운팅 1경우 고객 예약 정보 기록 나머지는 예외 경우 
            try {
                save.AddCustom(customInfo);// 고객정보 넘겨주는거  아직 세이브쪽 미구현 에러남 
+              //  save.AddCustom(customInfo);// 고객정보 넘겨주는거  아직 세이브쪽 미구현 에러남 
               // System.out.println(customInfo);
                 JOptionPane.showMessageDialog(null, "파일/ 기록 입력성공");
                 cardInfo.clear();

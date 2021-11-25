@@ -100,11 +100,11 @@ SFR100Process fileae = new SFR100Process();
                      "00" + "|" + "2021" + "|" + "00" + "|" + "00" + "|" + "10000" + "|" + "국민은" + "|" + "1234-1234-1234-1234"+ "|" +
                       "0" + "|" +"2021"+ "|" +"예약확인"+ "|" ;
                try{
-               save.AddCustom(customInfo);
+               //save.AddCustom(customInfo);
                }
                catch(Exception e) { }
-               guestInfo.add(new CustomerInfor(str2[0], str2[1], str2[2], str2[3], str2[4], str2[5], str2[6], str2[7], str2[8],
-                    str2[9], str2[10], str2[11], str2[12], str2[13], str2[14], str2[15], str2[16]));
+              // guestInfo.add(new CustomerInfor(str2[0], str2[1], str2[2], str2[3], str2[4], str2[5], str2[6], str2[7], str2[8],
+                //    str2[9], str2[10], str2[11], str2[12], str2[13], str2[14], str2[15], str2[16]));
                
            } else{
             
