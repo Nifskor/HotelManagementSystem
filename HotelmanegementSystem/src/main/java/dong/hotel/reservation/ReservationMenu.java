@@ -31,6 +31,8 @@ import java.util.stream.Stream;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import dong.hotel.file.CustomerInforSave; // 고객 정보 저장용 
+//import dong.hotel.file.PeakSeasonPayInfoSave;
+import dong.hotel.file.PeakSeasonPayProcess;
 import dong.hotel.login.Login;
 
 /**
@@ -71,6 +73,7 @@ public class ReservationMenu extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         FeeTable = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
         ReservationChange = new javax.swing.JDialog();
         jLabel14 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
@@ -103,6 +106,7 @@ public class ReservationMenu extends javax.swing.JFrame {
         phtwo = new javax.swing.JTextField();
         ShowPrice_BUTT = new javax.swing.JButton();
         exMoney = new javax.swing.JLabel();
+        dayout = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
         BACK_BUTT = new javax.swing.JButton();
@@ -151,6 +155,8 @@ public class ReservationMenu extends javax.swing.JFrame {
             }
         });
 
+        jLabel16.setText("객실 요금표");
+
         javax.swing.GroupLayout ShowPriceLayout = new javax.swing.GroupLayout(ShowPrice.getContentPane());
         ShowPrice.getContentPane().setLayout(ShowPriceLayout);
         ShowPriceLayout.setHorizontalGroup(
@@ -163,11 +169,17 @@ public class ReservationMenu extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ShowPriceLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107))
         );
         ShowPriceLayout.setVerticalGroup(
             ShowPriceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ShowPriceLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(14, 14, 14)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton4)
@@ -347,6 +359,8 @@ public class ReservationMenu extends javax.swing.JFrame {
 
         exMoney.setText("예상금액표시");
 
+        dayout.setText("d");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -383,10 +397,15 @@ public class ReservationMenu extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(phthree, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(ShowPrice_BUTT)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(exMoney)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(dayout))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(ShowPrice_BUTT)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(exMoney)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(printPrice_BUTT)
                         .addGap(15, 15, 15))))
@@ -406,14 +425,16 @@ public class ReservationMenu extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(cusPeoplenum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(phtwo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11)
-                    .addComponent(phthree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(phone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(phtwo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel10)
+                        .addComponent(jLabel11)
+                        .addComponent(phthree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dayout, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(printPrice_BUTT)
                     .addComponent(ShowPrice_BUTT)
@@ -610,6 +631,29 @@ public class ReservationMenu extends javax.swing.JFrame {
 
     private void ShowPrice_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowPrice_BUTTActionPerformed
         // TODO add your handling code here: 객실요금 파일 불러오는 코드 추가해야함
+         PeakSeasonPayProcess sa = new PeakSeasonPayProcess();
+
+        DefaultTableModel model = (DefaultTableModel) FeeTable.getModel();
+        model.setNumRows(0);
+
+        
+        sa.fRead();
+        sa.sPlite();
+        try {
+            chargeInfo = sa.returnChargeInfo();
+        } catch (IOException ex) {
+            Logger.getLogger(ReservationMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        for (int i = 0; i < chargeInfo.size(); i++) {
+            model.insertRow(model.getRowCount(), new Object[]{
+                chargeInfo.get(i).getRoom(),
+                chargeInfo.get(i).getNumpeople(),
+                chargeInfo.get(i).getRoomcharge(),
+                chargeInfo.get(i).getExtractcharge(),
+                chargeInfo.get(i).getMaxpele()
+            });
+        }
         ShowPrice.setVisible(true);//요금정보다이얼로그보여줌
     }//GEN-LAST:event_ShowPrice_BUTTActionPerformed
 
@@ -847,6 +891,82 @@ public class ReservationMenu extends javax.swing.JFrame {
     private void printPrice_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printPrice_BUTTActionPerformed
         // TODO add your handling code here:
         // 예상 금액확인 버튼 
+         // 이거 일단 보류 표부터 먼저 가져온다음 진행 
+        PeakSeasonPayProcess sa = new PeakSeasonPayProcess();
+       
+        int num = 0;
+        int inYear = Integer.parseInt(Checkinyear.getSelectedItem().toString());
+        int inMonth = Integer.parseInt(Checkinmonth.getSelectedItem().toString());
+        int inDay = Integer.parseInt(Checkinday.getSelectedItem().toString());
+        int outYear = Integer.parseInt(Checkoutyear.getSelectedItem().toString());
+        int outMonth = Integer.parseInt(Checkoutmonth.getSelectedItem().toString());
+        int outDay = Integer.parseInt(Checkoutday.getSelectedItem().toString());
+        
+        checkRoomNuma = RoomText.getText();
+       checkPeopleNuma = cusPeoplenum.getSelectedItem().toString();
+       //if (checkRoomNuma.isEmpty()){
+           checkRoomNuma = "0"; // 예외처리 
+       //}
+      // else {
+               num = Integer.parseInt(checkRoomNuma);
+    //}
+        //System.out.println(checkRoomNuma);
+System.out.println(checkRoomNuma);
+       exMoney.setText(""); 
+       dayout.setText("");
+       Calendar fir = new GregorianCalendar(inYear, inMonth, inDay);
+        Calendar sec = new GregorianCalendar(outYear, outMonth, outDay);
+         long difsec = (fir.getTimeInMillis() - fir.getTimeInMillis()) / 1000;
+        long difday = difsec / (24 * 60 * 60) + 1;
+System.out.println("difsec : "+difsec);
+System.out.println("difday" + difday);
+
+ exMoney.setForeground(Color.black);
+int overnum =0; int extrapay =0;
+long pay =0; isOverNuma = false;
+
+ if (RoomText.getText().isEmpty()) {
+      exMoney.setForeground(Color.red);
+            exMoney.setText("호실이 입력되지 않았습니다.");
+            //바로 다이렉트로 출력 
+        }
+ sa.fRead();
+sa.sPlite();
+try {
+  chargeInfo = sa.returnChargeInfo() ; // 객체 복사 
+    
+}catch(IOException e ){
+    Logger.getLogger(ReservationMenu.class.getName()).log(Level.SEVERE, null, e);
+}
+
+for (int i = 0; i < chargeInfo.size(); i++) {
+            if (difday <= 1) {
+               exMoney.setText("날짜를 재입력 하세요.");
+                dayout.setText("");
+            }
+            if (chargeInfo.get(i).getRoom() == num) {
+               dayout.setText(difday + "일");
+                if (Integer.parseInt(checkPeopleNuma) <= Integer.parseInt(chargeInfo.get(i).getNumpeople())) {
+                    pay = difday * (Long.parseLong(chargeInfo.get(i).getRoomcharge()));
+                  //  possibleNum.setText("");
+                   exMoney.setText(Long.toString(pay));
+                } else if (Integer.parseInt(checkPeopleNuma) > Integer.parseInt(chargeInfo.get(i).getMaxpele())) {
+                   exMoney.setText("해당 호실의 최대 인원 수는 " + chargeInfo.get(i).getMaxpele() + "명 입니다.");
+                    isOverNuma = true; //인원수 초과 
+                    exMoney.setText("재입력");
+                    dayout.setText("");
+                    break;
+                } else if (Integer.parseInt(checkPeopleNuma) > Integer.parseInt(chargeInfo.get(i).getNumpeople()) && Integer.parseInt(checkPeopleNuma) <= Integer.parseInt(chargeInfo.get(i).getMaxpele())) {
+                    overnum = Integer.parseInt(checkPeopleNuma) - Integer.parseInt(chargeInfo.get(i).getNumpeople());
+                    extrapay = Integer.parseInt(chargeInfo.get(i).getExtractcharge()) * overnum;
+                    pay = difday * (Long.parseLong(chargeInfo.get(i).getRoomcharge()) + extrapay);
+                    //possibleNum.setText("");
+                    exMoney.setText(Long.toString(pay));
+                }
+            }
+        }
+
+        
     }//GEN-LAST:event_printPrice_BUTTActionPerformed
 
     /* 카드 처리 함수 */ 
@@ -949,6 +1069,7 @@ public class ReservationMenu extends javax.swing.JFrame {
     private javax.swing.JCheckBox checkPersonalData;
     private javax.swing.JComboBox<String> cusPeoplenum;
     private javax.swing.JComboBox<String> cuscardCa;
+    private javax.swing.JLabel dayout;
     private javax.swing.JLabel exMoney;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -959,6 +1080,7 @@ public class ReservationMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
