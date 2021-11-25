@@ -853,9 +853,12 @@ public class ReservationMenu extends javax.swing.JFrame {
        } 
         // 날짜 및 예약 파일 처리부분 오류 및 버그 수정 완료 11 . 25
        
-       
+         int tema = Integer.parseInt(roomNum);
+       if(tema <=100){
+           JOptionPane.showMessageDialog(null, "없는 호실입니다 호실은 101번부터 시작입니 .");
+       }
        if(count ==0 ){
-             JOptionPane.showMessageDialog(null, "예약된 방입니다 다른방을 확인해주세요.");
+             JOptionPane.showMessageDialog(null, "예약된 방입니다 다른방을 확인해주세요.다");
        }
        if(count ==2){
             JOptionPane.showMessageDialog(null, "날짜를 잘못입력하셨습니다 재입력 하십시오.");
@@ -894,18 +897,18 @@ public class ReservationMenu extends javax.swing.JFrame {
          // 이거 일단 보류 표부터 먼저 가져온다음 진행 
         PeakSeasonPayProcess sa = new PeakSeasonPayProcess();
        
-        int num = 0;
+        int num = 0; //호실정보 방번호
         int inYear = Integer.parseInt(Checkinyear.getSelectedItem().toString());
         int inMonth = Integer.parseInt(Checkinmonth.getSelectedItem().toString());
         int inDay = Integer.parseInt(Checkinday.getSelectedItem().toString());
         int outYear = Integer.parseInt(Checkoutyear.getSelectedItem().toString());
         int outMonth = Integer.parseInt(Checkoutmonth.getSelectedItem().toString());
         int outDay = Integer.parseInt(Checkoutday.getSelectedItem().toString());
-        
+         String roomNum = RoomText.getText(); //호실 정보 가져옴
         checkRoomNuma = RoomText.getText();
        checkPeopleNuma = cusPeoplenum.getSelectedItem().toString();
        //if (checkRoomNuma.isEmpty()){
-           checkRoomNuma = "0"; // 예외처리 
+         //  checkRoomNuma = "0"; // 예외처리 
        //}
       // else {
                num = Integer.parseInt(checkRoomNuma);
@@ -916,7 +919,7 @@ System.out.println(checkRoomNuma);
        dayout.setText("");
        Calendar fir = new GregorianCalendar(inYear, inMonth, inDay);
         Calendar sec = new GregorianCalendar(outYear, outMonth, outDay);
-         long difsec = (fir.getTimeInMillis() - fir.getTimeInMillis()) / 1000;
+         long difsec = (sec.getTimeInMillis() - fir.getTimeInMillis()) / 1000; //두개 날짜간 차를 구하는거 
         long difday = difsec / (24 * 60 * 60) + 1;
 System.out.println("difsec : "+difsec);
 System.out.println("difday" + difday);
@@ -930,6 +933,10 @@ long pay =0; isOverNuma = false;
             exMoney.setText("호실이 입력되지 않았습니다.");
             //바로 다이렉트로 출력 
         }
+     int tema = Integer.parseInt(roomNum);
+       if(tema <=100){
+           JOptionPane.showMessageDialog(null, "없는 호실입니다 호실은 101번 부터 시작입니.");
+       }
  sa.fRead();
 sa.sPlite();
 try {
@@ -945,15 +952,15 @@ for (int i = 0; i < chargeInfo.size(); i++) {
                 dayout.setText("");
             }
             if (chargeInfo.get(i).getRoom() == num) {
-               dayout.setText(difday + "일");
+               dayout.setText("숙박일수"+ difday + "일 ");
                 if (Integer.parseInt(checkPeopleNuma) <= Integer.parseInt(chargeInfo.get(i).getNumpeople())) {
                     pay = difday * (Long.parseLong(chargeInfo.get(i).getRoomcharge()));
                   //  possibleNum.setText("");
-                   exMoney.setText(Long.toString(pay));
+                   exMoney.setText(Long.toString(pay) +"원");
                 } else if (Integer.parseInt(checkPeopleNuma) > Integer.parseInt(chargeInfo.get(i).getMaxpele())) {
                    exMoney.setText("해당 호실의 최대 인원 수는 " + chargeInfo.get(i).getMaxpele() + "명 입니다.");
                     isOverNuma = true; //인원수 초과 
-                    exMoney.setText("재입력");
+                    //exMoney.setText("재입력");
                     dayout.setText("");
                     break;
                 } else if (Integer.parseInt(checkPeopleNuma) > Integer.parseInt(chargeInfo.get(i).getNumpeople()) && Integer.parseInt(checkPeopleNuma) <= Integer.parseInt(chargeInfo.get(i).getMaxpele())) {
