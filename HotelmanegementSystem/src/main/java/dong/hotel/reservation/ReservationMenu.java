@@ -730,7 +730,8 @@ public class ReservationMenu extends javax.swing.JFrame {
              
                     
         try { 
-            for(int i =1 ; i<guestInfo.size(); i++){
+            for(int i =0 ; i<guestInfo.size(); i++){
+                  System.out.println("일단 조건문 들어감 ");
                  if (guestInfo.get(i).getRoomNum().equals(roomNum)) {
                 String bookIn = guestInfo.get(i).getcInYear() + "|" + guestInfo.get(i).getcInMonth() + "|" + guestInfo.get(i).getcInDay() + "|";
                 String bookout = guestInfo.get(i).getcOutYear() + "|" + guestInfo.get(i).getcOutMonth()+ "|" + guestInfo.get(i).getcOutDay()+"|";
@@ -782,12 +783,12 @@ public class ReservationMenu extends javax.swing.JFrame {
         
         compare5 = inDatea.compareTo(today); //오늘날짜  
         compare7 = outDatea.compareTo(today); //오늘날짜 
-        System.out.println(inDatea);
-        System.out.println(today);
-        System.out.println(compare5);
-         System.out.println(compare7);
+        //System.out.println(inDatea);
+        //System.out.println(today);
+     //   System.out.println(compare5);
+      //   System.out.println(compare7);
        compare6 = inDatea.compareTo(outDatea);// 애는 체크아웃 
-       System.out.println(compare6);
+      // System.out.println(compare6);
        
        if(compare5<0){ // 날자를 잘못입력한경우 변수 0보다 작은경우 
            count = 2; 
@@ -813,8 +814,7 @@ public class ReservationMenu extends javax.swing.JFrame {
         if (count == 1) { // 카운팅 1경우 고객 예약 정보 기록 나머지는 예외 경우 
            try {
                save.AddCustom(customInfo);// 고객정보 넘겨주는거  아직 세이브쪽 미구현 에러남 
-              //  save.AddCustom(customInfo);// 고객정보 넘겨주는거  아직 세이브쪽 미구현 에러남 
-              // System.out.println(customInfo);
+               //System.out.println(customInfo);
                 JOptionPane.showMessageDialog(null, "파일/ 기록 입력성공");
                 cardInfo.clear();
             } catch (IOException ex) { // 에러 발생이유 위에 미구현으로 인한 에러임 
