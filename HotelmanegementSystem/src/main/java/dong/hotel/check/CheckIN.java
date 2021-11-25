@@ -306,12 +306,12 @@ public class CheckIN extends javax.swing.JFrame {
     }//GEN-LAST:event_Not_Reservation_BUTTActionPerformed
 
     private void Reservation_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reservation_BUTTActionPerformed
-     //예약고객 눌렀을때 예약내역좌라락+ 검색기능
-      SearchName.setText("");
-      SearchRoom.setText("");
+        //예약고객 눌렀을때 예약내역좌라락+ 검색기능
+        SearchName.setText("");
+        SearchRoom.setText("");
 
-      DefaultTableModel reservation = (DefaultTableModel) reservationTable.getModel();
-      reservation.setNumRows(0);//reservationTable초기화
+        DefaultTableModel reservation = (DefaultTableModel) reservationTable.getModel();
+        reservation.setNumRows(0);//reservationTable초기화
         try {
             Sfr200Process cF = new Sfr200Process();
             cF.fRead();
@@ -349,17 +349,17 @@ public class CheckIN extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(CheckIN.class.getName()).log(Level.SEVERE, null, ex);
         }
-                ReservationCheckIn.setVisible(true);
+        ReservationCheckIn.setVisible(true);
 
     }//GEN-LAST:event_Reservation_BUTTActionPerformed
 
     private void take_ButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_take_ButtActionPerformed
         //불러오기 버튼 눌렀을때!
         DefaultTableModel model = (DefaultTableModel) reservationTable.getModel();
-        
+
         int nRow = -1;
         int nColumn = -1;
-        
+
         //테이블에서 선택된 값으로
         nRow = reservationTable.getSelectedRow();
         nColumn = reservationTable.getSelectedColumn();
@@ -371,7 +371,7 @@ public class CheckIN extends javax.swing.JFrame {
             Object nameR = model.getValueAt(nRow, 0);
             Object roomN = model.getValueAt(nRow, 1);
             Object guestN = model.getValueAt(nRow, 2);
-            
+
             String name = nameR.toString();
             String room = roomN.toString();
             String guest = guestN.toString();
@@ -388,9 +388,9 @@ public class CheckIN extends javax.swing.JFrame {
     }//GEN-LAST:event_Back_BActionPerformed
 
     private void CheckIn_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckIn_BUTTActionPerformed
-       //값불러오고 체크인 버튼눌렀을때
-       //값없으면 오류출력
-       //값있으면 체크인 명단에 입력
+        //값불러오고 체크인 버튼눌렀을때
+        //값없으면 오류출력
+        //값있으면 체크인 명단에 입력
         try {
             String name = Name.getText();
             String room = Room_Num.getText();
@@ -406,32 +406,29 @@ public class CheckIN extends javax.swing.JFrame {
             rF.fRead();
             rF.sPlite();
             roomstate = rF.returnRoomState();
-
+            String inDate = "";
+            String outDate = "";
             for (int i = 0; i < roomstate.size(); i++) {
-             //  try { 
-           //  String inDate = String.format("%s-%s-%s", customerinfor.get(i).getcInYear(), customerinfor.get(i).getcInMonth(), customerinfor.get(i).getcInDay());
-                   //     System.out.println("인날짜포맷");
-                    //    String outDate = String.format("%s-%s-%s", customerinfor.get(i).getcOutYear(), customerinfor.get(i).getcOutMonth(), customerinfor.get(i).getcOutDay());
-                     //   System.out.println("아웃날짜포맷");
-                   if (roomstate.get(i).getRoom().equals(room) && roomstate.get(i).getRoomState().equals("empty")
-                        && Integer.parseInt(t) >= 1) { //선택호실이 비어있고3시이후라면(+체크인날짜와 현재날짜 동일하다면이것도 드가면 조을듯)
-                       System.out.println("if문 들어옴");
+                if (roomstate.get(i).getRoom().equals(room) && roomstate.get(i).getRoomState().equals("empty") && Integer.parseInt(t) >= 15) {
+                    //선택호실이 비어있고3시이후라면(+체크인날짜와 현재날짜 동일하다면이것도 드가면 조을듯)
+                    for (int j = 0; j < customerinfor.size(); j++) {
+                        if (customerinfor.get(j).getName().equals(name) && customerinfor.get(j).getRoomNum().equals(room) && customerinfor.get(j).getCustomerNum().equals(guest)) {
+                            inDate = String.format("%s-%s-%s", customerinfor.get(j).getcInYear(), customerinfor.get(j).getcInMonth(), customerinfor.get(j).getcInDay());
+                            outDate = String.format("%s-%s-%s", customerinfor.get(j).getcOutYear(), customerinfor.get(j).getcOutMonth(), customerinfor.get(j).getcOutDay());
+                        }
+                    }
                     RoomStateSave checkIn = new RoomStateSave();
-                       System.out.println("roomstatesave생성자");
-    //////////////////////여기서부터 문제생김///////////////////////////////////////////////////                       
-                        checkIn.inguest(roomstate.get(i).getIndex(), room, name, guest, customerinfor.get(i).getcInYear()+"-"+customerinfor.get(i).getcInMonth()+"-"+customerinfor.get(i).getcInDay()
-                                , time, customerinfor.get(i).getcOutYear()+"-"+customerinfor.get(i).getcOutMonth()+"-"+customerinfor.get(i).getcOutDay());
-                        System.out.println("checkin함수실행");
-                        JOptionPane.showMessageDialog(null, "체크인 완료되었습니다.");
-                       System.out.println("여긴끗ㅌ");
+                    System.out.println("roomstatesave생성자");
+                    if (inDate != "" && outDate != "") {
+                        checkIn.inguest(roomstate.get(i).getIndex(), room, name, guest, inDate, time, outDate);
+                    }
+                    JOptionPane.showMessageDialog(null, "체크인 완료되었습니다.");
                 } else if (roomstate.get(i).getRoom().equals(room) && roomstate.get(i).getRoomState().equals("empty") && Integer.parseInt(t) < 15) {
                     JOptionPane.showMessageDialog(null, "체크인 가능한 시간이 아닙니다.", "체크인 실패", JOptionPane.ERROR_MESSAGE);
                 } else if (roomstate.get(i).getRoom().equals(room) && roomstate.get(i).getRoomState().equals("full")) {
                     JOptionPane.showMessageDialog(null, "체크인 완료된 방입니다.", "체크인 실패", JOptionPane.ERROR_MESSAGE);
-                } //} catch (IOException ex) {
-                   //     Logger.getLogger(CheckIN.class.getName()).log(Level.SEVERE, null, ex);
-                  //  }
-           }
+                }
+            }
 
         } catch (IOException ex) {
             Logger.getLogger(CheckIN.class.getName()).log(Level.SEVERE, null, ex);
@@ -443,42 +440,47 @@ public class CheckIN extends javax.swing.JFrame {
         //검색하기 버튼눌렀을때
         String name = SearchName.getText();
         String room = SearchRoom.getText();
-        int caution=-1;
+        int caution = -1;
         //room이랑 name이 빈칸이라면 오류메세지출력
-        if(room.equals("") && name.equals("")){
+        if (room.equals("") && name.equals("")) {
             JOptionPane.showMessageDialog(null, "이름 또는 호실을 입력해주세요");
         }
         for (int i = 0; i < customerinfor.size(); i++) {
-            caution=0;
+            caution = 0;
             //호실 이름 둘다 입력한경우
-            if(!room.equals("") && !name.equals("")){//둘 다 입력된 경우
-                if(customerinfor.get(i).getName().equals(name)&&customerinfor.get(i).getRoomNum().equals(room)){
-                    reservationTable.changeSelection(i-1, 0, false , false);
+            if (!room.equals("") && !name.equals("")) {//둘 다 입력된 경우
+                if (customerinfor.get(i).getName().equals(name) && customerinfor.get(i).getRoomNum().equals(room)) {
+                    reservationTable.changeSelection(i - 1, 0, false, false);
                     break;
-                    
-                } else
-                    caution=1;
-            } else if(room.equals("") && !name.equals("")){//이름만 입력된 경우
-                if(customerinfor.get(i).getName().equals(name)){
-                    reservationTable.changeSelection(i-1, 0, false , false);
+
+                } else {
+                    caution = 1;
+                }
+            } else if (room.equals("") && !name.equals("")) {//이름만 입력된 경우
+                if (customerinfor.get(i).getName().equals(name)) {
+                    reservationTable.changeSelection(i - 1, 0, false, false);
                     break;
-                } else
-                    caution=2;
-            } else if(!room.equals("") && name.equals("")){//호실만 입력된경우
-                if(customerinfor.get(i).getRoomNum().equals(room)){
-                    reservationTable.changeSelection(i-1, 0, false , false);
+                } else {
+                    caution = 2;
+                }
+            } else if (!room.equals("") && name.equals("")) {//호실만 입력된경우
+                ///////////호실찾는과정에서 오류남///////////////////
+                //몇개는 찾고 몇개는 안찾고 지맘대로임 ㅡ3ㅡ 일단 대충은 돌아감 발표할때 돌아가는거로만하면 ㄱㄴ일듯 근데 일단은 안완벽하단뜻.
+                if (customerinfor.get(i).getRoomNum().equals(room)) { 
+                    reservationTable.changeSelection(i-1, 0, false, false);
                     break;
-                } else
-                    caution=3;
+                } else {
+                    caution = 3;
+                }
             }
-            
+
         }
         //잘못된 입력값으로 테이블에 선택이 안된경우 팝업
-        if(caution==1){
+        if (caution == 1) {
             JOptionPane.showMessageDialog(null, "이름 및 호실을 정확히 입력해주세요");
-        }else if (caution == 2){
+        } else if (caution == 2) {
             JOptionPane.showMessageDialog(null, "이름을 정확히 입력해주세요");
-        }else if(caution==3){
+        } else if (caution == 3) {
             JOptionPane.showMessageDialog(null, "호실을 정확히 입력해주세요");
         }
     }//GEN-LAST:event_BsearchActionPerformed

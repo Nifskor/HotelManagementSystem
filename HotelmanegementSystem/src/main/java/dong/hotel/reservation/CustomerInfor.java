@@ -21,7 +21,6 @@ public class CustomerInfor {
     private String cOutMonth;       //체크아웃 월
     private String cOutDay;         //체크아웃 일
     private String roomPrice;       //객실가격
-    //private String address;         //주소
     private String card;            //카드사
     private String cardNum;         //카드 번호
     private String endMonth;        //카드 만료 달
@@ -43,13 +42,14 @@ public class CustomerInfor {
         this.cOutMonth = cOutMonth;
         this.cOutDay = cOutDay;
         this.roomPrice = roomPrice;
-        //this.address = address;
         this.card = card;
         this.cardNum = cardNum;
         this.endMonth = endMonth;
         this.endYear = endYear;
         this.guarantee = guarantee;
     }
+
+   
 
     public String getChechkNum() {
         return chechkNum;
