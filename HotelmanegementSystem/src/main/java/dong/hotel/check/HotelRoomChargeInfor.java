@@ -14,12 +14,15 @@ public class HotelRoomChargeInfor {
     private String room;    //호실
     private String maxNum;  //최대인원
     private String charge;  //1일 요금
+    private String reason;  //요금 변경 이유
 
-    public HotelRoomChargeInfor(String room, String maxNum, String charge) {
+    public HotelRoomChargeInfor(String room, String maxNum, String charge, String reason) {
         this.room = room;
         this.maxNum = maxNum;
         this.charge = charge;
+        this.reason = reason;
     }
+
 
     public String getRoom() {
         return room;
@@ -44,4 +47,13 @@ public class HotelRoomChargeInfor {
     public void setCharge(String charge) {
         this.charge = charge;
     }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+    
 }

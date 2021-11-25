@@ -82,7 +82,7 @@ public class Sfr400Process implements Fileinterface {
         }
     }
     
-    public ArrayList<CheckOutInformation> returnGuestInfo() throws IOException {
+    public ArrayList<CheckOutInformation> returnCheckOutInformation() throws IOException {
         return checkout;
     }
 }

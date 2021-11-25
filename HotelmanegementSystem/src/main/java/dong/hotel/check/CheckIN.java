@@ -214,6 +214,8 @@ public class CheckIN extends javax.swing.JFrame {
 
         jLabel4.setText("호실");
 
+        Name.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         Back_BUTT.setText("이전");
         Back_BUTT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

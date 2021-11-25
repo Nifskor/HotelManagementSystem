@@ -4,9 +4,13 @@
  */
 package dong.hotel.check;
 
+import dong.hotel.file.Sfr400Process;
 import dong.hotel.mainmenu.MainMenu;
 import dong.hotel.reservation.CustomerInfor;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,6 +20,9 @@ import javax.swing.JOptionPane;
 public class CheckOut extends javax.swing.JFrame {
     private ArrayList<CustomerInfor> customerinfor = new ArrayList<>();
     private ArrayList<RoomState> roomstate = new ArrayList<>();
+    private ArrayList<CheckOutInformation>  checkoutInformation = new ArrayList<>();
+    private ArrayList<HotelRoomChargeInfor>  roomchargeinfo = new ArrayList<>();
+    
     /**
      * Creates new form CheckOut
      */
@@ -162,31 +169,39 @@ public class CheckOut extends javax.swing.JFrame {
     }//GEN-LAST:event_Back_BUTTActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        String name = nameTF.getText();
-        String room = roomTF.getText();
-        
-        //room이랑 name이 빈칸이라면 오류메세지출력
-        if(room.equals("") && name.equals("")){
-            JOptionPane.showMessageDialog(null, "이름 또는 호실을 입력해주세요");
-        }
-        for (int i = 0; i < customerinfor.size(); i++) {
-            //호실 이름 둘다 입력한경우
-            if(!room.equals("") && !name.equals("")){//둘 다 입력된 경우
-                if(customerinfor.get(i).getName().equals(name)&&customerinfor.get(i).getRoomNum().equals(room)){
-                    outTable.changeSelection(i, 0, false , false);
-                }
-            }
-            if(room.equals("") && !name.equals("")){//이름만 입력된 경우
-                if(customerinfor.get(i).getName().equals(name)){
-                    outTable.changeSelection(i, 0, false , false);
-                }
-            }
-            if(!room.equals("") && name.equals("")){//호실만 입력된경우
-                if(customerinfor.get(i).getName().equals(name)&&customerinfor.get(i).getRoomNum().equals(room)){
-                    outTable.changeSelection(i, 0, false , false);
-                }
-            }
+        try {
+            Sfr400Process rF = new Sfr400Process();
+            rF.fRead();
+            rF.sPlite();
+            checkoutInformation = rF.returnCheckOutInformation();
+            String name = nameTF.getText();
+            String room = roomTF.getText();
             
+            //room이랑 name이 빈칸이라면 오류메세지출력
+            if(room.equals("") && name.equals("")){
+                JOptionPane.showMessageDialog(null, "이름 또는 호실을 입력해주세요");
+            }
+            for (int i = 0; i < customerinfor.size(); i++) {
+                //호실 이름 둘다 입력한경우
+                if(!room.equals("") && !name.equals("")){//둘 다 입력된 경우
+                    if(customerinfor.get(i).getName().equals(name)&&customerinfor.get(i).getRoomNum().equals(room)){
+                        outTable.changeSelection(i, 0, false , false);
+                    }
+                }
+                if(room.equals("") && !name.equals("")){//이름만 입력된 경우
+                    if(customerinfor.get(i).getName().equals(name)){
+                        outTable.changeSelection(i, 0, false , false);
+                    }
+                }
+                if(!room.equals("") && name.equals("")){//호실만 입력된경우
+                    if(customerinfor.get(i).getName().equals(name)&&customerinfor.get(i).getRoomNum().equals(room)){
+                        outTable.changeSelection(i, 0, false , false);
+                    }
+                }
+                
+            }
+        } catch (IOException ex) {            
+            Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_searchBtnActionPerformed
 
