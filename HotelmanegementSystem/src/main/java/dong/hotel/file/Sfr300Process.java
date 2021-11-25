@@ -26,6 +26,7 @@ public class Sfr300Process implements Fileinterface { // 체크인 관련 처리
     private ArrayList<RoomState> roomstate = new ArrayList<>();
     private ArrayList<CheckOutInformation> checkout = new ArrayList<>();
 
+    //checkout파일을 sfr400으로 가져가야하나?
     private String macosxroom = "/Users/nifskorea/Desktop/DB/roomState.txt";
     private String windowsroom = "C:\\DB\\roomState.txt";
     private String macosxcheckout = "/Users/nifskorea/Desktop/DB/checkout.txt";
@@ -66,7 +67,7 @@ public class Sfr300Process implements Fileinterface { // 체크인 관련 처리
     public void fWrite(String a) throws IOException {
         String oslocation = "";
 
-        if (fileae.getOssystem() == 1) {
+       if (fileae.getOssystem() == 1) {
             oslocation = macosxroom;
         } else if (fileae.getOssystem() == 2) {
             oslocation = windowsroom;
