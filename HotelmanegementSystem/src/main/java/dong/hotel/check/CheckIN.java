@@ -91,6 +91,16 @@ public class CheckIN extends javax.swing.JFrame {
         });
         reservationTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(reservationTable);
+        if (reservationTable.getColumnModel().getColumnCount() > 0) {
+            reservationTable.getColumnModel().getColumn(0).setMinWidth(20);
+            reservationTable.getColumnModel().getColumn(0).setPreferredWidth(20);
+            reservationTable.getColumnModel().getColumn(1).setMinWidth(15);
+            reservationTable.getColumnModel().getColumn(1).setPreferredWidth(15);
+            reservationTable.getColumnModel().getColumn(2).setMinWidth(10);
+            reservationTable.getColumnModel().getColumn(2).setPreferredWidth(10);
+            reservationTable.getColumnModel().getColumn(3).setMinWidth(40);
+            reservationTable.getColumnModel().getColumn(3).setPreferredWidth(40);
+        }
 
         Back_B.setText("이전");
         Back_B.addActionListener(new java.awt.event.ActionListener() {
@@ -110,30 +120,31 @@ public class CheckIN extends javax.swing.JFrame {
         CheckIn_panel.setLayout(CheckIn_panelLayout);
         CheckIn_panelLayout.setHorizontalGroup(
             CheckIn_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CheckIn_panelLayout.createSequentialGroup()
-                .addGap(101, 101, 101)
-                .addGroup(CheckIn_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(CheckIn_panelLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(SearchRoom))
-                    .addGroup(CheckIn_panelLayout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(SearchName, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(Bsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(119, Short.MAX_VALUE))
-            .addGroup(CheckIn_panelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CheckIn_panelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Back_B, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(take_Butt, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
+            .addGroup(CheckIn_panelLayout.createSequentialGroup()
+                .addGroup(CheckIn_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CheckIn_panelLayout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addGroup(CheckIn_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(CheckIn_panelLayout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(SearchRoom))
+                            .addGroup(CheckIn_panelLayout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(SearchName, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(Bsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(CheckIn_panelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         CheckIn_panelLayout.setVerticalGroup(
             CheckIn_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,8 +308,7 @@ public class CheckIN extends javax.swing.JFrame {
     private void Reservation_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reservation_BUTTActionPerformed
       SearchName.setText("");
       SearchRoom.setText("");
-        /* 
-     //  이부분 주석풀면 예약버튼이 안눌림 ㄱ-
+
       DefaultTableModel reservation = (DefaultTableModel) reservationTable.getModel();
         try {
             Sfr200Process cF = new Sfr200Process();
@@ -336,7 +346,7 @@ public class CheckIN extends javax.swing.JFrame {
             }
         } catch (IOException ex) {
             Logger.getLogger(CheckIN.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
                 ReservationCheckIn.setVisible(true);
 
     }//GEN-LAST:event_Reservation_BUTTActionPerformed

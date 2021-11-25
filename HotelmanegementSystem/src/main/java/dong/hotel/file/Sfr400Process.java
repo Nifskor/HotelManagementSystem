@@ -67,10 +67,9 @@ public class Sfr400Process implements Fileinterface {
             oslocation = windowsroom;
         }
         BufferedWriter log = new BufferedWriter(new FileWriter(oslocation, false));
-        PrintWriter pw = new PrintWriter(log, true);
-        pw.write(a + "\n"); // 출력
-        pw.flush(); // 남아있는 데이터를 모두 출력 
-        pw.close(); // 스트림 클로스 
+        log.write(a + "\n"); // 출력
+        log.flush(); // 남아있는 데이터를 모두 출력 
+        log.close(); // 스트림 클로스 
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
