@@ -306,10 +306,12 @@ public class CheckIN extends javax.swing.JFrame {
     }//GEN-LAST:event_Not_Reservation_BUTTActionPerformed
 
     private void Reservation_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reservation_BUTTActionPerformed
+     //예약고객 눌렀을때 예약내역좌라락+ 검색기능
       SearchName.setText("");
       SearchRoom.setText("");
 
       DefaultTableModel reservation = (DefaultTableModel) reservationTable.getModel();
+      reservation.setNumRows(0);//reservationTable초기화
         try {
             Sfr200Process cF = new Sfr200Process();
             cF.fRead();
@@ -352,6 +354,7 @@ public class CheckIN extends javax.swing.JFrame {
     }//GEN-LAST:event_Reservation_BUTTActionPerformed
 
     private void take_ButtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_take_ButtActionPerformed
+        //불러오기 버튼 눌렀을때!
         DefaultTableModel model = (DefaultTableModel) reservationTable.getModel();
         
         int nRow = -1;
@@ -427,31 +430,46 @@ public class CheckIN extends javax.swing.JFrame {
     }//GEN-LAST:event_CheckIn_BUTTActionPerformed
 
     private void BsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BsearchActionPerformed
+        //검색하기 버튼눌렀을때
         String name = SearchName.getText();
         String room = SearchRoom.getText();
-        
+        int caution=-1;
         //room이랑 name이 빈칸이라면 오류메세지출력
         if(room.equals("") && name.equals("")){
             JOptionPane.showMessageDialog(null, "이름 또는 호실을 입력해주세요");
         }
         for (int i = 0; i < customerinfor.size(); i++) {
+            caution=0;
             //호실 이름 둘다 입력한경우
             if(!room.equals("") && !name.equals("")){//둘 다 입력된 경우
                 if(customerinfor.get(i).getName().equals(name)&&customerinfor.get(i).getRoomNum().equals(room)){
-                    reservationTable.changeSelection(i, 0, false , false);
-                }
-            }
-            if(room.equals("") && !name.equals("")){//이름만 입력된 경우
+                    reservationTable.changeSelection(i-1, 0, false , false);
+                    break;
+                    
+                } else
+                    caution=1;
+            } else if(room.equals("") && !name.equals("")){//이름만 입력된 경우
                 if(customerinfor.get(i).getName().equals(name)){
-                    reservationTable.changeSelection(i, 0, false , false);
-                }
-            }
-            if(!room.equals("") && name.equals("")){//호실만 입력된경우
-                if(customerinfor.get(i).getName().equals(name)&&customerinfor.get(i).getRoomNum().equals(room)){
-                    reservationTable.changeSelection(i, 0, false , false);
-                }
+                    reservationTable.changeSelection(i-1, 0, false , false);
+                    break;
+                } else
+                    caution=2;
+            } else if(!room.equals("") && name.equals("")){//호실만 입력된경우
+                if(customerinfor.get(i).getRoomNum().equals(room)){
+                    reservationTable.changeSelection(i-1, 0, false , false);
+                    break;
+                } else
+                    caution=3;
             }
             
+        }
+        //잘못된 입력값으로 테이블에 선택이 안된경우 팝업
+        if(caution==1){
+            JOptionPane.showMessageDialog(null, "이름 및 호실을 정확히 입력해주세요");
+        }else if (caution == 2){
+            JOptionPane.showMessageDialog(null, "이름을 정확히 입력해주세요");
+        }else if(caution==3){
+            JOptionPane.showMessageDialog(null, "호실을 정확히 입력해주세요");
         }
     }//GEN-LAST:event_BsearchActionPerformed
 
