@@ -78,7 +78,7 @@ public class Sfr400Process implements Fileinterface {
         for (int i = 0; i < readInfo.size(); i++) { // 기타 예외변수 처리를 위해 조금더 확장해서 처리를해놈 아래는 룸스테이트 
             line = readInfo.get(i);
             String[] str = line.split(" ");
-            checkout.add(new CheckOutInformation(str[0], str[1], str[2], str[3], str[4], str[5], str[6], str[7], str[8], str[9], str[10]));
+            checkout.add(new CheckOutInformation(str[0], str[1], str[2], str[3], str[4], str[5], str[6], str[7], str[8], str[9]));
         }
     }
     

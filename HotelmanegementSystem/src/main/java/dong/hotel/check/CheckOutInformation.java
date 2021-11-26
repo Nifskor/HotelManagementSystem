@@ -9,6 +9,7 @@ package dong.hotel.check;
  * @author nifskorea
  */
 public class CheckOutInformation {
+    private String no;
     private String index;           //인덱스
     private String room;            //호실
     private String roomState;       //방상태
@@ -21,6 +22,7 @@ public class CheckOutInformation {
     private String outTime;         //체크아웃 시간
     private String realOutTime;     //실제 체크아웃 시간
 
+    // sfr300Process 생성자
     public CheckOutInformation(String index, String room, String roomState, String booker, String guestNum, 
             String inDate, String cInTime, String realInTime, String cOutDate, String outTime, String realOutTime) {
         this.index = index;
@@ -34,6 +36,28 @@ public class CheckOutInformation {
         this.cOutDate = cOutDate;
         this.outTime = outTime;
         this.realOutTime = realOutTime;
+    }
+    // sfr400Process 생성자
+
+    public CheckOutInformation(String no, String room, String roomState, String booker, String guestNum, String inDate, String cInTime, String realInTime, String cOutDate, String outTime) {
+        this.no = no;
+        this.room = room;
+        this.roomState = roomState;
+        this.booker = booker;
+        this.guestNum = guestNum;
+        this.inDate = inDate;
+        this.cInTime = cInTime;
+        this.realInTime = realInTime;
+        this.cOutDate = cOutDate;
+        this.outTime = outTime;
+    }
+
+    public String getNo() {
+        return no;
+    }
+
+    public void setNo(String no) {
+        this.no = no;
     }
 
 

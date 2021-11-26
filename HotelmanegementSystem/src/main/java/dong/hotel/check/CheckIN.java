@@ -420,7 +420,6 @@ public class CheckIN extends javax.swing.JFrame {
                         }
                     }
                     RoomStateSave checkIn = new RoomStateSave();
-                    System.out.println("roomstatesave생성자");
                     if (inDate != "" && outDate != "") {
                         checkIn.inguest(roomstate.get(i).getIndex(), room, name, guest, inDate, time, outDate);
                     }
