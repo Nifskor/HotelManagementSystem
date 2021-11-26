@@ -16,8 +16,9 @@ public class PeakSeasonChargeInfo {
     private String roomcharge; // 방찬거 확인 
     private String extractcharge; //할증요금 
     private String maxpele; //최대인원수 
+    private String addreason;
     
-     public PeakSeasonChargeInfo(int room, String numpeople, String roomcharge, String extractcharge, String maxpeple){
+     public PeakSeasonChargeInfo(int room, String numpeople, String roomcharge, String extractcharge, String maxpeple ,String addreason){
         //기본생성자로 피크 요금 방 / 사람인원수 / 방요금 / 할증요금 / 최대 인원수 
         
         this.room = room;
@@ -25,8 +26,16 @@ public class PeakSeasonChargeInfo {
         this.roomcharge = roomcharge ;
         this.extractcharge = extractcharge;
         this.maxpele = maxpeple; 
-        
+        this.addreason = addreason;
         // 기본 초기화 완료 
+    }
+
+    public String getAddreason() {
+        return addreason;
+    }
+
+    public void setAddreason(String addreason) {
+        this.addreason = addreason;
     }
 
     public int getRoom() {

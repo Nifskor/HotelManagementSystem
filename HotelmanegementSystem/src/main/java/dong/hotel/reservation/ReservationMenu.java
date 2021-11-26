@@ -135,7 +135,7 @@ public class ReservationMenu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "호실", "인원", "요금", "기타"
+                "호실", "인원", "요금", "할증요금(수정중)"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -823,7 +823,8 @@ public class ReservationMenu extends javax.swing.JFrame {
                     } else if (compare1 > 0 && compare2 > 0 && compare3 > 0 && compare4 > 0) {
 
                     }
-                   if(Integer.parseInt(cusNum)>Integer.parseInt(chargeInfo.get(i).getMaxpele())) { // 아직 성수기 미구현으로 에러 남  문자열로 변환 
+                  // 오류가능성이있음1
+                   if(Integer.parseInt(cusNum)>Integer.parseInt(chargeInfo.get(i).getNumpeople())) { // 아직 성수기 미구현으로 에러 남  문자열로 변환 
                         isOverNuma=true;   // 고객인원수가 클래스에 기록된거보다 더많은 인원이 들어오면 넘어가는거에 기록 
                    }
                  }
@@ -962,16 +963,17 @@ for (int i = 0; i < chargeInfo.size(); i++) {
                     pay = difday * (Long.parseLong(chargeInfo.get(i).getRoomcharge()));
                   //  possibleNum.setText("");
                    exMoney.setText(Long.toString(pay) +"원");
-                } else if (Integer.parseInt(checkPeopleNuma) > Integer.parseInt(chargeInfo.get(i).getMaxpele())) {
-                   exMoney.setText("해당 호실의 최대 인원 수는 " + chargeInfo.get(i).getMaxpele() + "명 입니다.");
+                } else if (Integer.parseInt(checkPeopleNuma) > Integer.parseInt(chargeInfo.get(i).getNumpeople())) {
+                   exMoney.setText("해당 호실의 최대 인원 수는 " + chargeInfo.get(i).getNumpeople() + "명 입니다.");
                     isOverNuma = true; //인원수 초과 
                     //exMoney.setText("재입력");
                     dayout.setText("");
                     break;
-                } else if (Integer.parseInt(checkPeopleNuma) > Integer.parseInt(chargeInfo.get(i).getNumpeople()) && Integer.parseInt(checkPeopleNuma) <= Integer.parseInt(chargeInfo.get(i).getMaxpele())) {
+                } else if (Integer.parseInt(checkPeopleNuma) > Integer.parseInt(chargeInfo.get(i).getNumpeople()) && Integer.parseInt(checkPeopleNuma) <= Integer.parseInt(chargeInfo.get(i).getNumpeople())) {
                     overnum = Integer.parseInt(checkPeopleNuma) - Integer.parseInt(chargeInfo.get(i).getNumpeople());
                     extrapay = Integer.parseInt(chargeInfo.get(i).getExtractcharge()) * overnum;
-                    pay = difday * (Long.parseLong(chargeInfo.get(i).getRoomcharge()) + extrapay);
+                    pay = difday * (Long.parseLong(chargeInfo.get(i).getRoomcharge()) );  // 추가요금 처리안하기로 함 
+                            //+ extrapay);
                     //possibleNum.setText("");
                     exMoney.setText(Long.toString(pay));
                 }

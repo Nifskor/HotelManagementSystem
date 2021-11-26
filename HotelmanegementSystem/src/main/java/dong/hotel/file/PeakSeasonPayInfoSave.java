@@ -24,7 +24,7 @@ public class PeakSeasonPayInfoSave {
     SFR100Process fileae = new SFR100Process(); // 파일 정보 가져와서 환경 변수 제어값 확인 
   
      /* 앞에 예약 클래스에서 넘긴 정보임 */ 
-     public void InChargeInfo(int index, int room, String people, String roomcharge, String extracharge, String maxpeople) throws IOException {
+     public void InChargeInfo(int index, int room, String people, String roomcharge, String extracharge, String maxpeople,String addreason) throws IOException {
          if(fileae.getOssystem() ==1){
          try {
                 BufferedReader fileread = new BufferedReader(new FileReader(macosxpayinfo)); // 한줄씩 읽어들임 
@@ -34,7 +34,7 @@ public class PeakSeasonPayInfoSave {
                     dummy +=(line + "\r\n"); 
                 }
                 fileread.readLine();
-                
+                 dummy += (room + " " + people + " " + roomcharge + " " + extracharge + " " + maxpeople + addreason + "\r\n");
                 while ((line = fileread.readLine()) != null) { // 파일을 끝까지 읽고 null 리턴까지 계속 반복해서 읽어라 
                    dummy +=(line + "\r\n");  // 커서를 맨앞으로 보내고 그다음 엔터쳐러 ( 공백 최소화 기법)
                 }
@@ -60,7 +60,7 @@ public class PeakSeasonPayInfoSave {
                     dummy +=(line + "\r\n"); 
                 }
                 fileread.readLine();
-                
+                  dummy += (room + " " + people + " " + roomcharge + " " + extracharge + " " + maxpeople + addreason + "\r\n");
                 while ((line = fileread.readLine()) != null) { // 파일을 끝까지 읽고 null 리턴까지 계속 반복해서 읽어라 
                    dummy +=(line + "\r\n");  // 커서를 맨앞으로 보내고 그다음 엔터쳐러 ( 공백 최소화 기법)
                 }

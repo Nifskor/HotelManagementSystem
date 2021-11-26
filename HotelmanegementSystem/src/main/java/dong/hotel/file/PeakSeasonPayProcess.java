@@ -80,7 +80,10 @@ private String windowsbooking = "C:\\DB\\peakpayinfo.txt";
         for (int i = 0; i < readInfo.size(); i++) {
             line = readInfo.get(i);
             String[] str = line.split(" ");
-            guestInfo.add(new PeakSeasonChargeInfo(Integer.parseInt(str[0]), str[1], str[2], str[3], str[4]));
+            guestInfo.add(new PeakSeasonChargeInfo(Integer.parseInt(str[0]), str[1], str[2], str[3], str[4] ,str[5]));
+            /* 값 테스팅 코드 */
+            //String test = str[0]+str[1]+str[2]+str[3]+str[4] +str[5];
+           // System.out.println(test);
         }
          }
      public ArrayList<PeakSeasonChargeInfo> returnChargeInfo() throws IOException {
