@@ -4,6 +4,7 @@
  */
 package dong.hotel.check;
 
+import dong.hotel.file.Sfr200Process;
 import dong.hotel.file.Sfr400Process;
 import dong.hotel.mainmenu.MainMenu;
 import dong.hotel.reservation.CustomerInfor;
@@ -19,11 +20,12 @@ import javax.swing.table.DefaultTableModel;
  * @author nifskorea
  */
 public class CheckOut extends javax.swing.JFrame {
+
     private ArrayList<CustomerInfor> customerinfor = new ArrayList<>();
     private ArrayList<RoomState> roomstate = new ArrayList<>();
-    private ArrayList<CheckOutInformation>  checkoutInformation = new ArrayList<>();
-    private ArrayList<HotelRoomChargeInfor>  roomchargeinfo = new ArrayList<>();
-    
+    private ArrayList<CheckOutInformation> checkoutInformation = new ArrayList<>();
+    private ArrayList<HotelRoomChargeInfor> roomchargeinfo = new ArrayList<>();
+
     /**
      * Creates new form CheckOut
      */
@@ -467,50 +469,84 @@ public class CheckOut extends javax.swing.JFrame {
     }//GEN-LAST:event_Back_BUTTActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-       /*
-        1. 입력값을 받음
-        2. 테이블객체생성
-        돌릴파일 룸상태
-        3-1. 빈칸이면 오류출력
-        3-2. 체크인한사람일때(필수결제)
-        3-3. 이름 호실 입력시-> 일치하면 한줄 출력
-        3-4. 이름 입력시 ->  일치하면 출력
-        3-5. 호실 입력시 -> 일치하면 출력
-        //이때 핸폰번호는 체크인 그때 그거처럼ㅇㅇ
-        */
       
         try {
+            Sfr200Process cF = new Sfr200Process();
+            cF.fRead();
+            cF.sPlite();
+            customerinfor = cF.returnGuestInfo();
+
             Sfr400Process rF = new Sfr400Process();
             rF.fRead();
             rF.sPlite();
             checkoutInformation = rF.returnCheckOutInformation();
+
             String name = nameTF.getText();
             String room = roomTF.getText();
+            String outDate = "";
+
             DefaultTableModel model = (DefaultTableModel) outTable.getModel();
+            model.setNumRows(0);
             //room이랑 name이 빈칸이라면 오류메세지출력
-            if(room.equals("") && name.equals("")){
+            if (room.equals("") && name.equals("")) {
                 JOptionPane.showMessageDialog(null, "이름 또는 호실을 입력해주세요");
             }
-            for (int i = 0; i < customerinfor.size(); i++) {
+            for (int i = 0; i < checkoutInformation.size(); i++) {
                 //호실 이름 둘다 입력한경우
-                if(!room.equals("") && !name.equals("")){//둘 다 입력된 경우
-                    if(customerinfor.get(i).getName().equals(name)&&customerinfor.get(i).getRoomNum().equals(room)){
-                        outTable.changeSelection(i, 0, false , false);
+                if (!room.equals("") && !name.equals("")) {//둘 다 입력된 경우
+                    if (checkoutInformation.get(i).getBooker().equals(name) && checkoutInformation.get(i).getRoom().equals(room)) {
+                        for (int j = 0; j < customerinfor.size(); j++) {
+                            if (customerinfor.get(j).getRoomNum().equals(room)) {
+                                outDate = String.format("%s-%s-%s", customerinfor.get(j).getcOutYear(), customerinfor.get(j).getcOutMonth(), customerinfor.get(j).getcOutDay());
+                                if (checkoutInformation.get(i).getcOutDate().equals(outDate)) {
+                                    model.insertRow(model.getRowCount(), new Object[]{
+                                        checkoutInformation.get(i).getBooker(), checkoutInformation.get(i).getRoom(),
+                                        checkoutInformation.get(i).getGuestNum(), customerinfor.get(j).getPhoneNum(),
+                                        checkoutInformation.get(i).getOutTime(), checkoutInformation.get(i).getRoomState()
+                                    });
+                                }
+                            }
+                        }
+
                     }
                 }
-                if(room.equals("") && !name.equals("")){//이름만 입력된 경우
-                    if(customerinfor.get(i).getName().equals(name)){
-                        outTable.changeSelection(i, 0, false , false);
+                if (room.equals("") && !name.equals("")) {//이름만 입력된 경우
+                    if (checkoutInformation.get(i).getBooker().equals(name)) {
+                        for (int j = 0; j < customerinfor.size(); j++) {
+                            if (customerinfor.get(j).getRoomNum().equals(checkoutInformation.get(i).getRoom())) {
+                                outDate = String.format("%s-%s-%s", customerinfor.get(j).getcOutYear(), customerinfor.get(j).getcOutMonth(), customerinfor.get(j).getcOutDay());
+                                if (checkoutInformation.get(i).getcOutDate().equals(outDate)) {
+                                    model.insertRow(model.getRowCount(), new Object[]{
+                                        checkoutInformation.get(i).getBooker(), checkoutInformation.get(i).getRoom(),
+                                        checkoutInformation.get(i).getGuestNum(), customerinfor.get(j).getPhoneNum(),
+                                        checkoutInformation.get(i).getOutTime(), checkoutInformation.get(i).getRoomState()
+                                    });
+                                }
+                            }
+                        }
+
                     }
                 }
-                if(!room.equals("") && name.equals("")){//호실만 입력된경우
-                    if(customerinfor.get(i).getName().equals(name)&&customerinfor.get(i).getRoomNum().equals(room)){
-                        outTable.changeSelection(i, 0, false , false);
+                if (!room.equals("") && name.equals("")) {//호실만 입력된경우
+                    if (checkoutInformation.get(i).getRoom().equals(room)) {
+                        for (int j = 0; j < customerinfor.size(); j++) {
+                            if (customerinfor.get(j).getRoomNum().equals(room)) {
+                                outDate = String.format("%s-%s-%s", customerinfor.get(j).getcOutYear(), customerinfor.get(j).getcOutMonth(), customerinfor.get(j).getcOutDay());
+                                if (checkoutInformation.get(i).getcOutDate().equals(outDate)) {
+                                    model.insertRow(model.getRowCount(), new Object[]{
+                                        checkoutInformation.get(i).getBooker(), checkoutInformation.get(i).getRoom(),
+                                        checkoutInformation.get(i).getGuestNum(), customerinfor.get(j).getPhoneNum(),
+                                        checkoutInformation.get(i).getOutTime(), checkoutInformation.get(i).getRoomState()
+                                    });
+                                }
+                            }
+                        }
+
                     }
                 }
-                
+
             }
-        } catch (IOException ex) {            
+        } catch (IOException ex) {
             Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
         }/*
 ////////////////////////////////////////
@@ -533,7 +569,7 @@ public class CheckOut extends javax.swing.JFrame {
 그리고 파일처리를 해야함
 음 어디파일에 체크아웃파일에 넣어야하고 룸상태지워야함 ㅇㅇ
 //////////////////////////////////////////////////
-*/
+         */
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void feedTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feedTFActionPerformed
