@@ -173,9 +173,9 @@
                         <Column editable="false" title="&#xd638;&#xc2e4;" type="java.lang.Object"/>
                         <Column editable="false" title="&#xc778;&#xc6d0;" type="java.lang.Object"/>
                         <Column editable="false" title="&#xc804;&#xd654;&#xbc88;&#xd638;" type="java.lang.Object"/>
-                        <Column editable="false" title="&#xc785;&#xc2e4; &#xc2dc;&#xac04;" type="java.lang.Object"/>
-                        <Column editable="false" title="&#xc2e4;&#xc81c;&#xd1f4;&#xc2e4;&#xc2dc;&#xac04;" type="java.lang.Object"/>
                         <Column editable="false" title="&#xc608;&#xc0c1;&#xd1f4;&#xc2e4;&#xc2dc;&#xac04;" type="java.lang.Object"/>
+                        <Column editable="false" title="&#xc7ac;&#xc2e4;&#xc0c1;&#xd0dc;" type="java.lang.Object"/>
+                        <Column editable="false" title="&#xc2e4;&#xc81c;&#xd1f4;&#xc2e4;&#xc2dc;&#xac04;" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -473,7 +473,7 @@
                               <Component id="jLabel3" min="-2" pref="69" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="roomTF" min="-2" pref="68" max="-2" attributes="0"/>
-                              <EmptySpace pref="143" max="32767" attributes="0"/>
+                              <EmptySpace pref="188" max="32767" attributes="0"/>
                               <Component id="searchBtn" min="-2" pref="77" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -560,11 +560,12 @@
         <Component class="javax.swing.JTable" name="outTable">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="6" rowCount="0">
+              <Table columnCount="7" rowCount="0">
                 <Column editable="false" title="&#xc774;&#xb984;" type="java.lang.Object"/>
                 <Column editable="false" title="&#xd638;&#xc2e4;" type="java.lang.Object"/>
                 <Column editable="false" title="&#xc778;&#xc6d0;" type="java.lang.Object"/>
                 <Column editable="false" title="&#xc804;&#xd654;&#xbc88;&#xd638;" type="java.lang.Object"/>
+                <Column editable="false" title="&#xd1f4;&#xc2e4;&#xc77c;" type="java.lang.Object"/>
                 <Column editable="false" title="&#xd1f4;&#xc2e4;&#xc2dc;&#xac04;" type="java.lang.Object"/>
                 <Column editable="false" title="&#xc7ac;&#xc2e4;&#xc0c1;&#xd0dc;" type="java.lang.Object"/>
               </Table>
@@ -587,6 +588,11 @@
                   <Renderer/>
                 </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="30" prefWidth="30" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>
@@ -633,6 +639,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xccb4;&#xd06c;&#xc544;&#xc6c3;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkoutBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

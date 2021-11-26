@@ -9,9 +9,13 @@ import dong.hotel.file.Sfr400Process;
 import dong.hotel.mainmenu.MainMenu;
 import dong.hotel.reservation.CustomerInfor;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -94,7 +98,7 @@ public class CheckOut extends javax.swing.JFrame {
 
             },
             new String [] {
-                "이름", "호실", "인원", "전화번호", "입실 시간", "실제퇴실시간", "예상퇴실시간"
+                "이름", "호실", "인원", "전화번호", "예상퇴실시간", "재실상태", "실제퇴실시간"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -219,7 +223,7 @@ public class CheckOut extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cardLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(290, 290, 290)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -297,7 +301,7 @@ public class CheckOut extends javax.swing.JFrame {
                                                         .addComponent(surchargeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                                 .addGap(32, 32, 32))
                                             .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(PaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(cardCheck, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -310,7 +314,7 @@ public class CheckOut extends javax.swing.JFrame {
             .addGroup(PaymentLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(231, Short.MAX_VALUE))
         );
         PaymentLayout.setVerticalGroup(
             PaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,7 +341,7 @@ public class CheckOut extends javax.swing.JFrame {
                         .addGroup(PaymentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cashCheck)
                             .addComponent(jLabel16))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                         .addComponent(chargeLabel)
                         .addGap(7, 7, 7)
                         .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -364,11 +368,11 @@ public class CheckOut extends javax.swing.JFrame {
 
             },
             new String [] {
-                "이름", "호실", "인원", "전화번호", "퇴실 시간"
+                "이름", "호실", "인원", "전화번호", "퇴실일", "퇴실시간", "재실상태"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -386,6 +390,10 @@ public class CheckOut extends javax.swing.JFrame {
             outTable.getColumnModel().getColumn(2).setPreferredWidth(10);
             outTable.getColumnModel().getColumn(4).setMinWidth(30);
             outTable.getColumnModel().getColumn(4).setPreferredWidth(30);
+            outTable.getColumnModel().getColumn(5).setMinWidth(30);
+            outTable.getColumnModel().getColumn(5).setPreferredWidth(30);
+            outTable.getColumnModel().getColumn(6).setMinWidth(25);
+            outTable.getColumnModel().getColumn(6).setPreferredWidth(25);
         }
 
         searchBtn.setText("검색");
@@ -403,6 +411,11 @@ public class CheckOut extends javax.swing.JFrame {
         });
 
         checkoutBtn.setText("체크아웃");
+        checkoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkoutBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -422,19 +435,22 @@ public class CheckOut extends javax.swing.JFrame {
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(roomTF, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
                                 .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(nameTF, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(34, 34, 34))
             .addGroup(layout.createSequentialGroup()
                 .addGap(142, 142, 142)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -469,7 +485,7 @@ public class CheckOut extends javax.swing.JFrame {
     }//GEN-LAST:event_Back_BUTTActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-      
+
         try {
             Sfr200Process cF = new Sfr200Process();
             cF.fRead();
@@ -484,16 +500,14 @@ public class CheckOut extends javax.swing.JFrame {
             String name = nameTF.getText();
             String room = roomTF.getText();
             String outDate = "";
+            int caution = -1;
 
             DefaultTableModel model = (DefaultTableModel) outTable.getModel();
             model.setNumRows(0);
-            //room이랑 name이 빈칸이라면 오류메세지출력
-            if (room.equals("") && name.equals("")) {
-                JOptionPane.showMessageDialog(null, "이름 또는 호실을 입력해주세요");
-            }
+
             for (int i = 0; i < checkoutInformation.size(); i++) {
                 //호실 이름 둘다 입력한경우
-                if (!room.equals("") && !name.equals("")) {//둘 다 입력된 경우
+                if (!room.equals("") && !name.equals("")) {
                     if (checkoutInformation.get(i).getBooker().equals(name) && checkoutInformation.get(i).getRoom().equals(room)) {
                         for (int j = 0; j < customerinfor.size(); j++) {
                             if (customerinfor.get(j).getRoomNum().equals(room)) {
@@ -501,16 +515,12 @@ public class CheckOut extends javax.swing.JFrame {
                                 if (checkoutInformation.get(i).getcOutDate().equals(outDate)) {
                                     model.insertRow(model.getRowCount(), new Object[]{
                                         checkoutInformation.get(i).getBooker(), checkoutInformation.get(i).getRoom(),
-                                        checkoutInformation.get(i).getGuestNum(), customerinfor.get(j).getPhoneNum(),
+                                        checkoutInformation.get(i).getGuestNum(), customerinfor.get(j).getPhoneNum(),checkoutInformation.get(i).getcOutDate(),
                                         checkoutInformation.get(i).getOutTime(), checkoutInformation.get(i).getRoomState()
                                     });
-                                }
-                            }
-                        }
-
-                    }
-                }
-                if (room.equals("") && !name.equals("")) {//이름만 입력된 경우
+                                    caution = 0;}} }}}
+                //이름만 입력된 경우
+                if (room.equals("") && !name.equals("")) {
                     if (checkoutInformation.get(i).getBooker().equals(name)) {
                         for (int j = 0; j < customerinfor.size(); j++) {
                             if (customerinfor.get(j).getRoomNum().equals(checkoutInformation.get(i).getRoom())) {
@@ -518,16 +528,12 @@ public class CheckOut extends javax.swing.JFrame {
                                 if (checkoutInformation.get(i).getcOutDate().equals(outDate)) {
                                     model.insertRow(model.getRowCount(), new Object[]{
                                         checkoutInformation.get(i).getBooker(), checkoutInformation.get(i).getRoom(),
-                                        checkoutInformation.get(i).getGuestNum(), customerinfor.get(j).getPhoneNum(),
+                                        checkoutInformation.get(i).getGuestNum(), customerinfor.get(j).getPhoneNum(),checkoutInformation.get(i).getcOutDate(),
                                         checkoutInformation.get(i).getOutTime(), checkoutInformation.get(i).getRoomState()
                                     });
-                                }
-                            }
-                        }
-
-                    }
-                }
-                if (!room.equals("") && name.equals("")) {//호실만 입력된경우
+                                    caution = 0;}}}}}
+                //호실만 입력된경우
+                if (!room.equals("") && name.equals("")) {
                     if (checkoutInformation.get(i).getRoom().equals(room)) {
                         for (int j = 0; j < customerinfor.size(); j++) {
                             if (customerinfor.get(j).getRoomNum().equals(room)) {
@@ -535,30 +541,17 @@ public class CheckOut extends javax.swing.JFrame {
                                 if (checkoutInformation.get(i).getcOutDate().equals(outDate)) {
                                     model.insertRow(model.getRowCount(), new Object[]{
                                         checkoutInformation.get(i).getBooker(), checkoutInformation.get(i).getRoom(),
-                                        checkoutInformation.get(i).getGuestNum(), customerinfor.get(j).getPhoneNum(),
+                                        checkoutInformation.get(i).getGuestNum(), customerinfor.get(j).getPhoneNum(),checkoutInformation.get(i).getcOutDate(),
                                         checkoutInformation.get(i).getOutTime(), checkoutInformation.get(i).getRoomState()
                                     });
-                                }
-                            }
-                        }
-
-                    }
-                }
-
+                                    caution = 0;}}}}}}
+            //잘못된 입력값 팝업
+            if (caution != 0) {
+                JOptionPane.showMessageDialog(null, "이름 또는 호실을 정확히 입력해주세요");
             }
         } catch (IOException ex) {
             Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
         }/*
-////////////////////////////////////////
-체크아웃버튼누르면
-
-선택된 값이 있을때 결제된값으러넘어감
-선택된 값이 없으면 선택하라는 경고창
-//여기서 부터 결제창내용
-그 해당 값의 테이블 출력하는 머 그거
-그리고 금액/추가요금/총금액보여줌
-앤 카드내역부분 안보이게
-그리고 이제 결제창 true
 //////////////////////////////////////////////
 결제완료 버튼누르면
 
@@ -579,6 +572,60 @@ public class CheckOut extends javax.swing.JFrame {
     private void cashCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashCheckActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cashCheckActionPerformed
+
+    private void checkoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkoutBtnActionPerformed
+        try {
+            DefaultTableModel model2 = (DefaultTableModel) outTable.getModel();
+            Sfr400Process co = new Sfr400Process();
+            co.fRead();
+            co.sPlite();
+            
+            ButtonGroup payment = new ButtonGroup();
+            payment.add(cardCheck);
+            payment.add(cashCheck);
+            
+            int row=-1;
+            
+            row=model2.getRowCount();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String d = df.format(System.currentTimeMillis());         
+            Date systemDate = df.parse(d);
+            String date = (String) model2.getValueAt(row, 4);
+            Date cOutdate = df.parse(date);
+            String name = (String) model2.getValueAt(row, 0);
+            String room = (String) model2.getValueAt(row, 1);
+            String guest = (String) model2.getValueAt(row, 2);
+            String phone = (String) model2.getValueAt(row, 3);
+            String time = (String) model2.getValueAt(row, 5);
+            String state = (String) model2.getValueAt(row, 6);
+            String systemTime = new SimpleDateFormat("HH:mm").format(System.currentTimeMillis());
+            
+            if(cOutdate.compareTo(systemDate)!=0){//현재날짜가 퇴실일이 아니라면
+                JOptionPane.showMessageDialog(null, "퇴실일이 아닙니다.", "체크아웃", JOptionPane.ERROR_MESSAGE);
+            }else if(model2.getRowCount()==0){
+                JOptionPane.showMessageDialog(null, "체크아웃 정보를 검색해주세요.", "체크아웃", JOptionPane.ERROR_MESSAGE);
+            }else if(row==-1){
+                JOptionPane.showMessageDialog(null, "체크아웃 정보를 선택해주세요.", "체크아웃", JOptionPane.ERROR_MESSAGE);
+            }else if(state=="empty"){//만약 체크아웃된 방이 검색에 안나오면 여긴 삭제
+                JOptionPane.showMessageDialog(null, "이미 체크아웃했습니다.", "체크아웃", JOptionPane.ERROR_MESSAGE);
+            }else{
+            /*
+            ////////////////////////////////////////
+            //여기서 부터 결제창내용
+            그 해당 값의 테이블 출력하는 머 그거
+            그리고 금액/추가요금/총금액보여줌
+            앤 카드내역부분 안보이게
+            그리고 이제 결제창 true
+            //////////////////////////////////////////////
+            */
+            DefaultTableModel checkout = (DefaultTableModel) paymentTable.getModel();
+                    checkout.insertRow(checkout.getRowCount(), new Object[]{name,room, guest,phone,time,state,systemTime});
+                
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_checkoutBtnActionPerformed
 
     /**
      * @param args the command line arguments
