@@ -512,7 +512,28 @@ public class CheckOut extends javax.swing.JFrame {
             }
         } catch (IOException ex) {            
             Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }/*
+////////////////////////////////////////
+체크아웃버튼누르면
+
+선택된 값이 있을때 결제된값으러넘어감
+선택된 값이 없으면 선택하라는 경고창
+//여기서 부터 결제창내용
+그 해당 값의 테이블 출력하는 머 그거
+그리고 금액/추가요금/총금액보여줌
+앤 카드내역부분 안보이게
+그리고 이제 결제창 true
+//////////////////////////////////////////////
+결제완료 버튼누르면
+
+라디오버튼 
+카드하면 카드상세내용판 뜨면서 해당고객의 카드정보 나옴
+현금누르면 카드상세내용 사라지고 걍 현금 ㅋ
+앤 후기 안쓰면 못넘어가도록~~
+그리고 파일처리를 해야함
+음 어디파일에 체크아웃파일에 넣어야하고 룸상태지워야함 ㅇㅇ
+//////////////////////////////////////////////////
+*/
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void feedTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feedTFActionPerformed
