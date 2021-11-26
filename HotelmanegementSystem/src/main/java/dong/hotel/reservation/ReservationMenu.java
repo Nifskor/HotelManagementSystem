@@ -739,7 +739,55 @@ public class ReservationMenu extends javax.swing.JFrame {
         String smonth = Integer.toString(month);
         String sday = Integer.toString(day);
         String today = syear + "|" +  smonth + "|" +  sday; //(오늘 날짜 출력 )
-        
+        /* 숫자 작게 입력했을때 오류일으키는 예외 처리 */
+              String roomNuma, nameaa , cusPhonenuma ,cusPhonenum2a,cusPhonenum3a,cardNuma,cardNum2a,cardNum3a,cardNum4a,exprMontha,expYeara;
+        roomNuma = RoomText.getText(); //호실 정보 가져옴
+       nameaa = Cusname.getText();
+       cusPhonenuma = phone.getText() ;
+        cusPhonenum2a=phtwo.getText() ;
+        cusPhonenum3a=phthree.getText();
+        cardNuma = carNumOne.getText() ;
+        cardNum2a   =     carNumTwo.getText() ;
+        cardNum3a    =    carNumThree.getText() ;
+        cardNum4a    =    carNumFor.getText();
+        exprMontha  = carLastNuOne.getText(); 
+           expYeara = carLastNumTwo.getText(); //유효기간 
+     if(roomNuma.length() >4){
+          JOptionPane.showMessageDialog(null, "호실은 최대 4자리까지 입력가능합니다.");
+          count =5;
+     }else if(nameaa.length()>4){
+          JOptionPane.showMessageDialog(null, "이름입력은 최대 4자리까지 가능합니다.");
+          count =5;
+     }else if(cusPhonenuma.length() >4){
+          JOptionPane.showMessageDialog(null, "휴대폰번호는 최대 4자리까지 입력가능합니다.");
+          count =5;
+     }else if(cusPhonenum2a.length() >4){
+          JOptionPane.showMessageDialog(null, "휴대폰번호는 최대 4자리까지 입력가능합니다.");
+          count =5;
+     }else if(cusPhonenum3a.length() >4){
+          JOptionPane.showMessageDialog(null, "휴대폰번호는 최대 4자리까지 입력가능합니다.");
+          count =5;
+     }else if(cardNuma.length() >4){
+          JOptionPane.showMessageDialog(null, "카드번호는 최대 4자리까지 입력가능합니다.");
+          count =5;
+     }
+     else if(cardNum2a.length() >4){
+          JOptionPane.showMessageDialog(null, "카드번호는 최대 4자리까지 입력가능합니다.");
+          count =5;
+     }else if(cardNum3a.length() >4){
+          JOptionPane.showMessageDialog(null, "카드번호는 최대 4자리까지 입력가능합니다.");
+          count =5;
+     }else if(cardNum4a.length() >4){
+          JOptionPane.showMessageDialog(null, "카드번호는 최대 4자리까지 입력가능합니다.");
+          count =5;
+     }else if(exprMontha.length() >2){
+          JOptionPane.showMessageDialog(null, "카드유효기간(월)은 최대 2자리까지 입력가능합니다.");
+          count =5;
+     }else if(expYeara.length() >2){
+          JOptionPane.showMessageDialog(null, "카드유효기간(년)은 최대 2자리까지 입력가능합니다.");
+          count =5;
+     }
+           
         /* 카드 운영 로직 별도 함수로 처리 및 호출 아래 들어감 */ 
         cardworkingproce();
         
@@ -1022,6 +1070,7 @@ for (int i = 0; i < chargeInfo.size(); i++) {
              }
             
     }
+    
     /**
      * @param args the command line arguments
      */
