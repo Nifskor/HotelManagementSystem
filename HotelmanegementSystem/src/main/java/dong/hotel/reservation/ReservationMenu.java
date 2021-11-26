@@ -852,10 +852,15 @@ public class ReservationMenu extends javax.swing.JFrame {
            
        } 
         // 날짜 및 예약 파일 처리부분 오류 및 버그 수정 완료 11 . 25
-       
+       if(roomNum.isEmpty()){
+           // JOptionPane.showMessageDialog(null, "호실을 입력해주세요.");
+            roomNum="99";
+       }
          int tema = Integer.parseInt(roomNum);
        if(tema <=100){
-           JOptionPane.showMessageDialog(null, "없는 호실입니다 호실은 101번부터 시작입니 .");
+           JOptionPane.showMessageDialog(null, "없는 호실입니다 호실은 101번부터 시작입니다 .");
+       }else if (tema == 99){
+           
        }
        if(count ==0 ){
              JOptionPane.showMessageDialog(null, "예약된 방입니다 다른방을 확인해주세요.다");
