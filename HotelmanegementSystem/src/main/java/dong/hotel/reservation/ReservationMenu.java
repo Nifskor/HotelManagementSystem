@@ -1098,7 +1098,7 @@ public class ReservationMenu extends javax.swing.JFrame {
         
              customInfo = code + "|" + name + "|" + roomNum + "|" + cusNum + "|" + cusPhonenum + "|" + inYear + "|" + inMonth + "|" + 
                       inDay + "|" + outYear + "|" + outMonth + "|" + outDay + "|" + money + "|" + cardType + "|" + cardNum+ "|" +
-                      exprMonth + "|" +expYear+ "|" +guarantee+ "|" ;
+                      exprMonth + "|" +expYear+ "|" +guarantee+ "|"+"\n" ;
              
                     
         try { 
