@@ -876,6 +876,9 @@ public class ReservationMenu extends javax.swing.JFrame {
                         if (cusPhonenum.equals("010")) {
                             cusPhonenum = guestInfo.get(i).getPhoneNum();
                         }
+                         if (cusPhonenum.isEmpty()) {
+                            cusPhonenum = guestInfo.get(i).getPhoneNum();
+                        }
                         if (cardType.equals("카드선택")) {
                             checkCardbuttona = 0;
                                 System.out.println("카드정보가 없습니다 ");
