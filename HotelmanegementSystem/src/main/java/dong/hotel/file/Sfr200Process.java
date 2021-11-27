@@ -38,8 +38,8 @@ SFR100Process fileae = new SFR100Process();
        try{
             BufferedReader fileread = new BufferedReader(new FileReader(macosxbooking)); // 한줄씩 읽어들임 
           while ((line = fileread.readLine())!=null ){ // 파일을 끝까지 읽고 null 리턴까지 계속 반복해서 읽어라 
-            readInfo.add(line); // 읽은 정보 기록   
-          //  System.out.println(line);
+            readInfo.add(line); // 읽은 정보 기록  
+          //  System.out.println(readInfo.get(0));
             //System.out.println(readInfo.size());
        }
     }catch (FileNotFoundException e ){
