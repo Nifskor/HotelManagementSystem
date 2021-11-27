@@ -4,6 +4,8 @@
  */
 package dong.hotel.check;
 
+import dong.hotel.file.ExceptionReportSave;
+import dong.hotel.file.HotelPay;
 import dong.hotel.file.RoomEmpty;
 import dong.hotel.file.RoomStateSave;
 import dong.hotel.file.Sfr200Process;
@@ -31,14 +33,20 @@ public class CheckOut extends javax.swing.JFrame {
     private ArrayList<RoomState> roomstate = new ArrayList<>();
     private ArrayList<CheckOutInformation> checkoutInformation = new ArrayList<>();
     private ArrayList<HotelRoomChargeInfor> roomchargeinfo = new ArrayList<>();
-   
+
     private String roomFee = "";
     private String card = "";
     private String cardNum = "";
     private String cMonth = "";
-    private String cYear = ""; 
-    private String index="";
-    private String roomNum ="";
+    private String cYear = "";
+    private String index = "";
+    private String roomNum = "";
+    private String over = "";
+    private String extra = "";
+    private String name = "";
+    private String date = "";
+    private String totalFee = "";
+    private String select = "";
 
     /**
      * Creates new form CheckOut
@@ -258,7 +266,6 @@ public class CheckOut extends javax.swing.JFrame {
 
         jLabel20.setText("고객 피드백");
 
-        feedTF.setText("jTextField3");
         feedTF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 feedTFActionPerformed(evt);
@@ -266,6 +273,11 @@ public class CheckOut extends javax.swing.JFrame {
         });
 
         closeB.setText("이전");
+        closeB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeBActionPerformed(evt);
+            }
+        });
 
         payBUTT.setText("결제완료");
         payBUTT.addActionListener(new java.awt.event.ActionListener() {
@@ -562,7 +574,7 @@ public class CheckOut extends javax.swing.JFrame {
             rF.sPlite();
             checkoutInformation = rF.returnCheckOutInformation();
 
-            String name = nameTF.getText();
+            String aname = nameTF.getText();
             String room = roomTF.getText();
             String outDate = "";
             int caution = -1;
@@ -572,43 +584,52 @@ public class CheckOut extends javax.swing.JFrame {
 
             for (int i = 0; i < checkoutInformation.size(); i++) {
                 //호실 이름 둘다 입력한경우
-                if (!room.equals("") && !name.equals("")) {
-                    if (checkoutInformation.get(i).getBooker().equals(name) && checkoutInformation.get(i).getRoom().equals(room)) {
+                if (!room.equals("") && !aname.equals("")) {
+                    if (checkoutInformation.get(i).getBooker().equals(aname) && checkoutInformation.get(i).getRoom().equals(room)) {
                         for (int j = 0; j < customerinfor.size(); j++) {
                             if (customerinfor.get(j).getRoomNum().equals(room)) {
                                 outDate = String.format("%s-%s-%s", customerinfor.get(j).getcOutYear(), customerinfor.get(j).getcOutMonth(), customerinfor.get(j).getcOutDay());
-                                roomFee=customerinfor.get(j).getRoomPrice();
-                                card=customerinfor.get(j).getCard();
-                                cardNum=customerinfor.get(j).getCardNum();
-                                cMonth=customerinfor.get(j).getEndMonth();
-                                cYear=customerinfor.get(j).getEndYear();
-                                index=checkoutInformation.get(i).getNo();
+                                roomFee = customerinfor.get(j).getRoomPrice();
+                                card = customerinfor.get(j).getCard();
+                                cardNum = customerinfor.get(j).getCardNum();
+                                cMonth = customerinfor.get(j).getEndMonth();
+                                cYear = customerinfor.get(j).getEndYear();
+                                index = checkoutInformation.get(i).getNo();
                                 if (checkoutInformation.get(i).getcOutDate().equals(outDate)) {
                                     model.insertRow(model.getRowCount(), new Object[]{
                                         checkoutInformation.get(i).getBooker(), checkoutInformation.get(i).getRoom(),
-                                        checkoutInformation.get(i).getGuestNum(), customerinfor.get(j).getPhoneNum(),checkoutInformation.get(i).getcOutDate(),
+                                        checkoutInformation.get(i).getGuestNum(), customerinfor.get(j).getPhoneNum(), checkoutInformation.get(i).getcOutDate(),
                                         checkoutInformation.get(i).getOutTime(), checkoutInformation.get(i).getRoomState()
                                     });
-                                    caution = 0;}} }}}
-                //둘중하나 입력된 경우
-                else if (!room.equals("") || !name.equals("")) {
-                    if (checkoutInformation.get(i).getBooker().equals(name) || checkoutInformation.get(i).getRoom().equals(room)) {
+                                    caution = 0;
+                                }
+                            }
+                        }
+                    }
+                } //둘중하나 입력된 경우
+                else if (!room.equals("") || !aname.equals("")) {
+                    if (checkoutInformation.get(i).getBooker().equals(aname) || checkoutInformation.get(i).getRoom().equals(room)) {
                         for (int j = 0; j < customerinfor.size(); j++) {
                             if (customerinfor.get(j).getRoomNum().equals(checkoutInformation.get(i).getRoom())) {
                                 outDate = String.format("%s-%s-%s", customerinfor.get(j).getcOutYear(), customerinfor.get(j).getcOutMonth(), customerinfor.get(j).getcOutDay());
-                                 roomFee=customerinfor.get(j).getRoomPrice();
-                                card=customerinfor.get(j).getCard();
-                                cardNum=customerinfor.get(j).getCardNum();
-                                cMonth=customerinfor.get(j).getEndMonth();
-                                cYear=customerinfor.get(j).getEndYear();
-                                index=checkoutInformation.get(i).getNo();
+                                roomFee = customerinfor.get(j).getRoomPrice();
+                                card = customerinfor.get(j).getCard();
+                                cardNum = customerinfor.get(j).getCardNum();
+                                cMonth = customerinfor.get(j).getEndMonth();
+                                cYear = customerinfor.get(j).getEndYear();
+                                index = checkoutInformation.get(i).getNo();
                                 if (checkoutInformation.get(i).getcOutDate().equals(outDate)) {
                                     model.insertRow(model.getRowCount(), new Object[]{
                                         checkoutInformation.get(i).getBooker(), checkoutInformation.get(i).getRoom(),
-                                        checkoutInformation.get(i).getGuestNum(), customerinfor.get(j).getPhoneNum(),checkoutInformation.get(i).getcOutDate(),
+                                        checkoutInformation.get(i).getGuestNum(), customerinfor.get(j).getPhoneNum(), checkoutInformation.get(i).getcOutDate(),
                                         checkoutInformation.get(i).getOutTime(), checkoutInformation.get(i).getRoomState()
                                     });
-                                    caution = 0;}}}}}
+                                    caution = 0;
+                                }
+                            }
+                        }
+                    }
+                }
             }
             //잘못된 입력값 팝업
             if (caution != 0) {
@@ -624,85 +645,89 @@ public class CheckOut extends javax.swing.JFrame {
     }//GEN-LAST:event_feedTFActionPerformed
 
     private void checkoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkoutBtnActionPerformed
-       
-            DefaultTableModel model2 = (DefaultTableModel) outTable.getModel();
-            Sfr400Process co = new Sfr400Process();
-            co.fRead();
-            co.sPlite();           
-            
-            int row=-1;
-             try {
-            row=outTable.getSelectedRow();
+
+        DefaultTableModel model2 = (DefaultTableModel) outTable.getModel();
+        Sfr400Process co = new Sfr400Process();
+        co.fRead();
+        co.sPlite();
+
+        int row = -1;
+        try {
+            row = outTable.getSelectedRow();
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            String d = df.format(System.currentTimeMillis());    
+            String d = df.format(System.currentTimeMillis());
             Date systemDate = df.parse(d);
-            String date = (String) model2.getValueAt(row, 4);
+            date = (String) model2.getValueAt(row, 4);
             Date cOutdate = df.parse(date);
-            String name = (String) model2.getValueAt(row, 0);
+            name = (String) model2.getValueAt(row, 0);
             roomNum = (String) model2.getValueAt(row, 1);
             String guest = (String) model2.getValueAt(row, 2);
             String phone = (String) model2.getValueAt(row, 3);
             String time = (String) model2.getValueAt(row, 5);
             String state = (String) model2.getValueAt(row, 6);
             String systemTime = new SimpleDateFormat("HH:mm").format(System.currentTimeMillis());
-            if(cOutdate.compareTo(systemDate)==0){//현재날짜가 퇴실일이 아니라면
+            if (cOutdate.compareTo(systemDate) == 0) {//현재날짜가 퇴실일이 아니라면
                 JOptionPane.showMessageDialog(null, "퇴실일이 아닙니다.", "체크아웃", JOptionPane.ERROR_MESSAGE);
-            }
-            //else if(model2.getRowCount()==0){
+            } //else if(model2.getRowCount()==0){
             //   JOptionPane.showMessageDialog(null, "체크아웃 정보를 검색해주세요.", "체크아웃", JOptionPane.ERROR_MESSAGE);
             //}else if(row==0){
             //   JOptionPane.showMessageDialog(null, "체크아웃 정보를 선택해주세요.", "체크아웃", JOptionPane.ERROR_MESSAGE);
             // }
-             else if(state=="empty"){//만약 체크아웃된 방이 검색에 안나오면 여긴 삭제
+            else if (state == "empty") {//만약 체크아웃된 방이 검색에 안나오면 여긴 삭제
                 JOptionPane.showMessageDialog(null, "이미 체크아웃했습니다.", "체크아웃", JOptionPane.ERROR_MESSAGE);
-            }else{
-            DefaultTableModel checkout = (DefaultTableModel) paymentTable.getModel();
-            checkout.insertRow(checkout.getRowCount(), new Object[]{name,roomNum, guest,phone,time,state,systemTime});
-            roomFeeL.setText(roomFee);
-            String hour = new SimpleDateFormat("HH").format(System.currentTimeMillis());
-            String min = new SimpleDateFormat("mm").format(System.currentTimeMillis());
-            long first = Long.parseLong(roomFee);
-            int m= Integer.parseInt(min);
-            int h = Integer.parseInt(hour);
-            long ef=0;
-            if(h>10){
-                int a=h-11;
-                if(m>0)
-                    a++;
-                ef=10000*a;
-            }else
-                ef=0;
-            
-            String extraFee=Long.toString(ef);
-            long total = first+ef;
-            String totalFee = Long.toString(total);
-            extraFeeL.setText(extraFee);
-            chargeLabel.setText(totalFee);
+            } else {
+                DefaultTableModel checkout = (DefaultTableModel) paymentTable.getModel();
+                checkout.setNumRows(0);
+                checkout.insertRow(checkout.getRowCount(), new Object[]{name, roomNum, guest, phone, time, state, systemTime});
+                roomFeeL.setText(roomFee);
+                String hour = new SimpleDateFormat("HH").format(System.currentTimeMillis());
+                String min = new SimpleDateFormat("mm").format(System.currentTimeMillis());
+                long first = Long.parseLong(roomFee);
+                int m = Integer.parseInt(min);
+                int h = Integer.parseInt(hour);
+                long ef = 0;
+                int a = -1;
+                if (h > 10) {
+                    a = h - 11;
+                    if (m > 0) {
+                        a++;
+                        if (a == 0) {
+                            over = String.format("%n분", m);
+                        } else {
+                            over = String.format("%n시간%n분", a, m);
+                        }
+                    } else {
+                        over = String.format("%n시간", a);
+                    }
+                    ef = 10000 * a;
+                } else {
+                    ef = 0;
+                }
+
+                extra = Long.toString(ef);
+                long total = first + ef;
+                totalFee = Long.toString(total);
+                extraFeeL.setText(extra);
+                chargeLabel.setText(totalFee);
                 cardLabel.setText(card);
                 long num = Long.parseLong(cardNum);
-                long n1 = num/100000000;
-                long n2= n1%10000;
-                long n3=num%100000000;
-                long n4=n3%10000;
-                n1=n1/10000;
-                n3=n3/10000;
+                long n1 = num / 100000000;
+                long n2 = n1 % 10000;
+                long n3 = num % 100000000;
+                long n4 = n3 % 10000;
+                n1 = n1 / 10000;
+                n3 = n3 / 10000;
                 cn1.setText(Long.toString(n1));
                 cn2.setText(Long.toString(n2));
                 cn3.setText(Long.toString(n3));
                 cn4.setText(Long.toString(n4));
+
                 Cmm.setText(cMonth);
                 Cyyyy.setText(cYear);
+
                 cardPanel.setVisible(false);
                 Payment.setVisible(true);
             }
-/*
-//////////////////////////////////////////////
-결제완료 버튼누르면
-앤 후기 안쓰면 못넘어가도록~~
-그리고 파일처리를 해야함
-음 어디파일에 체크아웃파일에 넣어야하고 룸상태지워야함 ㅇㅇ
-//////////////////////////////////////////////////
- */
         } catch (ParseException ex) {
             Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -710,11 +735,13 @@ public class CheckOut extends javax.swing.JFrame {
 
     private void cashBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cashBActionPerformed
         // TODO add your handling code here:
+        select = "현금";
         cardPanel.setVisible(false);
     }//GEN-LAST:event_cashBActionPerformed
 
     private void cardBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cardBActionPerformed
         // TODO add your handling code here:
+        select = "카드";
         cardPanel.setVisible(true);
     }//GEN-LAST:event_cardBActionPerformed
 
@@ -722,13 +749,41 @@ public class CheckOut extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             //카드나 현금선택했다면 && 리뷰남겼다면
-            RoomEmpty checkOut = new RoomEmpty();
-            checkOut.outguest(index,roomNum);
+            // String feed ="";
+            // feed=feedTF.getText();
+            if (select.equals("카드") || select.equals("현금")) {
+
+                if (!feedTF.getText().equals("")) {
+                    RoomEmpty checkOut = new RoomEmpty();
+                    checkOut.outguest(index, roomNum);
+                    HotelPay money = new HotelPay();
+                    money.InChargeInfo(roomNum, name, date, totalFee, select);
+                    //이건 추가요금있는 경우만!
+                    if (!over.equals("")) {
+                        ExceptionReportSave report = new ExceptionReportSave();
+                        report.InChargeInfo(roomNum, over, extra);
+                    }
+                    JOptionPane.showMessageDialog(null, "체크아웃 및 결제가 완료되었습니다.");
+                    Payment.setVisible(false);
+                    MainMenu back = new MainMenu();
+                    back.setVisible(true);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "피드백을 남겨주세요", "", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "결제 방식을 선택해주세요.", "", JOptionPane.ERROR_MESSAGE);
+            }
+
         } catch (IOException ex) {
             Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
         }
-                    
+
     }//GEN-LAST:event_payBUTTActionPerformed
+
+    private void closeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBActionPerformed
+        Payment.setVisible(false);
+    }//GEN-LAST:event_closeBActionPerformed
 
     /**
      * @param args the command line arguments

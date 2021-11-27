@@ -352,9 +352,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="feedTF">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField3"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="feedTFActionPerformed"/>
           </Events>
@@ -363,6 +360,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&#xc774;&#xc804;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="closeBActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="payBUTT">
           <Properties>

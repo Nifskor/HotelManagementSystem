@@ -411,7 +411,7 @@ public class CheckIN extends javax.swing.JFrame {
             String inDate = "";
             String outDate = "";
             for (int i = 0; i < roomstate.size(); i++) {
-                if (roomstate.get(i).getRoom().equals(room) && roomstate.get(i).getRoomState().equals("empty") && Integer.parseInt(t) >= 15) {
+                if (roomstate.get(i).getRoom().equals(room) && roomstate.get(i).getRoomState().equals("empty") && Integer.parseInt(t) >= 15) {//
                     //선택호실이 비어있고3시이후라면(+체크인날짜와 현재날짜 동일하다면이것도 드가면 조을듯)
                     for (int j = 0; j < customerinfor.size(); j++) {
                         if (customerinfor.get(j).getName().equals(name) && customerinfor.get(j).getRoomNum().equals(room) && customerinfor.get(j).getCustomerNum().equals(guest)) {
@@ -424,7 +424,7 @@ public class CheckIN extends javax.swing.JFrame {
                         checkIn.inguest(roomstate.get(i).getIndex(), room, name, guest, inDate, time, outDate);
                     }
                     JOptionPane.showMessageDialog(null, "체크인 완료되었습니다.");
-                } else if (roomstate.get(i).getRoom().equals(room) && roomstate.get(i).getRoomState().equals("empty") && Integer.parseInt(t) < 15) {
+                } else if (roomstate.get(i).getRoom().equals(room) && roomstate.get(i).getRoomState().equals("empty") && Integer.parseInt(t) < 15) {//
                     JOptionPane.showMessageDialog(null, "체크인 가능한 시간이 아닙니다.", "체크인 실패", JOptionPane.ERROR_MESSAGE);
                 } else if (roomstate.get(i).getRoom().equals(room) && roomstate.get(i).getRoomState().equals("full")) {
                     JOptionPane.showMessageDialog(null, "체크인 완료된 방입니다.", "체크인 실패", JOptionPane.ERROR_MESSAGE);
