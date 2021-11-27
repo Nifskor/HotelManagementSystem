@@ -29,8 +29,8 @@ public class Search extends javax.swing.JFrame {
     public Search() {
         initComponents();
     }
- private ArrayList<CustomerInfor> customerinfo = new ArrayList<>();
-    private ArrayList<RoomState> roomstateinfo = new ArrayList<>();
+    private ArrayList<CustomerInfor> customerinfo = new ArrayList<>();
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -186,12 +186,12 @@ public class Search extends javax.swing.JFrame {
             ciF.fRead();
             ciF.sPlite();
             customerinfo = ciF.returnGuestInfo();
-            
+
             String name = nameF.getText();
             String room = roomF.getText();
             String phone = phoneF.getText();
             String outDate = "";
-            String inDate = "";            
+            String inDate = "";
             int caution = -1;
 
             DefaultTableModel search = (DefaultTableModel) searchT.getModel();
@@ -199,57 +199,62 @@ public class Search extends javax.swing.JFrame {
 
             for (int i = 0; i < customerinfo.size(); i++) {
                 //호실 이름 둘다 입력한경우
-                if (!room.equals("") && !name.equals("")&&!phone.equals("")) {
-                    if (customerinfo.get(i).getName().equals(name) && customerinfo.get(i).getRoomNum().equals(room)&&customerinfo.get(i).getPhoneNum().equals(phone)) {
-                        inDate = String.format("%s-%s-%s", customerinfo.get(i).getcInYear(), customerinfo.get(i).getcInMonth(), customerinfo.get(i).getcInDay());        
+                if (!room.equals("") && !name.equals("") && !phone.equals("")) {
+                    if (customerinfo.get(i).getName().equals(name) && customerinfo.get(i).getRoomNum().equals(room) && customerinfo.get(i).getPhoneNum().equals(phone)) {
+                        inDate = String.format("%s-%s-%s", customerinfo.get(i).getcInYear(), customerinfo.get(i).getcInMonth(), customerinfo.get(i).getcInDay());
                         outDate = String.format("%s-%s-%s", customerinfo.get(i).getcOutYear(), customerinfo.get(i).getcOutMonth(), customerinfo.get(i).getcOutDay());
-                                    search.insertRow(search.getRowCount(), new Object[]{
-                                        customerinfo.get(i).getName(),customerinfo.get(i).getRoomNum(),customerinfo.get(i).getCustomerNum(),
-                                        customerinfo.get(i).getPhoneNum(), inDate,outDate });
-                                    caution = 0;}}
-                //이름 폰번호 입력된 경우
-                else if (room.equals("") && !name.equals("")&&!phone.equals("")) {
-                    if (customerinfo.get(i).getName().equals(name)&&customerinfo.get(i).getPhoneNum().equals(phone)) {
-                        inDate = String.format("%s-%s-%s", customerinfo.get(i).getcInYear(), customerinfo.get(i).getcInMonth(), customerinfo.get(i).getcInDay());        
+                        search.insertRow(search.getRowCount(), new Object[]{
+                            customerinfo.get(i).getName(), customerinfo.get(i).getRoomNum(), customerinfo.get(i).getCustomerNum(),
+                            customerinfo.get(i).getPhoneNum(), inDate, outDate});
+                        caution = 0;
+                    }
+                } //이름 폰번호 입력된 경우
+                else if (room.equals("") && !name.equals("") && !phone.equals("")) {
+                    if (customerinfo.get(i).getName().equals(name) && customerinfo.get(i).getPhoneNum().equals(phone)) {
+                        inDate = String.format("%s-%s-%s", customerinfo.get(i).getcInYear(), customerinfo.get(i).getcInMonth(), customerinfo.get(i).getcInDay());
                         outDate = String.format("%s-%s-%s", customerinfo.get(i).getcOutYear(), customerinfo.get(i).getcOutMonth(), customerinfo.get(i).getcOutDay());
-                                    search.insertRow(search.getRowCount(), new Object[]{
-                                        customerinfo.get(i).getName(),customerinfo.get(i).getRoomNum(),customerinfo.get(i).getCustomerNum(),
-                                        customerinfo.get(i).getPhoneNum(), inDate,outDate });
-                                    caution = 0;}}
-                    
-                //호실 이름 입력된경우
-                else if (!room.equals("") && !name.equals("")&&phone.equals("")) {
-                    if (customerinfo.get(i).getName().equals(name)&&customerinfo.get(i).getRoomNum().equals(room)) {
-                        inDate = String.format("%s-%s-%s", customerinfo.get(i).getcInYear(), customerinfo.get(i).getcInMonth(), customerinfo.get(i).getcInDay());        
+                        search.insertRow(search.getRowCount(), new Object[]{
+                            customerinfo.get(i).getName(), customerinfo.get(i).getRoomNum(), customerinfo.get(i).getCustomerNum(),
+                            customerinfo.get(i).getPhoneNum(), inDate, outDate});
+                        caution = 0;
+                    }
+                } //호실 이름 입력된경우
+                else if (!room.equals("") && !name.equals("") && phone.equals("")) {
+                    if (customerinfo.get(i).getName().equals(name) && customerinfo.get(i).getRoomNum().equals(room)) {
+                        inDate = String.format("%s-%s-%s", customerinfo.get(i).getcInYear(), customerinfo.get(i).getcInMonth(), customerinfo.get(i).getcInDay());
                         outDate = String.format("%s-%s-%s", customerinfo.get(i).getcOutYear(), customerinfo.get(i).getcOutMonth(), customerinfo.get(i).getcOutDay());
-                                    search.insertRow(search.getRowCount(), new Object[]{
-                                        customerinfo.get(i).getName(),customerinfo.get(i).getRoomNum(),customerinfo.get(i).getCustomerNum(),
-                                        customerinfo.get(i).getPhoneNum(), inDate,outDate });
-                                    caution = 0;}}
-                //호실 폰번호 입력된경우
-                else if (!room.equals("") && name.equals("")&&!phone.equals("")) {
-                    if (customerinfo.get(i).getRoomNum().equals(room)&&customerinfo.get(i).getPhoneNum().equals(phone)) {
-                        inDate = String.format("%s-%s-%s", customerinfo.get(i).getcInYear(), customerinfo.get(i).getcInMonth(), customerinfo.get(i).getcInDay());        
+                        search.insertRow(search.getRowCount(), new Object[]{
+                            customerinfo.get(i).getName(), customerinfo.get(i).getRoomNum(), customerinfo.get(i).getCustomerNum(),
+                            customerinfo.get(i).getPhoneNum(), inDate, outDate});
+                        caution = 0;
+                    }
+                } //호실 폰번호 입력된경우
+                else if (!room.equals("") && name.equals("") && !phone.equals("")) {
+                    if (customerinfo.get(i).getRoomNum().equals(room) && customerinfo.get(i).getPhoneNum().equals(phone)) {
+                        inDate = String.format("%s-%s-%s", customerinfo.get(i).getcInYear(), customerinfo.get(i).getcInMonth(), customerinfo.get(i).getcInDay());
                         outDate = String.format("%s-%s-%s", customerinfo.get(i).getcOutYear(), customerinfo.get(i).getcOutMonth(), customerinfo.get(i).getcOutDay());
-                                    search.insertRow(search.getRowCount(), new Object[]{
-                                        customerinfo.get(i).getName(),customerinfo.get(i).getRoomNum(),customerinfo.get(i).getCustomerNum(),
-                                        customerinfo.get(i).getPhoneNum(), inDate,outDate });
-                                    caution = 0;}}
-                //한가지만 입력된경우
+                        search.insertRow(search.getRowCount(), new Object[]{
+                            customerinfo.get(i).getName(), customerinfo.get(i).getRoomNum(), customerinfo.get(i).getCustomerNum(),
+                            customerinfo.get(i).getPhoneNum(), inDate, outDate});
+                        caution = 0;
+                    }
+                } //한가지만 입력된경우
                 else {
-                    if (customerinfo.get(i).getName().equals(name) || customerinfo.get(i).getRoomNum().equals(room)||customerinfo.get(i).getPhoneNum().equals(phone)) {
-                        inDate = String.format("%s-%s-%s", customerinfo.get(i).getcInYear(), customerinfo.get(i).getcInMonth(), customerinfo.get(i).getcInDay());        
+                    if (customerinfo.get(i).getName().equals(name) || customerinfo.get(i).getRoomNum().equals(room) || customerinfo.get(i).getPhoneNum().equals(phone)) {
+                        inDate = String.format("%s-%s-%s", customerinfo.get(i).getcInYear(), customerinfo.get(i).getcInMonth(), customerinfo.get(i).getcInDay());
                         outDate = String.format("%s-%s-%s", customerinfo.get(i).getcOutYear(), customerinfo.get(i).getcOutMonth(), customerinfo.get(i).getcOutDay());
-                                    search.insertRow(search.getRowCount(), new Object[]{
-                                        customerinfo.get(i).getName(),customerinfo.get(i).getRoomNum(),customerinfo.get(i).getCustomerNum(),
-                                        customerinfo.get(i).getPhoneNum(), inDate,outDate });
-                                    caution = 0;}}
+                        search.insertRow(search.getRowCount(), new Object[]{
+                            customerinfo.get(i).getName(), customerinfo.get(i).getRoomNum(), customerinfo.get(i).getCustomerNum(),
+                            customerinfo.get(i).getPhoneNum(), inDate, outDate});
+                        caution = 0;
+                    }
                 }
+            }
             //잘못된 입력값 팝업
             if (caution != 0) {
                 JOptionPane.showMessageDialog(null, "검색 내용을 정확히 입력해주세요");
-            }          
-            
+            }
+
         } catch (IOException ex) {
             Logger.getLogger(Search.class.getName()).log(Level.SEVERE, null, ex);
         }
