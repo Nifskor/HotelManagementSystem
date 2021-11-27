@@ -574,7 +574,7 @@ public class CheckOut extends javax.swing.JFrame {
     }//GEN-LAST:event_cashCheckActionPerformed
 
     private void checkoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkoutBtnActionPerformed
-        try {
+       
             DefaultTableModel model2 = (DefaultTableModel) outTable.getModel();
             Sfr400Process co = new Sfr400Process();
             co.fRead();
@@ -585,7 +585,7 @@ public class CheckOut extends javax.swing.JFrame {
             payment.add(cashCheck);
             
             int row=-1;
-            
+             try {
             row=model2.getRowCount();
             SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             String d = df.format(System.currentTimeMillis());         
