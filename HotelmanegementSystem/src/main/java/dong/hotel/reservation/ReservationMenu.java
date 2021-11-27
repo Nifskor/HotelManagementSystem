@@ -829,7 +829,35 @@ public class ReservationMenu extends javax.swing.JFrame {
                        if(guestInfo.get(i).getRoomNum().equals(roomNuma)){
                              System.out.println("조건2");
                         // 여기에 같은 방번호일때만 정보변겨하는 코드 고민 값을 바꿀라면 바꾼값을 그대로 넘기면됨파일
-                         if (money.isEmpty()) {
+                        ///////////////////////////////
+                        namea = Cusname.getText();
+                        money = exMoney.getText(); // 예상금액 뜨는 표시부분 
+                       roomNum = RoomText.getText(); //호실 정보 가져옴
+                       cusNum = cusPeoplenum.getSelectedItem().toString(); // jcombobox 값 가져오는 코드 
+                       cusPhonenum = phone.getText() + phtwo.getText() +phthree.getText();
+                       cardType = cuscardCa.getSelectedItem().toString();
+                       exprMonth  = carLastNuOne.getText(); 
+                        expYear = carLastNumTwo.getText(); //유효기간 
+                        //여기서 부터 체크아웃
+                        ////////////////////////////////
+                        //버튼안누르면 머라한9)다 
+                        if(namea.isEmpty()){
+                            System.out.println("이름을 입력해주세요  ");
+                        }else if(roomNum.isEmpty()){
+                            System.out.println("호실을 입력해주세요 ");
+                        }
+                        else if(cusPhonenum.isEmpty()){
+                            System.out.println("휴대폰 정보를 입력해주세요  ");
+                        }
+                        else if(cardNum.isEmpty()){
+                            System.out.println("카드번호를 입력해주세요  ");
+                        }
+                        else if(exprMonth.isEmpty()){
+                             System.out.println("유효기간(월)을 입력해주세요  ");
+                        }else if(expYear.isEmpty()){
+                             System.out.println("유효기간 (년) 을 입력해주세요 ");
+                        }
+                         if (money.equals("예상금액표시")) {
                            money = guestInfo.get(i).getRoomPrice();
                        
                         }
@@ -845,19 +873,9 @@ public class ReservationMenu extends javax.swing.JFrame {
                             roomNum = guestInfo.get(i).getCustomerNum();
                              
                         }
-                        if (cusPhonenum.equals("")) {
+                        if (cusPhonenum.equals("010")) {
                             cusPhonenum = guestInfo.get(i).getPhoneNum();
-                             
                         }
-                        ///////////////////////////////
-                        namea = Cusname.getText();
-                        money = exMoney.getText(); // 예상금액 뜨는 표시부분 
-                       roomNum = RoomText.getText(); //호실 정보 가져옴
-                       cusNum = cusPeoplenum.getSelectedItem().toString(); // jcombobox 값 가져오는 코드 
-                       cusPhonenum = phone.getText() + phtwo.getText() +phthree.getText();
-                       cardType = cuscardCa.getSelectedItem().toString();
-                        //여기서 부터 체크아웃
-                        ////////////////////////////////
                         if (cardType.equals("카드선택")) {
                             checkCardbuttona = 0;
                                 System.out.println("카드정보가 없습니다 ");
