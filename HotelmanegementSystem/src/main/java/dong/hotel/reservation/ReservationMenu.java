@@ -863,11 +863,11 @@ public class ReservationMenu extends javax.swing.JFrame {
                        
                         }
                         if (namea.isEmpty()) {
-                             System.out.println("이름을 입력해주세요  ");
+                           //  System.out.println("이름을 입력해주세요  ");
                             namea = guestInfo.get(i).getName();
-                            if(namea.isEmpty()){
-                                namea ="이름공백";
-                            }
+                            //if(namea.isEmpty()){
+                                //namea ="이름공백";
+                           /// }
                             
                         }
                         if (roomNum.isEmpty()) {
