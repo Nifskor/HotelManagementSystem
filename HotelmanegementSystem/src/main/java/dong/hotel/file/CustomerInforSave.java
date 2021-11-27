@@ -64,9 +64,9 @@ public class CustomerInforSave { // 고객 정보 저장 담당 클래스
             
                // 애는 인덱스에 있는 값을 쓰는거 (인덱스에 위치한 값을 쓴거 
               for(int i = 0 ; i < Integer.parseInt(code); i++){ //문자  -> 숫자 
-                  line = input.readLine();
-                  dump += (line + "\r\n");
-                  
+                //  line = input.readLine();
+                //  dump += (line + "\r\n");
+               //   System.out.println(dump);
                   
               }
               input.readLine(); // 문자열 다시 받아오고 
@@ -76,11 +76,11 @@ public class CustomerInforSave { // 고객 정보 저장 담당 클래스
                       inDay + "|" + outYear + "|" + outMonth + "|" + outDay + "|" + money + "|" + cardType + "|" + cardNum+ "|" +
                       exprMonth + "|" +expYear+ "|" +guarantee+ "|"; // cus num 중복으로 2번들어감  나머지 체크후 필요시 들어가야함 
             //  위에 있던거 그대로 합산  앞 인덱싱 자료후 뒤에 다시 추가함 
-              
+             // System.out.println(dump);
             while ((line = input.readLine()) != null) {
                 dump += (line + "\r\n");
             }
-            
+            System.out.println(dump);
             wr.write(dump);
             wr.close();
             input.close();

@@ -76,7 +76,7 @@ public class ReservationMenu extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         ReservationChange = new javax.swing.JDialog();
         jLabel14 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        valuefix = new javax.swing.JTextField();
         Close_BUTT = new javax.swing.JButton();
         BChange = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -214,7 +214,7 @@ public class ReservationMenu extends javax.swing.JFrame {
                     .addGroup(ReservationChangeLayout.createSequentialGroup()
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(valuefix, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ReservationChangeLayout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(Close_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -228,7 +228,7 @@ public class ReservationMenu extends javax.swing.JFrame {
                 .addGap(59, 59, 59)
                 .addGroup(ReservationChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(valuefix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(ReservationChangeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Close_BUTT)
@@ -668,6 +668,188 @@ public class ReservationMenu extends javax.swing.JFrame {
     private void BChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BChangeActionPerformed
         // TODO add your handling code here: 
         //예약정보수정하여입력->수정버튼클릭->고유아이디입력->맞으면정보수정됨
+       String money ,code,roomNum,namea,cusNum,cusPhonenum,inYear,inMonth,inDay,outYear,outMonth,outDay,
+               cardType,cardNum,exprMonth,expYear, guarantee;
+       CustomerInforSave savea = new CustomerInforSave();
+        ///////////////////////////////////
+        money = exMoney.getText(); // 예상금액 뜨는 표시부분 
+       roomNum = RoomText.getText(); //호실 정보 가져옴
+       namea = Cusname.getText();
+       cusNum = cusPeoplenum.getSelectedItem().toString(); // jcombobox 값 가져오는 코드 
+       cusPhonenum = phone.getText() + phtwo.getText() +phthree.getText();
+        // 체크인 체크아웃 처리 부분 
+        inYear = Checkinyear.getSelectedItem().toString();
+        inMonth = Checkinmonth.getSelectedItem().toString();
+        inDay = Checkinday.getSelectedItem().toString();
+        //여기서 부터 체크아웃 
+        outYear = Checkoutyear.getSelectedItem().toString();
+        outMonth = Checkoutmonth.getSelectedItem().toString();
+        outDay = Checkoutday.getSelectedItem().toString();
+        cardType = cuscardCa.getSelectedItem().toString();
+        cardNum = carNumOne.getText() + carNumTwo.getText() + carNumThree.getText() + carNumFor.getText();
+        exprMonth  = carLastNuOne.getText(); 
+           expYear = carLastNumTwo.getText(); //유효기간 
+        /////////////////////////////////
+       int counting = 1;
+          /* if (checkCardbuttona == 1) {
+            cardType = cardInfo.get(0).getCard();
+            cardNum = cardInfo.get(0).getCardNum();
+            exprMonth = cardInfo.get(0).getEndMonth();
+            expYear = cardInfo.get(0).getEndYear();
+            guarantee = "보증고객";
+        } else {
+            cardType = "카드없음";
+            cardNum = "카드없음";
+            exprMonth = "MM";
+            expYear = "YYYY";
+            guarantee = "예약고객";
+        }*/
+           String customInfo;
+          
+           Sfr200Process a = new Sfr200Process();
+        a.fRead();
+        code = valuefix.getText();
+
+        try {
+            a.sPlite();
+            guestInfo = a.returnGuestInfo();
+        } catch (IOException ex) {
+            Logger.getLogger(ReservationMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ if (code.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "예약 수정을 원한다면 고유ID와 바꿀정보를 입력해야합니다.");
+            counting = 0;
+        }
+
+        if (counting == 1) {
+            for (int i = 0; i < guestInfo.size(); i++) {
+                if (!guestInfo.get(i).getcInYear().equals(inYear) || !guestInfo.get(i).getcInMonth().equals(inMonth) || !guestInfo.get(i).getcInDay().equals(inDay)
+                        || !guestInfo.get(i).getcOutYear().equals(outYear) || !guestInfo.get(i).getcOutMonth().equals(outMonth) || !guestInfo.get(i).getcOutDay().equals(outDay)) {
+                    JOptionPane.showMessageDialog(null, "날짜는 변경하실 수 없습니다.");
+                    counting = 0;
+                    break;
+                }
+            }
+        }
+
+        for (int i = 0; i < guestInfo.size(); i++) {
+            if (!guestInfo.get(i).getRoomNum().equals(roomNum)) {
+                try {
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy|mm|dd");
+                    String InDate = inYear + "|" + inMonth + "|" + inDay;
+                    String OutDate = outYear + "|" + outMonth + "|" + outDay;
+
+                    int compare1 = 0;
+                    int compare2 = 0;
+                    int compare3 = 0;
+                    int compare4 = 0;
+
+                    for (int j = 0; j < guestInfo.size(); j++) {
+                        if (guestInfo.get(j).getRoomNum().equals(roomNum)) {
+                            String bookIn = guestInfo.get(j).getcInYear() + "|" + guestInfo.get(j).getcInMonth() + "|" + guestInfo.get(j).getcInDay();
+                            String bookOut = guestInfo.get(j).getcOutYear() + "|" + guestInfo.get(j).getcOutMonth() + "|" + guestInfo.get(j).getcOutDay();
+
+                            Date guestdate = format.parse(bookIn);
+                            compare1 = InDate.compareTo(bookIn);
+                            compare2 = InDate.compareTo(bookOut);
+                            compare3 = OutDate.compareTo(bookIn);
+                            compare4 = OutDate.compareTo(bookOut);
+
+                            if (compare1 < 0 && compare2 < 0 && compare3 < 0 && compare4 < 0) {
+
+                            } else if (compare1 < 0 && compare2 < 0 && compare3 == 0 && compare4 < 0) {
+
+                            } else if (compare1 < 0 && compare2 < 0 && compare3 > 0 && compare4 < 0) {
+                                counting = 0;
+                            } else if (compare1 == 0 && compare2 < 0 && compare3 > 0 && compare4 > 0) {
+                                counting = 0;
+                            } else if (compare1 == 0 && compare2 < 0 && compare3 > 0 && compare4 < 0) {
+                                counting = 0;
+                            } else if (compare1 > 0 && compare2 < 0 && compare3 > 0 && compare4 < 0) {
+                                counting = 0;
+                            } else if (compare1 > 0 && compare2 < 0 && compare3 > 0 && compare4 == 0) {
+                                counting = 0;
+                            } else if (compare1 == 0 && compare2 < 0 && compare3 > 0 && compare4 == 0) {
+                                counting = 0;
+                            } else if (compare1 < 0 && compare2 < 0 && compare3 > 0 && compare4 > 0) {
+                                counting = 0;
+                            } else if (compare1 < 0 && compare2 < 0 && compare3 > 0 && compare4 == 0) {
+                                counting = 0;
+                            } else if (compare1 > 0 && compare2 < 0 && compare3 > 0 && compare4 > 0) {
+                                counting = 0;
+                            } else if (compare1 > 0 && compare2 == 0 && compare3 > 0 && compare4 > 0) {
+
+                            } else if (compare1 > 0 && compare2 > 0 && compare3 > 0 && compare4 > 0) {
+
+                            }
+                        }
+                    }
+                    if (counting == 0) {
+                        JOptionPane.showMessageDialog(null, "예약된 방입니다.");
+                    }
+                } catch (ParseException e) {
+                }
+            }
+        }
+          
+        try {
+            for (int i = 0; i < guestInfo.size(); i++) {
+                if (counting == 1) {
+                    if (guestInfo.get(i).getChechkNum().equals(code)) {
+                        if (money.isEmpty()) {
+                           money = guestInfo.get(i).getRoomPrice();
+                        }
+                        if (namea.isEmpty()) {
+                            namea = guestInfo.get(i).getName();
+                        }
+                        if (roomNum.isEmpty()) {
+                            roomNum = guestInfo.get(i).getRoomNum();
+                        }
+                        if (roomNum.equals("1")) {
+                            roomNum = guestInfo.get(i).getCustomerNum();
+                        }
+                        if (cusPhonenum.equals("")) {
+                            cusPhonenum = guestInfo.get(i).getPhoneNum();
+                        }
+                        
+                        if (cardType.equals("카드선택")) {
+                           
+                                checkCardbuttona = 0;
+                                System.out.println("카드정보가 없습니다 ");
+                        }else{
+                        
+                            checkCardbuttona = 1;
+                            System.out.println("카드정보 있음");
+                        }
+                       money = exMoney.getText(); // 예상금액 뜨는 표시부분 
+        if (checkCardbuttona == 1) {
+            cardType = cuscardCa.getSelectedItem().toString();
+        cardNum = carNumOne.getText() + carNumTwo.getText() + carNumThree.getText() + carNumFor.getText();
+        exprMonth  = carLastNuOne.getText(); 
+        expYear = carLastNumTwo.getText(); //유효기간 
+           guarantee = "보증고객";
+        } else {
+            cardType = "카드없음";
+            cardNum = "카드없음";
+            exprMonth = "MM";
+            expYear = "YYYY";
+            guarantee = "예약고객";
+        }
+              savea.InputGuest(code,namea,roomNum,cusNum,cusPhonenum,inYear,inMonth,inDay,outYear,outMonth,outDay,money,cardType,
+                      cardNum,exprMonth,expYear,guarantee);
+              String ha = code+namea+roomNum+cusNum+cusPhonenum+inYear+inMonth+inDay+outYear+outMonth+outDay+money+cardType+
+                      cardNum+exprMonth+expYear+guarantee;
+              //System.out.println(ha);
+                    
+                        JOptionPane.showMessageDialog(null, "예약 수정");
+                       // Because.setVisible(true);
+                    }
+                }
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(ReservationMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         ReservationChange.setVisible(false);//수정완료시 완료 / 실패시 실패 다이얼ㄹ로그뜨도록
     }//GEN-LAST:event_BChangeActionPerformed
 
@@ -1010,7 +1192,7 @@ for (int i = 0; i < chargeInfo.size(); i++) {
                 if (Integer.parseInt(checkPeopleNuma) <= Integer.parseInt(chargeInfo.get(i).getNumpeople())) {
                     pay = difday * (Long.parseLong(chargeInfo.get(i).getRoomcharge()));
                   //  possibleNum.setText("");
-                   exMoney.setText(Long.toString(pay) +"원");
+                   exMoney.setText(Long.toString(pay));
                 } else if (Integer.parseInt(checkPeopleNuma) > Integer.parseInt(chargeInfo.get(i).getNumpeople())) {
                    exMoney.setText("해당 호실의 최대 인원 수는 " + chargeInfo.get(i).getNumpeople() + "명 입니다.");
                     isOverNuma = true; //인원수 초과 
@@ -1160,10 +1342,10 @@ for (int i = 0; i < chargeInfo.size(); i++) {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField phone;
     private javax.swing.JTextField phthree;
     private javax.swing.JTextField phtwo;
     private javax.swing.JButton printPrice_BUTT;
+    private javax.swing.JTextField valuefix;
     // End of variables declaration//GEN-END:variables
 }
