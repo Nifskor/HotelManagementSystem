@@ -100,44 +100,43 @@ public class CustomerInforSave { // 고객 정보 저장 담당 클래스
        else if (fileae.getOssystem() == 2 ) { // windows 
            
            try {
-              BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(windowscustom)));
-               BufferedWriter wr = new BufferedWriter(new FileWriter( windowscustom,false));
-            
-               // 애는 인덱스에 있는 값을 쓰는거 (인덱스에 위치한 값을 쓴거 
-              for(int i = 0 ; i < Integer.parseInt(code); i++){ //문자  -> 숫자 
-                  line = input.readLine();
-                  dump += (line + "\r\n");
+             BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(macosxcustom)));
+               BufferedWriter wr = new BufferedWriter(new FileWriter( macosxcustom,false));
+            System.out.println("te");
+            System.out.println("test");
+               // 애는 인덱스에 있는 값을 쓰는거 (인덱스에 위치한 값을 쓴거  코드값 숫자 한줄씩 코드값들어오는 순서대로 기록 
+              //for(int i = 0 ; i < Integer.parseInt(code); i++){ //문자  -> 숫자 
+              // //   line = input.readLine();
+              ////    dump += (line + "\r\n");
+             //     System.out.println(line);
                   
-                  
-              }
+            ///  }
               input.readLine(); // 문자열 다시 받아오고 
-              
+           
               //추가삽입 
-            dump += code + "|" + name + "|" + roomNum + "|" + cusNum + "|" + cusPhonenum + "|" + inYear + "|" + inMonth + "|" + 
+         
+              dump += code + "|" + name + "|" + roomNum + "|" + cusNum + "|" + cusPhonenum + "|" + inYear + "|" + inMonth + "|" + 
                       inDay + "|" + outYear + "|" + outMonth + "|" + outDay + "|" + money + "|" + cardType + "|" + cardNum+ "|" +
-                      exprMonth + "|" +expYear+ "|" +guarantee+ "|"+"\n"; // cus num 중복으로 2번들어감  나머지 체크후 필요시 들어가야함 
+                      exprMonth + "|" +expYear+ "|" +guarantee+ "|"+ "\r\n"; // cus num 중복으로 2번들어감  나머지 체크후 필요시 들어가야함 
             //  위에 있던거 그대로 합산  앞 인덱싱 자료후 뒤에 다시 추가함 
-             // System.out.println(dump);
+              System.out.println(dump);
             while ((line = input.readLine()) != null) {
-                dump += (line + "\r\n");
+               dump += (line + "\r\n");
                 
             }
             
-            System.out.println(dump);
+           System.out.println(dump);
             wr.write(dump);
-           wr.close();
-           input.close();
+            wr.close();
+            input.close();
+            
            
            }
-           catch(Exception e ) {
-               e.printStackTrace();
+          catch(Exception e ) {
+                e.printStackTrace();
                
            }
-           
        }
-       
-       
-           
        } //InputGuest 끝 
   
    
@@ -179,13 +178,14 @@ public class CustomerInforSave { // 고객 정보 저장 담당 클래스
             
        }
        else if (fileae.getOssystem() == 2 ){//windows 
+           
            try{
-           BufferedReader input2 = new BufferedReader(new InputStreamReader(new FileInputStream(windowscustom)));
-            BufferedWriter wra = new BufferedWriter(new FileWriter( windowscustom,false));
+           BufferedReader input2 = new BufferedReader(new InputStreamReader(new FileInputStream(macosxcustom)));
+            BufferedWriter wra = new BufferedWriter(new FileWriter( macosxcustom,false));
            
             for (int i = 0; i < index; i++) {
                 line = input2.readLine();
-                dump += (line );
+                dump += (line + "\r\n");
             }
            
             input2.readLine();
@@ -199,7 +199,7 @@ public class CustomerInforSave { // 고객 정보 저장 담당 클래스
              
                 dump += (line + "\r\n");
             }
-            wra.write(dump+ "\n");
+            wra.write(dump);
             wra.close();
             input2.close();
            }
@@ -207,8 +207,6 @@ public class CustomerInforSave { // 고객 정보 저장 담당 클래스
                e.printStackTrace();
            }
             
-            
-           
        }
        else {
            System.out.println( "시스템 선택이 잘못되었거나 없습니다. ");
