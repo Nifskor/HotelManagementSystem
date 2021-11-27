@@ -1207,10 +1207,10 @@ public class ReservationMenu extends javax.swing.JFrame {
        }else if (tema == 99){
            
        }
-       if(count ==0 ){
+       else if(count ==0 ){
              JOptionPane.showMessageDialog(null, "예약된 방입니다 다른방을 확인해주세요.다");
        }
-       if(count ==2){
+       else if(count ==2){
             JOptionPane.showMessageDialog(null, "날짜를 잘못입력하셨습니다 재입력 하십시오.");
        /*else if(count2 == 3){
          /*   JOptionPane.showMessageDialog(this, "정확하게 입력해주세요 입력값이 유효하지않습니다.", "카드 오류",
