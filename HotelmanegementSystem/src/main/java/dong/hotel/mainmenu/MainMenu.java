@@ -12,7 +12,7 @@ import dong.hotel.check.CheckOut;
 import dong.hotel.management.ManagementMainMenu;
 import dong.hotel.login.Login;
 import javax.swing.JOptionPane;
-
+// 테스팅
 /**
  *
  * @author heehe
