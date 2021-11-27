@@ -859,10 +859,15 @@ public class ReservationMenu extends javax.swing.JFrame {
                         }
                          if (money.equals("예상금액표시")) {
                            money = guestInfo.get(i).getRoomPrice();
+                           
                        
                         }
                         if (namea.isEmpty()) {
+                             System.out.println("이름을 입력해주세요  ");
                             namea = guestInfo.get(i).getName();
+                            if(namea.isEmpty()){
+                                namea ="이름공백";
+                            }
                             
                         }
                         if (roomNum.isEmpty()) {
