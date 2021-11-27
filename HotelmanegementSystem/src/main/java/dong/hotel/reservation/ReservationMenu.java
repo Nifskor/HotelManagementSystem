@@ -802,7 +802,7 @@ public class ReservationMenu extends javax.swing.JFrame {
             for (int i = 0; i < guestInfo.size(); i++) {
                 if (counting == 1) {
                    // System.out.println(guestInfo.get(i).getChechkNum());
-                   
+                   System.out.println("tes");
                    // 고유번호 = 방번호 같은지 만약에 같지않다면 나머지를 출력하라 
                      code = guestInfo.get(i).getChechkNum();
                   namea = guestInfo.get(i).getName();
