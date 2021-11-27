@@ -117,7 +117,7 @@ public class Sfr300Process implements Fileinterface { // 체크인 관련 처리
 
     @Override
     public void sPlite() {
-
+System.out.println("test");
         for (int i = 0; i < readInfo.size(); i++) { // 기타 예외변수 처리를 위해 조금더 확장해서 처리를해놈 아래는 룸스테이트 
             line = readInfo.get(i);
             String[] str = line.split(" ");

@@ -70,6 +70,7 @@ public class Sfr400Process implements Fileinterface {
         log.write(a + "\n"); // 출력
         log.flush(); // 남아있는 데이터를 모두 출력 
         log.close(); // 스트림 클로스 
+        System.out.println("test");
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

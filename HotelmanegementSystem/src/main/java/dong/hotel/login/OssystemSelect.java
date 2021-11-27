@@ -117,6 +117,7 @@ public class OssystemSelect extends javax.swing.JFrame {
         Login logas = new Login();
         logas.setVisible(true);
         dispose();
+        System.out.println("test");
     }//GEN-LAST:event_macosActionPerformed
 
     private void windowsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_windowsActionPerformed

@@ -66,7 +66,7 @@ SFR100Process fileae = new SFR100Process();
     @Override
     public void fWrite(String a) throws IOException {
         String oslocation ="";
-        
+        System.out.println("test");
         if(fileae.getOssystem() ==1){
             oslocation  = macosxbooking;
         }

@@ -61,7 +61,8 @@ public class CustomerInforSave { // 고객 정보 저장 담당 클래스
            try {
               BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(macosxcustom)));
                BufferedWriter wr = new BufferedWriter(new FileWriter( macosxcustom,false));
-            
+            System.out.println("te");
+            System.out.println("test");
                // 애는 인덱스에 있는 값을 쓰는거 (인덱스에 위치한 값을 쓴거  코드값 숫자 한줄씩 코드값들어오는 순서대로 기록 
               //for(int i = 0 ; i < Integer.parseInt(code); i++){ //문자  -> 숫자 
               // //   line = input.readLine();
