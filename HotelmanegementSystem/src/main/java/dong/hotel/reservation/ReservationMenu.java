@@ -672,6 +672,8 @@ public class ReservationMenu extends javax.swing.JFrame {
                cardType,cardNum,exprMonth,expYear, guarantee;
        CustomerInforSave savea = new CustomerInforSave();
         ///////////////////////////////////
+        code = Integer.toString(guestInfo.size() +1); // 이건 숫자를 문자열로 변환 고객 정보 배열 사이즈 +1 해줌 스페어 공간 
+       //  money = exMoney.getText(); // 예상금액 뜨는 표시부분 
         money = exMoney.getText(); // 예상금액 뜨는 표시부분 
        roomNum = RoomText.getText(); //호실 정보 가져옴
        namea = Cusname.getText();
@@ -691,28 +693,21 @@ public class ReservationMenu extends javax.swing.JFrame {
            expYear = carLastNumTwo.getText(); //유효기간 
         /////////////////////////////////
        int counting = 1;
-          /* if (checkCardbuttona == 1) {
-            cardType = cardInfo.get(0).getCard();
-            cardNum = cardInfo.get(0).getCardNum();
-            exprMonth = cardInfo.get(0).getEndMonth();
-            expYear = cardInfo.get(0).getEndYear();
-            guarantee = "보증고객";
-        } else {
-            cardType = "카드없음";
-            cardNum = "카드없음";
-            exprMonth = "MM";
-            expYear = "YYYY";
-            guarantee = "예약고객";
-        }*/
            String customInfo;
           
            Sfr200Process a = new Sfr200Process();
         a.fRead();
+    //  a.sPlite();
         code = valuefix.getText();
+                
 
-        try {
+
+        try {  // 객체복사 
             a.sPlite();
             guestInfo = a.returnGuestInfo();
+            System.out.println(guestInfo.size());
+            for(int i = 0 ; i<guestInfo.size(); i++)
+            System.out.println("배열상탕확인 : " +guestInfo.get(i).toString());
         } catch (IOException ex) {
             Logger.getLogger(ReservationMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -723,15 +718,17 @@ public class ReservationMenu extends javax.swing.JFrame {
 
         if (counting == 1) {
             for (int i = 0; i < guestInfo.size(); i++) {
+             //System.out.println(guestInfo.get(i).getcInDay().equals(inDay));
+               if( guestInfo.get(i).getChechkNum().equals(code)){ // 이줄빠졌음
                 if (!guestInfo.get(i).getcInYear().equals(inYear) || !guestInfo.get(i).getcInMonth().equals(inMonth) || !guestInfo.get(i).getcInDay().equals(inDay)
                         || !guestInfo.get(i).getcOutYear().equals(outYear) || !guestInfo.get(i).getcOutMonth().equals(outMonth) || !guestInfo.get(i).getcOutDay().equals(outDay)) {
                     JOptionPane.showMessageDialog(null, "날짜는 변경하실 수 없습니다.");
-                    counting = 0;
+                    counting = 4;
                     break;
                 }
             }
         }
-
+        }
         for (int i = 0; i < guestInfo.size(); i++) {
             if (!guestInfo.get(i).getRoomNum().equals(roomNum)) {
                 try {
@@ -743,7 +740,7 @@ public class ReservationMenu extends javax.swing.JFrame {
                     int compare2 = 0;
                     int compare3 = 0;
                     int compare4 = 0;
-
+ // 이거 꼭 중첩 for문써야함?
                     for (int j = 0; j < guestInfo.size(); j++) {
                         if (guestInfo.get(j).getRoomNum().equals(roomNum)) {
                             String bookIn = guestInfo.get(j).getcInYear() + "|" + guestInfo.get(j).getcInMonth() + "|" + guestInfo.get(j).getcInDay();
@@ -754,8 +751,11 @@ public class ReservationMenu extends javax.swing.JFrame {
                             compare2 = InDate.compareTo(bookOut);
                             compare3 = OutDate.compareTo(bookIn);
                             compare4 = OutDate.compareTo(bookOut);
-
-                            if (compare1 < 0 && compare2 < 0 && compare3 < 0 && compare4 < 0) {
+//System.out.println(bookIn);
+//System.out.println(bookOut);
+//System.out.println(InDate);
+//System.out.println(OutDate);
+                           /* if (compare1 < 0 && compare2 < 0 && compare3 < 0 && compare4 < 0) {
 
                             } else if (compare1 < 0 && compare2 < 0 && compare3 == 0 && compare4 < 0) {
 
@@ -781,52 +781,97 @@ public class ReservationMenu extends javax.swing.JFrame {
 
                             } else if (compare1 > 0 && compare2 > 0 && compare3 > 0 && compare4 > 0) {
 
-                            }
+                            }*/
                         }
                     }
                     if (counting == 0) {
-                        JOptionPane.showMessageDialog(null, "예약된 방입니다.");
+                       JOptionPane.showMessageDialog(null, "예약된 방입니다.");
                     }
                 } catch (ParseException e) {
                 }
             }
         }
-          
+          // 방번호가 같을때만 예약정보를 수정할수있어야한다 값이나 정보는 아주 잘나오고 배열문제 없는데 
+          // 지금 안보여서 제대로 안넘어가는이유가 같은방번호일때만 수정 같다면 : 덮어쓰게 비었을때 하라이게 아님 걍 가져와서 덮어써야해 
+          //게스트 인포에다가 = 지금 텍스트 파일  // 덮어쓰기할 1개 / 이전 변경안하는 정보는 그대로 출력해야함 
+          // 그정보 수정 해당 방번호의 인덱스정보를 이용해서 그거를 정보를 바꿔야함 (i까진 맞아) 
+         
+          int checkroomcount = 0;
         try {
+            System.out.println(guestInfo.size());
             for (int i = 0; i < guestInfo.size(); i++) {
                 if (counting == 1) {
-                    if (guestInfo.get(i).getChechkNum().equals(code)) {
-                        if (money.isEmpty()) {
+                   // System.out.println(guestInfo.get(i).getChechkNum());
+                   
+                   // 고유번호 = 방번호 같은지 만약에 같지않다면 나머지를 출력하라 
+                     code = guestInfo.get(i).getChechkNum();
+                  namea = guestInfo.get(i).getName();
+                       roomNum = guestInfo.get(i).getRoomNum();
+                       cusNum = guestInfo.get(i).getCustomerNum();
+                       cusPhonenum = guestInfo.get(i).getPhoneNum();
+                       inYear = guestInfo.get(i).getcInYear();
+                       inMonth = guestInfo.get(i).getcInMonth();
+                       inDay = guestInfo.get(i).getcInDay();
+                       outYear = guestInfo.get(i).getcOutYear();
+                       outMonth = guestInfo.get(i).getcOutMonth();
+                       outDay = guestInfo.get(i).getcOutDay();
+                       money = guestInfo.get(i).getRoomPrice();
+                       cardType = guestInfo.get(i).getCard();
+                       cardNum=guestInfo.get(i).getCardNum();
+                       exprMonth = guestInfo.get(i).getEndMonth();
+                       expYear = guestInfo.get(i).getEndYear();
+                       guarantee = guestInfo.get(i).getGuarantee();
+                       //////////////////////////////////////////////
+                        String roomNuma = RoomText.getText(); //호실 정보 가져옴
+                        String codeas = valuefix.getText();
+                       // 안된 이유 : 위에서 새값을 들고오는ㄴ데 내가 원하는 입력값 비교 계속 새로운 값 들고오니 계속 조건 만족됨 
+                   if(guestInfo.get(i).getChechkNum().equals(codeas)){ // 정보가 같을 때 수정해라 
+                       System.out.println("조건1");
+                       if(guestInfo.get(i).getRoomNum().equals(roomNuma)){
+                             System.out.println("조건2");
+                        // 여기에 같은 방번호일때만 정보변겨하는 코드 고민 값을 바꿀라면 바꾼값을 그대로 넘기면됨파일
+                         if (money.isEmpty()) {
                            money = guestInfo.get(i).getRoomPrice();
+                       
                         }
                         if (namea.isEmpty()) {
                             namea = guestInfo.get(i).getName();
+                            
                         }
                         if (roomNum.isEmpty()) {
                             roomNum = guestInfo.get(i).getRoomNum();
+                            
                         }
                         if (roomNum.equals("1")) {
                             roomNum = guestInfo.get(i).getCustomerNum();
+                             
                         }
                         if (cusPhonenum.equals("")) {
                             cusPhonenum = guestInfo.get(i).getPhoneNum();
+                             
                         }
-                        
+                        ///////////////////////////////
+                        namea = Cusname.getText();
+                        money = exMoney.getText(); // 예상금액 뜨는 표시부분 
+                       roomNum = RoomText.getText(); //호실 정보 가져옴
+                       cusNum = cusPeoplenum.getSelectedItem().toString(); // jcombobox 값 가져오는 코드 
+                       cusPhonenum = phone.getText() + phtwo.getText() +phthree.getText();
+                       cardType = cuscardCa.getSelectedItem().toString();
+                        //여기서 부터 체크아웃
+                        ////////////////////////////////
                         if (cardType.equals("카드선택")) {
-                           
-                                checkCardbuttona = 0;
+                            checkCardbuttona = 0;
                                 System.out.println("카드정보가 없습니다 ");
                         }else{
                         
                             checkCardbuttona = 1;
                             System.out.println("카드정보 있음");
                         }
-                       money = exMoney.getText(); // 예상금액 뜨는 표시부분 
-        if (checkCardbuttona == 1) {
-            cardType = cuscardCa.getSelectedItem().toString();
-        cardNum = carNumOne.getText() + carNumTwo.getText() + carNumThree.getText() + carNumFor.getText();
-        exprMonth  = carLastNuOne.getText(); 
-        expYear = carLastNumTwo.getText(); //유효기간 
+                        if (checkCardbuttona == 1) {
+                             cardType = cuscardCa.getSelectedItem().toString();
+                            cardNum = carNumOne.getText() + carNumTwo.getText() + carNumThree.getText() + carNumFor.getText();
+                            exprMonth  = carLastNuOne.getText(); 
+                               expYear = carLastNumTwo.getText(); //유효기간 
            guarantee = "보증고객";
         } else {
             cardType = "카드없음";
@@ -835,15 +880,64 @@ public class ReservationMenu extends javax.swing.JFrame {
             expYear = "YYYY";
             guarantee = "예약고객";
         }
-              savea.InputGuest(code,namea,roomNum,cusNum,cusPhonenum,inYear,inMonth,inDay,outYear,outMonth,outDay,money,cardType,
+                        
+                        savea.InputGuest(code,namea,roomNum,cusNum,cusPhonenum,inYear,inMonth,inDay,outYear,outMonth,outDay,money,cardType,
                       cardNum,exprMonth,expYear,guarantee);
               String ha = code+namea+roomNum+cusNum+cusPhonenum+inYear+inMonth+inDay+outYear+outMonth+outDay+money+cardType+
-                      cardNum+exprMonth+expYear+guarantee;
-              //System.out.println(ha);
-                    
+                     cardNum+exprMonth+expYear+guarantee;
+           //  System.out.println(ha);
+                        // 이거값보고 이게 맞으면 이걸 더넣어야함 
+                      
                         JOptionPane.showMessageDialog(null, "예약 수정");
-                       // Because.setVisible(true);
                     }
+                    else {
+                        // 방번호가 같지않을때는 그냥 출력 (호실이다르면)
+                        JOptionPane.showMessageDialog(null, "방은 변경할수없습니다.  ");
+                         checkroomcount = 4; // 수정불가코드 
+                    }
+                   }else {// 인덱스 번호가 다르면 이전에그대로 기록 
+                       if(checkroomcount !=4){
+                      savea.InputGuest(code,namea,roomNum,cusNum,cusPhonenum,inYear,inMonth,inDay,outYear,outMonth,outDay,money,cardType,
+                      cardNum,exprMonth,expYear,guarantee);
+              String ha = code+namea+roomNum+cusNum+cusPhonenum+inYear+inMonth+inDay+outYear+outMonth+outDay+money+cardType+
+                     cardNum+exprMonth+expYear+guarantee;
+                       }
+                   }
+                    /*else if(!guestInfo.get(i).getChechkNum().equals(code))  { // 인덱스 번호가 같으면 정보를 바꿔서 업데이트해라 
+                        if (money.isEmpty()) {
+                           money = guestInfo.get(i).getRoomPrice();
+                       
+                        }
+                        if (namea.isEmpty()) {
+                            namea = guestInfo.get(i).getName();
+                            
+                        }
+                        if (roomNum.isEmpty()) {
+                            roomNum = guestInfo.get(i).getRoomNum();
+                            
+                        }
+                        if (roomNum.equals("1")) {
+                            roomNum = guestInfo.get(i).getCustomerNum();
+                             
+                        }
+                        if (cusPhonenum.equals("")) {
+                            cusPhonenum = guestInfo.get(i).getPhoneNum();
+                             
+                        }
+                        
+                        savea.InputGuest(code,namea,roomNum,cusNum,cusPhonenum,inYear,inMonth,inDay,outYear,outMonth,outDay,money,cardType,
+                      cardNum,exprMonth,expYear,guarantee);
+              String ha = code+namea+roomNum+cusNum+cusPhonenum+inYear+inMonth+inDay+outYear+outMonth+outDay+money+cardType+
+                     cardNum+exprMonth+expYear+guarantee;
+             System.out.println(ha);
+                        // 이거값보고 이게 맞으면 이걸 더넣어야함 
+                      
+                        JOptionPane.showMessageDialog(null, "예약 수정");
+                        
+                       // Because.setVisible(true);
+                    }*/
+                   
+                   
                 }
             }
         } catch (IOException ex) {
