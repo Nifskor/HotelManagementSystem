@@ -4,6 +4,8 @@
  */
 package dong.hotel.check;
 
+import dong.hotel.file.RoomEmpty;
+import dong.hotel.file.RoomStateSave;
 import dong.hotel.file.Sfr200Process;
 import dong.hotel.file.Sfr400Process;
 import dong.hotel.mainmenu.MainMenu;
@@ -35,6 +37,8 @@ public class CheckOut extends javax.swing.JFrame {
     private String cardNum = "";
     private String cMonth = "";
     private String cYear = ""; 
+    private String index="";
+    private String roomNum ="";
 
     /**
      * Creates new form CheckOut
@@ -264,6 +268,11 @@ public class CheckOut extends javax.swing.JFrame {
         closeB.setText("이전");
 
         payBUTT.setText("결제완료");
+        payBUTT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payBUTTActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("객실 요금");
 
@@ -573,6 +582,7 @@ public class CheckOut extends javax.swing.JFrame {
                                 cardNum=customerinfor.get(j).getCardNum();
                                 cMonth=customerinfor.get(j).getEndMonth();
                                 cYear=customerinfor.get(j).getEndYear();
+                                index=checkoutInformation.get(i).getNo();
                                 if (checkoutInformation.get(i).getcOutDate().equals(outDate)) {
                                     model.insertRow(model.getRowCount(), new Object[]{
                                         checkoutInformation.get(i).getBooker(), checkoutInformation.get(i).getRoom(),
@@ -591,6 +601,7 @@ public class CheckOut extends javax.swing.JFrame {
                                 cardNum=customerinfor.get(j).getCardNum();
                                 cMonth=customerinfor.get(j).getEndMonth();
                                 cYear=customerinfor.get(j).getEndYear();
+                                index=checkoutInformation.get(i).getNo();
                                 if (checkoutInformation.get(i).getcOutDate().equals(outDate)) {
                                     model.insertRow(model.getRowCount(), new Object[]{
                                         checkoutInformation.get(i).getBooker(), checkoutInformation.get(i).getRoom(),
@@ -628,7 +639,7 @@ public class CheckOut extends javax.swing.JFrame {
             String date = (String) model2.getValueAt(row, 4);
             Date cOutdate = df.parse(date);
             String name = (String) model2.getValueAt(row, 0);
-            String room = (String) model2.getValueAt(row, 1);
+            roomNum = (String) model2.getValueAt(row, 1);
             String guest = (String) model2.getValueAt(row, 2);
             String phone = (String) model2.getValueAt(row, 3);
             String time = (String) model2.getValueAt(row, 5);
@@ -646,7 +657,7 @@ public class CheckOut extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "이미 체크아웃했습니다.", "체크아웃", JOptionPane.ERROR_MESSAGE);
             }else{
             DefaultTableModel checkout = (DefaultTableModel) paymentTable.getModel();
-            checkout.insertRow(checkout.getRowCount(), new Object[]{name,room, guest,phone,time,state,systemTime});
+            checkout.insertRow(checkout.getRowCount(), new Object[]{name,roomNum, guest,phone,time,state,systemTime});
             roomFeeL.setText(roomFee);
             String hour = new SimpleDateFormat("HH").format(System.currentTimeMillis());
             String min = new SimpleDateFormat("mm").format(System.currentTimeMillis());
@@ -706,6 +717,18 @@ public class CheckOut extends javax.swing.JFrame {
         // TODO add your handling code here:
         cardPanel.setVisible(true);
     }//GEN-LAST:event_cardBActionPerformed
+
+    private void payBUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payBUTTActionPerformed
+        try {
+            // TODO add your handling code here:
+            //카드나 현금선택했다면 && 리뷰남겼다면
+            RoomEmpty checkOut = new RoomEmpty();
+            checkOut.outguest(index,roomNum);
+        } catch (IOException ex) {
+            Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                    
+    }//GEN-LAST:event_payBUTTActionPerformed
 
     /**
      * @param args the command line arguments

@@ -368,6 +368,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="&#xacb0;&#xc81c;&#xc644;&#xb8cc;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="payBUTTActionPerformed"/>
+          </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel2">
 
