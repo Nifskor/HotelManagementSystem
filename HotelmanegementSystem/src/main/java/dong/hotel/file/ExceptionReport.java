@@ -19,7 +19,7 @@ import java.util.ArrayList;
  *
  * @author nifskorea
  */
-public class FReport implements Fileinterface {
+public class ExceptionReport implements Fileinterface {
 
     private ArrayList<String> readInfo = new ArrayList();
     private ArrayList<ExceptionReportInfo> exceptionreportinfo = new ArrayList<>();

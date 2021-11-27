@@ -24,7 +24,7 @@ public class PeakSeasonPayInfoSave {
     SFR100Process fileae = new SFR100Process(); // 파일 정보 가져와서 환경 변수 제어값 확인 
   
      /* 앞에 예약 클래스에서 넘긴 정보임 */ 
-     public void InChargeInfo(int index, int room, String people, String roomcharge, String extracharge, String maxpeople,String addreason) throws IOException {
+     public void InChargeInfo(int index, String room, String people, String roomcharge, String extracharge, String maxpeople,String addreason) throws IOException {
          if(fileae.getOssystem() ==1){
          try {
                 BufferedReader fileread = new BufferedReader(new FileReader(macosxpayinfo)); // 한줄씩 읽어들임 
