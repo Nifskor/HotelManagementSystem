@@ -1213,7 +1213,7 @@ public class ReservationMenu extends javax.swing.JFrame {
            
        }
        else if(count ==0 ){
-             JOptionPane.showMessageDialog(null, "예약된 방입니다 다른방을 확인해주세요.다");
+             JOptionPane.showMessageDialog(null, "예약된 방입니다 다른방을 확인해주세요.");
        }
        else if(count ==2){
             JOptionPane.showMessageDialog(null, "날짜를 잘못입력하셨습니다 재입력 하십시오.");

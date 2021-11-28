@@ -6,7 +6,11 @@
 package dong.hotel.management;
 
 import dong.hotel.file.CreateStaffId;
+import dong.hotel.file.PeakSeasonPayInfoSave;
+import dong.hotel.file.PeakSeasonPayProcess;
 import dong.hotel.file.SFR100Process;
+import dong.hotel.reservation.PeakSeasonChargeInfo;
+import java.awt.List;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,7 +22,7 @@ import javax.swing.JOptionPane;
  * @author heehe
  */
 public class EtcEdit extends javax.swing.JFrame {
-
+ private ArrayList<PeakSeasonChargeInfo> cinfo = new ArrayList<>();
     /**
      * Creates new form Report
      */
@@ -55,25 +59,25 @@ public class EtcEdit extends javax.swing.JFrame {
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        roomnum = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        personnum = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        pay = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
-        jTextField8 = new javax.swing.JTextField();
+        changereason = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        room1 = new javax.swing.JTextField();
+        person1 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        pay1 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        roomnum3 = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
         Room_BUTT = new javax.swing.JButton();
         staff_BUTT = new javax.swing.JButton();
@@ -225,6 +229,11 @@ public class EtcEdit extends javax.swing.JFrame {
         jLabel3.setText("요금");
 
         jButton4.setText("변경하기");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("요금변경이유");
 
@@ -244,18 +253,18 @@ public class EtcEdit extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(pay, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(personnum, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(roomnum, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(35, 35, 35)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField8)
+                            .addComponent(changereason)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 66, Short.MAX_VALUE)))))
@@ -267,17 +276,17 @@ public class EtcEdit extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(roomnum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(personnum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(changereason, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jButton4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -292,6 +301,11 @@ public class EtcEdit extends javax.swing.JFrame {
         jLabel6.setText("요금");
 
         jButton5.setText("추가하기");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -304,7 +318,7 @@ public class EtcEdit extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createSequentialGroup()
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(pay1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel4Layout.createSequentialGroup()
                             .addGap(21, 21, 21)
                             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -312,11 +326,11 @@ public class EtcEdit extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(person1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel4Layout.createSequentialGroup()
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(room1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(190, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -325,15 +339,15 @@ public class EtcEdit extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(room1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(person1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pay1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton5)
                 .addGap(40, 40, 40))
@@ -344,6 +358,11 @@ public class EtcEdit extends javax.swing.JFrame {
         jLabel7.setText("호실");
 
         jButton6.setText("삭제하기");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -355,7 +374,7 @@ public class EtcEdit extends javax.swing.JFrame {
                         .addGap(60, 60, 60)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(roomnum3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(83, 83, 83)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -367,7 +386,7 @@ public class EtcEdit extends javax.swing.JFrame {
                 .addContainerGap(48, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(roomnum3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(52, 52, 52)
                 .addComponent(jButton6)
                 .addGap(85, 85, 85))
@@ -577,6 +596,126 @@ public class EtcEdit extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton8ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        // 객실 요금 변경이유 
+       String roomnuma =  roomnum.getText();
+        String personnuma = personnum.getText();
+       String paya =  pay.getText();
+        String changereasona= changereason.getText();
+         PeakSeasonPayInfoSave save = new PeakSeasonPayInfoSave();
+            PeakSeasonPayProcess chargeinfo = new PeakSeasonPayProcess();
+            try{
+       chargeinfo.fRead();
+       chargeinfo.sPlite();
+       cinfo = chargeinfo.returnChargeInfo();
+       for (int i = 0; i < cinfo.size(); i++) {
+           int roomnume =  Integer.parseInt(roomnuma);
+                if ( cinfo.get(i).getRoom()== roomnume) {
+                    save.InChargeInfo(i, roomnuma, cinfo.get(i).getNumpeople(),
+                           paya, cinfo.get(i).getExtractcharge(),
+                            cinfo.get(i).getNumpeople(),changereasona);// 정보 넣기
+
+                    JOptionPane.showMessageDialog(null, "변경 완료");
+                    pay.setText("");
+                }
+            }
+            }
+            catch(IOException ex){
+                ex.getStackTrace();
+            }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        try{
+        String roomnuma =  room1.getText();
+        String personnuma = person1.getText();
+       String paya =  pay1.getText();
+       int temp =0;
+       int count = 0;
+         PeakSeasonPayInfoSave save = new PeakSeasonPayInfoSave();
+            PeakSeasonPayProcess chargeinfo = new PeakSeasonPayProcess();
+            
+            chargeinfo.fRead();
+            chargeinfo.sPlite();
+           cinfo = chargeinfo.returnChargeInfo();
+            if(paya.isEmpty() || roomnuma.isEmpty() ||personnuma.isEmpty()){
+                 JOptionPane.showMessageDialog(null, "정확히 입력해주세요.");
+            }else {
+                temp = Integer.parseInt(roomnuma);
+                for (int i = 0; i < cinfo.size(); i++) {
+                    if (cinfo.get(i).getRoom() == temp) {
+                        JOptionPane.showMessageDialog(null, "이미 있는 호실입니다.");
+                       count = 1;
+                    }
+                }
+                if (count == 0) {
+                   
+                    save.fWritea(1, roomnuma, personnuma,
+                           paya, "10000",
+                            "15","이유없음");// 정보 넣기
+                    JOptionPane.showMessageDialog(null, "추가했습니다!");
+                    pay.setText("");
+                }
+                count = 0;
+            }
+        }
+        catch(IOException ex ){
+            ex.getStackTrace();
+        }
+            
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        //호실 삭제 
+        try{
+        String roomnuma =  roomnum3.getText();
+       int temp =0;
+       int count = 0;
+         PeakSeasonPayInfoSave save = new PeakSeasonPayInfoSave();
+            PeakSeasonPayProcess chargeinfo = new PeakSeasonPayProcess();
+            
+            chargeinfo.fRead();
+            chargeinfo.sPlite();
+           cinfo = chargeinfo.returnChargeInfo();
+            
+                temp = Integer.parseInt(roomnuma);
+             //   System.out.println (cinfo.size());
+                for (int i = 0; i < cinfo.size(); i++) {
+                    //System.out.println(cinfo.get(i).getRoom());
+                    if (cinfo.get(i).getRoom() == temp) {
+                        cinfo.remove(i);
+                        System.out.println("조건문통과1 ");
+                         int temp2 =   cinfo.get(i).getRoom();
+                        
+                           String temp3  = Integer.toString(temp2);
+                            System.out.println(i+temp3+cinfo.get(i).getNumpeople()+cinfo.get(i).getRoomcharge()+cinfo.get(i).getExtractcharge()+
+                    cinfo.get(i).getMaxpele()+cinfo.get(i).getAddreason());
+                           save.fWritetwo(i,temp3,cinfo.get(i).getNumpeople(),cinfo.get(i).getRoomcharge(),cinfo.get(i).getExtractcharge(),
+                   cinfo.get(i).getMaxpele(),cinfo.get(i).getAddreason());// 정보 넣기
+                        JOptionPane.showMessageDialog(null, "호실삭제");
+                      //  break;
+                    }
+                    else {
+                        int temp2 =   cinfo.get(i).getRoom();
+                           String temp3  = Integer.toString(temp2);
+                       System.out.println(i+temp3+cinfo.get(i).getNumpeople()+cinfo.get(i).getRoomcharge()+cinfo.get(i).getExtractcharge()+
+                    cinfo.get(i).getMaxpele()+cinfo.get(i).getAddreason());
+                       save.fWritetwo(i,temp3,cinfo.get(i).getNumpeople(),cinfo.get(i).getRoomcharge(),cinfo.get(i).getExtractcharge(),
+                    cinfo.get(i).getMaxpele(),cinfo.get(i).getAddreason());// 정보 넣기
+                    }
+                   
+        }
+               
+        }
+        catch(IOException ex ){
+            ex.getStackTrace();
+        }
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -604,13 +743,34 @@ public class EtcEdit extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
-        /* Create and display the form */
+try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(EtcEdit.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(EtcEdit.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(EtcEdit.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(EtcEdit.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new EtcEdit().setVisible(true);
+               new EtcEdit().setVisible(true);
             }
         });
+       
+       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -618,6 +778,7 @@ public class EtcEdit extends javax.swing.JFrame {
     private javax.swing.JTextField IdFiled;
     private javax.swing.JTextField PsFiled;
     private javax.swing.JButton Room_BUTT;
+    private javax.swing.JTextField changereason;
     private javax.swing.JTextField idFiled;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -645,16 +806,15 @@ public class EtcEdit extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField pay;
+    private javax.swing.JTextField pay1;
+    private javax.swing.JTextField person1;
+    private javax.swing.JTextField personnum;
     private javax.swing.JTextField psFiled;
+    private javax.swing.JTextField room1;
     private javax.swing.JDialog roomInfo;
+    private javax.swing.JTextField roomnum;
+    private javax.swing.JTextField roomnum3;
     private javax.swing.JDialog staffInfo;
     private javax.swing.JButton staff_BUTT;
     // End of variables declaration//GEN-END:variables

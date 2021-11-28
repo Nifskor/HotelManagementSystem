@@ -28,13 +28,13 @@ public class PeakSeasonPayInfoSave {
          if(fileae.getOssystem() ==1){
          try {
                 BufferedReader fileread = new BufferedReader(new FileReader(macosxpayinfo)); // 한줄씩 읽어들임 
-                
+                System.out.println("인덱스번호"+index);
                 for(int i =0 ; i <index -1 ; i++ ){// 배열 감안 하나 빼주고 인덱스 번호 횟수만큼 긁어옴 
-                    line = fileread.readLine(); 
-                    dummy +=(line + "\r\n"); 
+                  line = fileread.readLine(); 
+                   dummy +=(line + "\r\n"); 
                 }
                 fileread.readLine();
-                 dummy += (room + " " + people + " " + roomcharge + " " + extracharge + " " + maxpeople + addreason + "\r\n");
+                 dummy += (room + " " + people + " " + roomcharge + " " + extracharge + " " + maxpeople + " "+ addreason + "\r\n");
                 while ((line = fileread.readLine()) != null) { // 파일을 끝까지 읽고 null 리턴까지 계속 반복해서 읽어라 
                    dummy +=(line + "\r\n");  // 커서를 맨앞으로 보내고 그다음 엔터쳐러 ( 공백 최소화 기법)
                 }
@@ -55,10 +55,10 @@ public class PeakSeasonPayInfoSave {
          try {
                 BufferedReader fileread = new BufferedReader(new FileReader(windowspayinfo)); // 한줄씩 읽어들임 
                 
-                for(int i =0 ; i <index -1 ; i++ ){// 배열 감안 하나 빼주고 인덱스 번호 횟수만큼 긁어옴 
-                    line = fileread.readLine(); 
-                    dummy +=(line + "\r\n"); 
-                }
+                //for(int i =0 ; i <index -1 ; i++ ){// 배열 감안 하나 빼주고 인덱스 번호 횟수만큼 긁어옴 
+                 //   line = fileread.readLine(); 
+                //    dummy +=(line + "\r\n"); 
+               // }
                 fileread.readLine();
                   dummy += (room + " " + people + " " + roomcharge + " " + extracharge + " " + maxpeople + addreason + "\r\n");
                 while ((line = fileread.readLine()) != null) { // 파일을 끝까지 읽고 null 리턴까지 계속 반복해서 읽어라 
@@ -76,5 +76,38 @@ public class PeakSeasonPayInfoSave {
      
 } //else if 
      } // mathod close 
+      public void fWritea(int index, String room, String people, String roomcharge, String extracharge, String maxpeople,String addreason) throws IOException {
+          
+          String oslocation ="";
+        
+        if(fileae.getOssystem() ==1){
+            oslocation  = macosxpayinfo;
+        }
+        else if(fileae.getOssystem() ==2){
+             oslocation  = windowspayinfo;
+        }
+         dummy += (room + " " + people + " " + roomcharge + " " + extracharge + " " + maxpeople + " " + addreason );
+         BufferedWriter log = new BufferedWriter(new FileWriter( oslocation,true)); //true
+        //PrintWriter pw = new PrintWriter(log,true);
+        log.write(dummy+"\n"); // 출력  여유가 된다면 시간기록되게 하는거 한번 고려 
+        log.flush(); // 남아있는 데이터를 모두 출력 
+        log.close(); // 스트림 클로스 
+          }
+     public void fWritetwo(int index, String room, String people, String roomcharge, String extracharge, String maxpeople,String addreason) throws IOException {
+          // 애는 그 피크페이인포 처리하는애(전용으로1개메소드만사용) 
+          String oslocation ="";
+        
+        if(fileae.getOssystem() ==1){
+            oslocation  = macosxpayinfo;
+        }
+        else if(fileae.getOssystem() ==2){
+             oslocation  = windowspayinfo;
+        }
+         dummy += (room + " " + people + " " + roomcharge + " " + extracharge + " " + maxpeople + " " + addreason+"\n" );
+         BufferedWriter log = new BufferedWriter(new FileWriter( oslocation,false)); //true
+        //PrintWriter pw = new PrintWriter(log,true);
+        log.write(dummy); // 출력  여유가 된다면 시간기록되게 하는거 한번 고려 
+        log.flush(); // 남아있는 데이터를 모두 출력 
+        log.close(); // 스트림 클로스 
+          }
 } // class close 
-     
