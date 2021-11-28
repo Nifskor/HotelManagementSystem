@@ -222,7 +222,7 @@ public class DesignatedPeriodShare extends javax.swing.JFrame {
                     Date out2 = df.parse(outDate2);
                    int compare1 = out1.compareTo(out);//첨값이랑 날짜비교한거
                    int compare2 = out2.compareTo(out);//후값이랑 날짜비교한거
-                    System.out.println(outDate+" "+compare1+" "+compare2);
+                    //System.out.println(outDate+" "+compare1+" "+compare2);
                     //         오ㅘ 미친 
                     //  이게 첨날 이후부터 후값날 이전날까지
                     if (compare1 <= 0 && compare2 >= 0) {

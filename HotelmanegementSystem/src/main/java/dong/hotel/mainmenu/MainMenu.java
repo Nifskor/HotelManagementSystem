@@ -9,15 +9,27 @@ import dong.hotel.reservation.ReservationMenu;
 import dong.hotel.search.Search;
 import dong.hotel.check.CheckIN;
 import dong.hotel.check.CheckOut;
+import dong.hotel.file.Sfr200Process;
 import dong.hotel.management.ManagementMainMenu;
 import dong.hotel.login.Login;
+import dong.hotel.reservation.CustomerInfor;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 // 테스팅
+
 /**
  *
  * @author heehe
  */
 public class MainMenu extends javax.swing.JFrame {
+
+    private ArrayList<CustomerInfor> customerinfo = new ArrayList<>();
 
     /**
      * Creates new form MainMenu
@@ -43,6 +55,7 @@ public class MainMenu extends javax.swing.JFrame {
         CHECKOUT_BUTT = new javax.swing.JButton();
         EDIT_BUTT = new javax.swing.JButton();
         LOGOUT_BUTT = new javax.swing.JButton();
+        updateB = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("굴림", 1, 25)); // NOI18N
         jLabel1.setText("호텔 관리 시스템");
@@ -94,30 +107,42 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        updateB.setText("🔄새로고침");
+        updateB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(CHECKIN_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(CHECKOUT_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(RESERVATION_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(SEARCH_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(EDIT_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(LOGOUT_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(74, 74, 74))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(90, 90, 90)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(78, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(CHECKIN_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(CHECKOUT_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(RESERVATION_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(SEARCH_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(EDIT_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(LOGOUT_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(74, 74, 74))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(updateB)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,7 +161,9 @@ public class MainMenu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LOGOUT_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(EDIT_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(66, 66, 66))
+                .addGap(18, 18, 18)
+                .addComponent(updateB)
+                .addGap(25, 25, 25))
         );
 
         pack();
@@ -170,14 +197,14 @@ public class MainMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         //관리자만 접근가능하도록!
         Login logas = new Login();
-        if(logas.getLogintype() ==0){ // 관리자 식별 
+        if (logas.getLogintype() == 0) { // 관리자 식별 
             ManagementMainMenu next = new ManagementMainMenu();
-        next.setVisible(true);
-        dispose();
-        }else {
+            next.setVisible(true);
+            dispose();
+        } else {
             JOptionPane.showMessageDialog(null, "관리자가 아닌 스태프 권환이므로 접근권환이 없습니다. 관리자에게 문의하십시오. ");
         }
-        
+
     }//GEN-LAST:event_EDIT_BUTTActionPerformed
 
     private void LOGOUT_BUTTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGOUT_BUTTActionPerformed
@@ -186,6 +213,42 @@ public class MainMenu extends javax.swing.JFrame {
         next.setVisible(true);
         dispose();
     }//GEN-LAST:event_LOGOUT_BUTTActionPerformed
+
+    private void updateBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBActionPerformed
+        String hour = new SimpleDateFormat("HH").format(System.currentTimeMillis());
+        int h = Integer.parseInt(hour);
+        if (h > 17) {// 6시 이후에
+            try {
+                Sfr200Process cF = new Sfr200Process();
+                cF.fRead();
+                cF.sPlite();
+                customerinfo = cF.returnGuestInfo();
+                //시스템 날짜
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                String date = df.format(System.currentTimeMillis());
+                Date systemDate = df.parse(date);
+                for (int i = 0; i < customerinfo.size(); i++) {
+                    //예약일 포맷
+                    String checkIn = String.format("%s-%s-%s", customerinfo.get(i).getcInYear(), customerinfo.get(i).getcInMonth(), customerinfo.get(i).getcInDay());
+                    Date inDate = df.parse(checkIn);
+                    if (systemDate.compareTo(inDate) == 0) {//체크인날짜라면
+                        if (customerinfo.get(i).getGuarantee().equals("예약고객")) {
+                            //예약자삭제
+                        } else if (customerinfo.get(i).getGuarantee().equals("보증고객")) {
+                            //예약자정보수정
+                        }
+                    }
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex) {
+                Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "18시 이후에 새로고침이 가능합니다.");
+        }
+    }//GEN-LAST:event_updateBActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,5 +294,6 @@ public class MainMenu extends javax.swing.JFrame {
     private javax.swing.JButton SEARCH_BUTT;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton updateB;
     // End of variables declaration//GEN-END:variables
 }
