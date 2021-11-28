@@ -5,9 +5,8 @@
 package dong.hotel.management;
 
 import dong.hotel.file.HotelMoneyData;
-import dong.hotel.file.Sfr200Process;
-import dong.hotel.reservation.CustomerInfor;
 import java.io.IOException;
+import static java.lang.String.format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,14 +19,16 @@ import javax.swing.table.DefaultTableModel;
  * @author nifskorea
  */
 public class DesignatedPeriodShare extends javax.swing.JFrame {
+
     private ArrayList<HotelMoneyInfo> moneyInfo = new ArrayList<>();
+
     /**
      * Creates new form DesignatedPeriodShare
      */
     public DesignatedPeriodShare() {
         initComponents();
     }
-  
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -178,7 +179,7 @@ public class DesignatedPeriodShare extends javax.swing.JFrame {
             mF.sPlite();
 
             moneyInfo = mF.returnHotelmoneyInfo();
-            
+
             //콤보박스 입력값
             String oyear1 = outyear1.getSelectedItem().toString();
             String omonth1 = outmonth1.getSelectedItem().toString();
@@ -186,75 +187,71 @@ public class DesignatedPeriodShare extends javax.swing.JFrame {
             String oyear2 = outyear2.getSelectedItem().toString();
             String omonth2 = outmonth2.getSelectedItem().toString();
             String oday2 = outday2.getSelectedItem().toString();
-            
+
             DefaultTableModel search = (DefaultTableModel) incomeT.getModel();
 
             //날짜 포맷
-            String outDate1=String.format("%s-%s-%s", oyear1,omonth1,oday1);
-            String outDate2=String.format("%s-%s-%s", oyear2,omonth2,oday2);
-            
-            String term = String.format("%s ~ %s", outDate1,outDate2);
-            /*
-            
+            String outDate1 = String.format("%s-%s-%s", oyear1, omonth1, oday1);
+            String outDate2 = String.format("%s-%s-%s", oyear2, omonth2, oday2);
+
+            String term = String.format("%s ~ %s", outDate1, outDate2);
+
             try {
-                SimpleDateFormat format = new SimpleDateFormat("yyyy|mm|dd");
-                String Indate = oyear2 + "|" + omonth1 + "|" + oday1;
-                String Indate1 = oyear1 + "|" + omonth2 + "|" + oday2;
-                String ogg = oyear2 + "." + omonth1 + "." + oday1 + "~" + oyear1 + "." + omonth2 + "." + oday2;
-                int compare = 0;
+
                 int compare1 = 0;
+                int compare2 = 0;
                 float count = 0;
                 int fee = 0;
-                int checkyear = Integer.parseInt(outyear2.getSelectedItem().toString());
-                int checkyear1 = Integer.parseInt(outyear1.getSelectedItem().toString());
-                int checkmonth = Integer.parseInt(outmonth1.getSelectedItem().toString());
-                int checkmonth1 = Integer.parseInt(outmonth2.getSelectedItem().toString());
-                int checkday = Integer.parseInt(outday1.getSelectedItem().toString());
-                int checkday1 = Integer.parseInt(outday2.getSelectedItem().toString());
-              //  System.out.println(checkyear);
-                for (int i = 0; i < guestInfo.size(); i++) {
-                    String guestDate = guestInfo.get(i).getcInYear() + "|" + guestInfo.get(i).getcInMonth() + "|" + guestInfo.get(i).getcInDay();
-                    System.out.println(guestDate);
-                    System.out.println(guestDate);
-                    Date guestdate = format.parse(guestDate);
-                    compare = Indate.compareTo(guestDate);
-                    compare1 = Indate1.compareTo(guestDate);
-                     System.out.println(compare);
-                    System.out.println(compare1);
-                   // System.out.println(guestDate);
-                    if (compare <= 0 && compare1 >= 0) {
-                        System.out.println(compare1);
-                        System.out.println(compare);
-                        String pay = guestInfo.get(i).getRoomPrice();
-                       // int money = Integer.parseInt(pay);
+
+                int cy1 = Integer.parseInt(outyear1.getSelectedItem().toString());
+                int cy2 = Integer.parseInt(outyear2.getSelectedItem().toString());
+                int cm1 = Integer.parseInt(outmonth1.getSelectedItem().toString());
+                int cm2 = Integer.parseInt(outmonth2.getSelectedItem().toString());
+                int cd1 = Integer.parseInt(outday1.getSelectedItem().toString());
+                int cd2 = Integer.parseInt(outday2.getSelectedItem().toString());
+
+                for (int i = 0; i < moneyInfo.size(); i++) {
+                    //난이부분 걍 스트링으로 outdate불러오면됨
+                    String outDate = moneyInfo.get(i).getDate();
+
+                    //날짜로 바꾸고
+                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+                    Date out = df.parse(outDate);
+                    compare1 = outDate1.compareTo(outDate);//첨값이랑 날짜비교한거
+                    compare2 = outDate2.compareTo(outDate);//후값이랑 날짜비교한거
+                    //         오ㅘ 미친 
+                    //  이게 첨날 이후부터 후값날 이전날까지
+                    if (compare1 <= 0 && compare2 >= 0) {
+                        //그날들의 가격받아옴
+                        String pay = moneyInfo.get(i).getMoney();
+                        int money = Integer.parseInt(pay);
+                        //  카운트올리고 총액더함
                         count += 1.0;
-                       // fee += money;
+                        fee += money;
                     }
                 }
-                if (checkyear1 < checkyear) {
+                if (cy1 > cy2) {
                     JOptionPane.showMessageDialog(null, "잘못된 날짜 값 입니다.");
-                } else if (checkyear1 == checkyear && checkmonth1 < checkmonth) {
+                } else if (cy1 == cy2 && cm2 < cm1) {
                     JOptionPane.showMessageDialog(null, "잘못된 날짜 값 입니다.");
-                } else if (checkyear1 == checkyear && checkmonth1 == checkmonth && checkday1 < checkday) {
+                } else if (cy1 == cy2 && cm2 == cm1 && cd2 < cd1) {
                     JOptionPane.showMessageDialog(null, "잘못된 날짜 값 입니다.");
                 }
                 if (count != 0) {
                     search.insertRow(search.getRowCount(), new Object[]{
-                        ogg,
-                        count / 100,
-                       // fee
+                        term, Integer.toString(fee)
                     });
-                    
+
                 }
-                
+
             } catch (ParseException e) {
-            }*/
+            }
+        } catch (IOException ex) {
+
         }
-        catch(IOException ex ){
-            
-        }
-        
-        
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -283,7 +280,7 @@ public class DesignatedPeriodShare extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(DesignatedPeriodShare.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
- try {
+        try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -302,10 +299,10 @@ public class DesignatedPeriodShare extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                   new DesignatedPeriodShare().setVisible(true);
+                new DesignatedPeriodShare().setVisible(true);
             }
         });
-       
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
