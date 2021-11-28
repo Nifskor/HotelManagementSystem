@@ -31,19 +31,19 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="Checkinyear1" min="-2" max="-2" attributes="0"/>
+                              <Component id="outyear1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="Checkinmonth" min="-2" max="-2" attributes="0"/>
+                              <Component id="outmonth1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="Checkinday" min="-2" max="-2" attributes="0"/>
+                              <Component id="outday1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="Checkinyear" min="-2" max="-2" attributes="0"/>
+                              <Component id="outyear2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="Checkinmonth1" min="-2" max="-2" attributes="0"/>
+                              <Component id="outmonth2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="Checkinday1" min="-2" max="-2" attributes="0"/>
+                              <Component id="outday2" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
@@ -67,13 +67,13 @@
               <Component id="jLabel1" min="-2" pref="43" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="Checkinyear1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Checkinmonth" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Checkinday" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="outyear1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="outmonth1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="outday1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Checkinyear" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Checkinmonth1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Checkinday1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="outyear2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="outmonth2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="outday2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
@@ -95,7 +95,7 @@
         <Property name="text" type="java.lang.String" value="&#xac1d;&#xc2e4; &#xc218;&#xc785;"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="Checkinyear">
+    <Component class="javax.swing.JComboBox" name="outyear2">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -110,7 +110,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="Checkinmonth">
+    <Component class="javax.swing.JComboBox" name="outmonth1">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="12">
@@ -142,7 +142,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JComboBox" name="Checkinday">
+    <Component class="javax.swing.JComboBox" name="outday1">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="31">
@@ -192,7 +192,7 @@
         <Property name="text" type="java.lang.String" value="~"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="Checkinyear1">
+    <Component class="javax.swing.JComboBox" name="outyear1">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
@@ -207,7 +207,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="Checkinmonth1">
+    <Component class="javax.swing.JComboBox" name="outmonth2">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="12">
@@ -230,7 +230,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JComboBox" name="Checkinday1">
+    <Component class="javax.swing.JComboBox" name="outday2">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="31">
@@ -279,7 +279,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="incomeT">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="2" rowCount="0">
