@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class CreateStaffId implements Fileinterface {
      ArrayList<String> readInfo = new ArrayList<>();
     ArrayList<LoginDataInfo> staffinfo = new ArrayList<>();
-private String macosxbooking = "/Users/nifskorea/Desktop/DB/booking_cus_info.txt";  // 
+private String macosxbooking = "/Users/nifskorea/Desktop/DB/staffID.txt";  // 
 private String windowsbooking = "C:\\DB\\staffID.txt";
  private String line ="";  // 파일 공백시 데이터를 채워줌  
  SFR100Process fileae = new SFR100Process();
@@ -33,9 +33,9 @@ private String windowsbooking = "C:\\DB\\staffID.txt";
         else if(fileae.getOssystem() ==2){
              oslocation  = windowsbooking;
         }
-         BufferedWriter log = new BufferedWriter(new FileWriter( oslocation,false));
+         BufferedWriter log = new BufferedWriter(new FileWriter( oslocation,true));
         //PrintWriter pw = new PrintWriter(log,true);
-        log.write(a+"\n"); // 출력  여유가 된다면 시간기록되게 하는거 한번 고려 
+        log.write(a); // 출력  여유가 된다면 시간기록되게 하는거 한번 고려 
         log.flush(); // 남아있는 데이터를 모두 출력 
         log.close(); // 스트림 클로스 
     }
@@ -74,7 +74,7 @@ private String windowsbooking = "C:\\DB\\staffID.txt";
  @Override
     public void sPlite() {
         String line;
-
+System.out.println(readInfo.size());
         for (int i = 0; i < readInfo.size(); i++) {
             line = readInfo.get(i);
             String[] str = line.split(" ");

@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.lang.System.Logger;
 import java.util.ArrayList;
 import java.util.logging.Level;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,8 +39,8 @@ public class CreateNewId extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         Back_BUTT = new javax.swing.JButton();
         CreateB = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        idFiled = new javax.swing.JTextField();
+        psFiled = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,28 +69,28 @@ public class CreateNewId extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(Back_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(CreateB, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(psFiled))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(idFiled, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(64, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(Back_BUTT, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(240, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(120, 120, 120))
+                        .addComponent(CreateB, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,16 +100,16 @@ public class CreateNewId extends javax.swing.JFrame {
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(idFiled, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                    .addComponent(psFiled, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Back_BUTT)
-                    .addComponent(CreateB))
-                .addContainerGap())
+                    .addComponent(CreateB)
+                    .addComponent(Back_BUTT))
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -123,46 +124,56 @@ public class CreateNewId extends javax.swing.JFrame {
     private void CreateBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateBActionPerformed
         // TODO add your handling code here:
         //중복 id아니고 새로운아이디일경우 생성되었다는 창뜨고 확인누르면 관리메뉴로 넘어감
-      /*   CreateStaffId create = new CreateStaffId();
+        
+         CreateStaffId create = new CreateStaffId();
         create.fRead();
         try {
             create.sPlite();
             staffinfo = create.returnStaffInfo();
         } catch (IOException ex) {
-            Logger.getLogger(CreateNewId.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(CreateNewId.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
-        String id = ID_Field.getText();
-        String pw = PW_Field.getText();
+        String ab ,as;
+        String id = idFiled.getText();
+        String pw = psFiled.getText();
         String a = id + " " + pw;
-
+        
         int count = 1;
+        System.out.println(staffinfo.size());
         for (int j = 0; j < staffinfo.size(); j++) {
+           // System.out.println("스탬아이디"+staffinfo.get(j).getId());
             if (staffinfo.get(j).getId().equals(id)) {
                 JOptionPane.showMessageDialog(null, "중복아이디입니다.");
-                ID_Field.setText("");
-                PW_Field.setText("");
+                idFiled.setText("");
+               psFiled.setText("");
                 count = 0;
                 break;
             }
+            
         }
-        try {
+        
+         try {
             if (!"".equals(id) && !"".equals(pw)) {
                 if (count == 1) {
-                    create.FWrite(a);
+                    System.out.println(a);
+                    create.fWrite("\n");
+                    create.fWrite(a);
                     JOptionPane.showMessageDialog(null, "직원 아이디 생성 완료");
-                    ID_Field.setText("");
-                    PW_Field.setText("");
+                    idFiled.setText("");
+                    psFiled.setText("");
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "아이디와 패스워드를 확인해주세요");
             }
-
+         
         } catch (IOException ex) {
-            Logger.getLogger(CreateId.class.getName()).log(Level.SEVERE, null, ex);
+           // Logger.getLogger(CreateNewId.class.getName()).log(Level.SEVERE, null, ex);
+           ex.printStackTrace();
         }
         ManagementMainMenu back = new ManagementMainMenu();
         back.setVisible(true);
-        dispose();*/
+        dispose();
     }//GEN-LAST:event_CreateBActionPerformed
 
     /**
@@ -219,10 +230,10 @@ try {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back_BUTT;
     private javax.swing.JButton CreateB;
+    private javax.swing.JTextField idFiled;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField psFiled;
     // End of variables declaration//GEN-END:variables
 }
