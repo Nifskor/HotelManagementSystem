@@ -504,6 +504,7 @@ public class EtcEdit extends javax.swing.JFrame {
                       //try{// admin은 새로추가 삭제 불가능 하기때문에 항상 고정위치 
                           sr.AWrite(staffinfo.get(i).getId() + " "+ psFiled.getText());
                            System.out.println("if조건문 들감1 ");
+                           JOptionPane.showMessageDialog(null, "관리자 변경완료");
                      // }catch(IOException e){
                       //    e.getStackTrace();
                      // }
@@ -522,6 +523,7 @@ public class EtcEdit extends javax.swing.JFrame {
                           }else{
                             // str = staffinfo.get(j).getId() + " " + staffinfo.get(j).getPs();
                          // System.out.println(str);
+                         JOptionPane.showMessageDialog(null, "변경할려는 아이디가 일치하지않습니다");
                                sr.Inputvalue(staffinfo.get(j).getId(), staffinfo.get(j).getPs());
                           } //else
                            
@@ -705,8 +707,9 @@ public class EtcEdit extends javax.swing.JFrame {
                     cinfo.get(i).getMaxpele()+cinfo.get(i).getAddreason());
                        save.fWritetwo(i,temp3,cinfo.get(i).getNumpeople(),cinfo.get(i).getRoomcharge(),cinfo.get(i).getExtractcharge(),
                     cinfo.get(i).getMaxpele(),cinfo.get(i).getAddreason());// 정보 넣기
+                       
                     }
-                   
+                   //JOptionPane.showMessageDialog(null, "호실을 잘못입력하셨습니다. ");
         }
                
         }
