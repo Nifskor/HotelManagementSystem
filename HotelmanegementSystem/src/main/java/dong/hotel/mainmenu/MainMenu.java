@@ -9,6 +9,7 @@ import dong.hotel.reservation.ReservationMenu;
 import dong.hotel.search.Search;
 import dong.hotel.check.CheckIN;
 import dong.hotel.check.CheckOut;
+import dong.hotel.file.CustomerInforSave;
 import dong.hotel.file.Sfr200Process;
 import dong.hotel.management.ManagementMainMenu;
 import dong.hotel.login.Login;
@@ -217,7 +218,7 @@ public class MainMenu extends javax.swing.JFrame {
     private void updateBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBActionPerformed
         String hour = new SimpleDateFormat("HH").format(System.currentTimeMillis());
         int h = Integer.parseInt(hour);
-        if (h > 17) {// 6시 이후에
+        if (h < 17) {// 6시 이후에
             try {
                 Sfr200Process cF = new Sfr200Process();
                 cF.fRead();
@@ -227,6 +228,8 @@ public class MainMenu extends javax.swing.JFrame {
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                 String date = df.format(System.currentTimeMillis());
                 Date systemDate = df.parse(date);
+                int u=0;
+                int nu=0;
                 for (int i = 0; i < customerinfo.size(); i++) {
                     //예약일 포맷
                     String checkIn = String.format("%s-%s-%s", customerinfo.get(i).getcInYear(), customerinfo.get(i).getcInMonth(), customerinfo.get(i).getcInDay());
@@ -236,9 +239,29 @@ public class MainMenu extends javax.swing.JFrame {
                             //예약자삭제
                         } else if (customerinfo.get(i).getGuarantee().equals("보증고객")) {
                             //예약자정보수정
+                            CustomerInforSave updateGuest = new CustomerInforSave();
+                            updateGuest.updateGuest(customerinfo.get(i).getChechkNum(), customerinfo.get(i).getName(), customerinfo.get(i).getRoomNum(),
+                                    customerinfo.get(i).getCustomerNum(), customerinfo.get(i).getPhoneNum(), customerinfo.get(i).getcInYear(), customerinfo.get(i).getcInMonth(),
+                                    customerinfo.get(i).getcInDay(), customerinfo.get(i).getcOutYear(), customerinfo.get(i).getcOutMonth(), customerinfo.get(i).getcOutDay(),
+                                    customerinfo.get(i).getRoomPrice(), customerinfo.get(i).getCard(), customerinfo.get(i).getCardNum(), customerinfo.get(i).getEndMonth(),
+                                    customerinfo.get(i).getEndYear(), "필수결제");
+                            u++;
                         }
-                    }
-                }
+                    }/*else{
+                        CustomerInforSave NupdateGuest = new CustomerInforSave();
+                            NupdateGuest.updateGuest(customerinfo.get(i).getChechkNum(), customerinfo.get(i).getName(), customerinfo.get(i).getRoomNum(),
+                                    customerinfo.get(i).getCustomerNum(), customerinfo.get(i).getPhoneNum(), customerinfo.get(i).getcInYear(), customerinfo.get(i).getcInMonth(),
+                                    customerinfo.get(i).getcInDay(), customerinfo.get(i).getcOutYear(), customerinfo.get(i).getcOutMonth(), customerinfo.get(i).getcOutDay(),
+                                    customerinfo.get(i).getRoomPrice(), customerinfo.get(i).getCard(), customerinfo.get(i).getCardNum(), customerinfo.get(i).getEndMonth(),
+                                    customerinfo.get(i).getEndYear(), customerinfo.get(i).getGuarantee());
+                            nu++;
+                        
+                    }*/
+           
+                       
+                } 
+                    System.out.println("u: "+u);
+                    JOptionPane.showMessageDialog(null, "업데이트완.");
             } catch (IOException ex) {
                 Logger.getLogger(MainMenu.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ParseException ex) {
