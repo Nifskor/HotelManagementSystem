@@ -78,11 +78,11 @@ public class CheckIN extends javax.swing.JFrame {
 
             },
             new String [] {
-                "이름", "호실", "인원", "전화번호", "기간"
+                "이름", "호실", "인원", "유형", "기간"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -92,14 +92,14 @@ public class CheckIN extends javax.swing.JFrame {
         reservationTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(reservationTable);
         if (reservationTable.getColumnModel().getColumnCount() > 0) {
-            reservationTable.getColumnModel().getColumn(0).setMinWidth(20);
-            reservationTable.getColumnModel().getColumn(0).setPreferredWidth(20);
-            reservationTable.getColumnModel().getColumn(1).setMinWidth(15);
-            reservationTable.getColumnModel().getColumn(1).setPreferredWidth(15);
-            reservationTable.getColumnModel().getColumn(2).setMinWidth(10);
-            reservationTable.getColumnModel().getColumn(2).setPreferredWidth(10);
-            reservationTable.getColumnModel().getColumn(3).setMinWidth(40);
-            reservationTable.getColumnModel().getColumn(3).setPreferredWidth(40);
+            reservationTable.getColumnModel().getColumn(0).setMinWidth(5);
+            reservationTable.getColumnModel().getColumn(0).setPreferredWidth(5);
+            reservationTable.getColumnModel().getColumn(1).setMinWidth(5);
+            reservationTable.getColumnModel().getColumn(1).setPreferredWidth(5);
+            reservationTable.getColumnModel().getColumn(2).setMinWidth(1);
+            reservationTable.getColumnModel().getColumn(2).setPreferredWidth(1);
+            reservationTable.getColumnModel().getColumn(3).setMinWidth(5);
+            reservationTable.getColumnModel().getColumn(3).setPreferredWidth(5);
         }
 
         Back_B.setText("이전");
@@ -127,24 +127,23 @@ public class CheckIN extends javax.swing.JFrame {
                 .addComponent(take_Butt, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
             .addGroup(CheckIn_panelLayout.createSequentialGroup()
-                .addGroup(CheckIn_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(101, 101, 101)
+                .addGroup(CheckIn_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(CheckIn_panelLayout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addGroup(CheckIn_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(CheckIn_panelLayout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(SearchRoom))
-                            .addGroup(CheckIn_panelLayout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(SearchName, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addComponent(Bsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(SearchRoom))
                     .addGroup(CheckIn_panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(SearchName, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(Bsearch, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(CheckIn_panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+                .addContainerGap())
         );
         CheckIn_panelLayout.setVerticalGroup(
             CheckIn_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,28 +164,25 @@ public class CheckIN extends javax.swing.JFrame {
                 .addGroup(CheckIn_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Back_B)
                     .addComponent(take_Butt))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout ReservationCheckInLayout = new javax.swing.GroupLayout(ReservationCheckIn.getContentPane());
         ReservationCheckIn.getContentPane().setLayout(ReservationCheckInLayout);
         ReservationCheckInLayout.setHorizontalGroup(
             ReservationCheckInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
+            .addGap(0, 483, Short.MAX_VALUE)
             .addGroup(ReservationCheckInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(ReservationCheckInLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(CheckIn_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(CheckIn_panel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ReservationCheckInLayout.setVerticalGroup(
             ReservationCheckInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 320, Short.MAX_VALUE)
             .addGroup(ReservationCheckInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(ReservationCheckInLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addContainerGap()
                     .addComponent(CheckIn_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap(30, Short.MAX_VALUE)))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -329,6 +325,9 @@ public class CheckIN extends javax.swing.JFrame {
 
                 for (int i = 0; i < customerinfor.size(); i++) {
                     //예약일 포맷
+                    if(customerinfor.get(i).getGuarantee().equals("예약취소")){
+                        i++;
+                    }
                     String checkIn = String.format("%s-%s-%s", customerinfor.get(i).getcInYear(), customerinfor.get(i).getcInMonth(), customerinfor.get(i).getcInDay());
                     Date inDate = df.parse(checkIn);
                     String checkOut = String.format("%s-%s-%s", customerinfor.get(i).getcOutYear(), customerinfor.get(i).getcOutMonth(), customerinfor.get(i).getcOutDay());
@@ -340,7 +339,7 @@ public class CheckIN extends javax.swing.JFrame {
                             customerinfor.get(i).getName(),
                             customerinfor.get(i).getRoomNum(),
                             customerinfor.get(i).getCustomerNum(),
-                            customerinfor.get(i).getPhoneNum(),
+                            customerinfor.get(i).getGuarantee(),
                             stayDate
                         });
                     }
@@ -370,18 +369,22 @@ public class CheckIN extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "예약정보를 선택해주세요");
         } else {
             //해당 table값가져옴
-            Object nameR = model.getValueAt(nRow, 0);
-            Object roomN = model.getValueAt(nRow, 1);
-            Object guestN = model.getValueAt(nRow, 2);
-
-            String name = nameR.toString();
-            String room = roomN.toString();
-            String guest = guestN.toString();
-
-            Name.setText(name);
-            Room_Num.setText(room);
-            Guest_Num.setText(guest);
-            ReservationCheckIn.setVisible(false);
+            String name = (String) model.getValueAt(nRow, 0);
+            String room = (String) model.getValueAt(nRow, 1);
+            String guest = (String) model.getValueAt(nRow, 2);
+            String type = (String) model.getValueAt(nRow, 3);
+            if (type.equals("예약고객")) {//카드정보 없을때
+                JOptionPane.showMessageDialog(null, "카드정보를 입력해주세요");
+                ReservationCheckIn.setVisible(false);
+                ReservationMenu next = new ReservationMenu();
+                next.setVisible(true);
+                dispose();
+            } else {
+                Name.setText(name);
+                Room_Num.setText(room);
+                Guest_Num.setText(guest);
+                ReservationCheckIn.setVisible(false);
+            }
         }
     }//GEN-LAST:event_take_ButtActionPerformed
 
@@ -410,6 +413,7 @@ public class CheckIN extends javax.swing.JFrame {
             roomstate = rF.returnRoomState();
             String inDate = "";
             String outDate = "";
+
             for (int i = 0; i < roomstate.size(); i++) {
                 if (roomstate.get(i).getRoom().equals(room) && roomstate.get(i).getRoomState().equals("empty") && Integer.parseInt(t) >= 15) {//
                     //선택호실이 비어있고3시이후라면(+체크인날짜와 현재날짜 동일하다면이것도 드가면 조을듯)
@@ -451,20 +455,21 @@ public class CheckIN extends javax.swing.JFrame {
             //호실 이름 둘다 입력한경우
             if (!room.equals("") && !name.equals("")) {//둘 다 입력된 경우
                 if (customerinfor.get(i).getName().equals(name) && customerinfor.get(i).getRoomNum().equals(room)) {
-                    reservationTable.changeSelection(i - 1, 0, false, false);
+                    reservationTable.changeSelection(i, 0, false, false);
                     break;
 
                 } else {
                     caution = 1;
                 }
-            } else if (room.equals("") && !name.equals("")) {//이름만 입력된 경우
-                if (customerinfor.get(i).getName().equals(name)) {
-                    reservationTable.changeSelection(i - 1, 0, false, false);
+            } else if (!room.equals("") || !name.equals("")) {//이름만 입력된 경우
+                if (customerinfor.get(i).getName().equals(name) || customerinfor.get(i).getRoomNum().equals(room)) {
+                    reservationTable.changeSelection(i, 0, false, false);
                     break;
                 } else {
                     caution = 2;
                 }
-            } else if (!room.equals("") && name.equals("")) {//호실만 입력된경우
+            }
+            /*else if (!room.equals("") && name.equals("")) {//호실만 입력된경우
                 ///////////호실찾는과정에서 오류남///////////////////
                 //몇개는 찾고 몇개는 안찾고 지맘대로임 ㅡ3ㅡ 일단 대충은 돌아감 발표할때 돌아가는거로만하면 ㄱㄴ일듯 근데 일단은 안완벽하단뜻.
                 if (customerinfor.get(i).getRoomNum().equals(room)) { 
@@ -473,17 +478,18 @@ public class CheckIN extends javax.swing.JFrame {
                 } else {
                     caution = 3;
                 }
-            }
+            }*/
 
         }
         //잘못된 입력값으로 테이블에 선택이 안된경우 팝업
         if (caution == 1) {
             JOptionPane.showMessageDialog(null, "이름 및 호실을 정확히 입력해주세요");
         } else if (caution == 2) {
-            JOptionPane.showMessageDialog(null, "이름을 정확히 입력해주세요");
-        } else if (caution == 3) {
-            JOptionPane.showMessageDialog(null, "호실을 정확히 입력해주세요");
+            JOptionPane.showMessageDialog(null, "이름 또는 호실을 정확히 입력해주세요");
         }
+        /*else if (caution == 3) {
+            JOptionPane.showMessageDialog(null, "호실을 정확히 입력해주세요");
+        }*/
     }//GEN-LAST:event_BsearchActionPerformed
 
     /**
