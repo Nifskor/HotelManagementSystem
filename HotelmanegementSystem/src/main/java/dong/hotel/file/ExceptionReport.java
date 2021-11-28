@@ -70,7 +70,7 @@ public class ExceptionReport implements Fileinterface {
         for (int i = 0; i < readInfo.size(); i++) {
             line = readInfo.get(i);
             String[] str = line.split(" ");
-            exceptionreportinfo.add(new ExceptionReportInfo(str[0], str[1], str[2]));
+            exceptionreportinfo.add(new ExceptionReportInfo(str[0], str[1], str[2], str[3]));
         }
     }
 

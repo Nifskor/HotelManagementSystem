@@ -9,14 +9,24 @@ package dong.hotel.management;
  * @author nifskorea
  */
 public class ExceptionReportInfo {
+    private String outDate;
     private String room;
     private String over;
     private String extra;
 
-    public ExceptionReportInfo(String room, String over, String extra) {
+    public ExceptionReportInfo(String outDate,String room, String over, String extra) {
+        this.outDate = outDate;
         this.room = room;
         this.over = over;
         this.extra = extra;
+    }
+
+    public String getOutDate() {
+        return outDate;
+    }
+
+    public void setOutDate(String outDate) {
+        this.outDate = outDate;
     }
 
     public String getRoom() {

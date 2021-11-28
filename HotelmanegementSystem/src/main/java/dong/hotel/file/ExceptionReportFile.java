@@ -20,7 +20,7 @@ import java.util.ArrayList;
  * @author nifskorea
  */
 //파일 이름 충돌(메니지먼트파트)로인해 오류발생으로 대체 파일임 
-public class ExceptionReport2working implements Fileinterface {
+public class ExceptionReportFile implements Fileinterface {
 
     private ArrayList<String> readInfo = new ArrayList();
     private ArrayList<ExceptionReportInfo> exceptionreportinfo = new ArrayList<>();
@@ -71,7 +71,7 @@ public class ExceptionReport2working implements Fileinterface {
         for (int i = 0; i < readInfo.size(); i++) {
             line = readInfo.get(i);
             String[] str = line.split(" ");
-            exceptionreportinfo.add(new ExceptionReportInfo(str[0], str[1], str[2]));
+            exceptionreportinfo.add(new ExceptionReportInfo(str[0], str[1], str[2], str[3]));
         }
     }
 

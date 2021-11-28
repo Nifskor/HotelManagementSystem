@@ -13,6 +13,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -33,13 +34,13 @@ public class ExceptionReportSave {
         } else if (fileae.getOssystem() == 2) {
             oslocation = windowsreport;
         }
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String d = df.format(System.currentTimeMillis());
         BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(new File(oslocation))));
-                FileWriter fw = new FileWriter(oslocation, true);
-                fw.write(room + " " + over + " " + extra+ "\r\n");
-                fw.close();
-                br.close();
-                
-    }
-    }
+        FileWriter fw = new FileWriter(oslocation, true);
+        fw.write(d + " " + room + " " + over + " " + extra + "\r\n");
+        fw.close();
+        br.close();
 
-
+    }
+}

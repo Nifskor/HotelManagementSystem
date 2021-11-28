@@ -8,7 +8,7 @@ import dong.hotel.check.CheckOutInformation;
 import dong.hotel.check.RoomState;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
-import dong.hotel.file.ExceptionReport2working;
+import dong.hotel.file.ExceptionReportFile;
 import dong.hotel.file.PeakSeasonPayProcess;
 import dong.hotel.file.Sfr300Process;
 import dong.hotel.reservation.PeakSeasonChargeInfo;
@@ -71,11 +71,11 @@ public class ExceptionReport extends javax.swing.JFrame {
 
             },
             new String [] {
-                "호실", "초과시간", "요금"
+                "날짜", "호실", "초과시간", "요금"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -130,7 +130,7 @@ public void Reporttableadd(java.awt.event.ActionEvent evt){
             DefaultTableModel report = (DefaultTableModel) reporttable.getModel();
             report.setNumRows(0);
 
-            ExceptionReport2working freport = new ExceptionReport2working();
+            ExceptionReportFile freport = new ExceptionReportFile();
             freport.fRead();
             freport.sPlite();
             reportinfo = freport.returnExceptionReportInfo();
@@ -199,7 +199,7 @@ public void Addtionalcustom() throws IOException{
                                 overNum = Integer.parseInt(roomstate.get(i).getNum()) - Integer.parseInt(chargeInfo.get(i).getNumpeople());
                                 extraFee = Integer.parseInt(chargeInfo.get(i).getExtracharge()) * overNum;
                                 fee = diffDays * (Long.parseLong(chargeInfo.get(i).getRoomcharge()) + extraFee);
-                                ExceptionReport2working exceptions = new ExceptionReport2working();
+                                ExceptionReportFile exceptions = new ExceptionReportFile();
                                 String in = null;
                                 in = "객실 " + roomstate.get(i).getRoomNum() + " 추가인원" + " +" + (diffDays * extraFee);
 
