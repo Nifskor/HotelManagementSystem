@@ -140,7 +140,6 @@ public class CustomerInforSave { // 고객 정보 저장 담당 클래스
         } else if (fileae.getOssystem() == 2) {
             oslocation = windowscustom;
         }
-
         String newLine = "";
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(oslocation)));
@@ -149,7 +148,6 @@ public class CustomerInforSave { // 고객 정보 저장 담당 클래스
                 line = br.readLine();
                 newLine += (line + "\r\n");
             }
-
             br.readLine();
             newLine += (code + "|" + name + "|" + roomNum + "|" + cusNum + "|" + cusPhonenum + "|" + inYear + "|" + inMonth + "|"
                     + inDay + "|" + outYear + "|" + outMonth + "|" + outDay + "|" + money + "|" + cardType + "|" + cardNum + "|"
@@ -158,13 +156,10 @@ public class CustomerInforSave { // 고객 정보 저장 담당 클래스
             while ((line = br.readLine()) != null) {
                 newLine += (line + "\r\n");
             }
-
             BufferedWriter fw = new BufferedWriter(new FileWriter(oslocation, false));
             fw.write(newLine);
-
             fw.close();
             br.close();
-
         } catch (Exception e) {
             e.printStackTrace();
         }

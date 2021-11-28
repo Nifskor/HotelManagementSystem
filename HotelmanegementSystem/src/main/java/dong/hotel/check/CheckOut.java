@@ -5,6 +5,7 @@
 package dong.hotel.check;
 
 import dong.hotel.file.ExceptionReportSave;
+import dong.hotel.file.Feedback;
 import dong.hotel.file.HotelPay;
 import dong.hotel.file.RoomEmpty;
 import dong.hotel.file.RoomStateSave;
@@ -758,6 +759,8 @@ public class CheckOut extends javax.swing.JFrame {
                     checkOut.outguest(index, roomNum);
                     HotelPay money = new HotelPay();
                     money.InChargeInfo(roomNum, name, date, totalFee, select);
+                    Feedback feed = new Feedback();
+                    feed.InFeedInfo(feedTF.getText());
                     //이건 추가요금있는 경우만!
                     if (!over.equals("")) {
                         ExceptionReportSave report = new ExceptionReportSave();
