@@ -164,7 +164,7 @@ public class CreateNewId extends javax.swing.JFrame {
                     psFiled.setText("");
                 }
             } else {
-             //   JOptionPane.showMessageDialog(null, "아이디와 패스워드를 확인해주세요");
+                JOptionPane.showMessageDialog(null, "아이디와 패스워드를 확인해주세요");
             }
          
         } catch (IOException ex) {

@@ -523,7 +523,7 @@ public class EtcEdit extends javax.swing.JFrame {
                           }else{
                             // str = staffinfo.get(j).getId() + " " + staffinfo.get(j).getPs();
                          // System.out.println(str);
-                         JOptionPane.showMessageDialog(null, "변경할려는 아이디가 일치하지않습니다");
+                         //JOptionPane.showMessageDialog(null, "변경할려는 아이디가 일치하지않습니다");
                                sr.Inputvalue(staffinfo.get(j).getId(), staffinfo.get(j).getPs());
                           } //else
                            
