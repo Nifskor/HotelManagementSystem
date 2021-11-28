@@ -208,6 +208,9 @@ public class HotelServiceCertainPeriod extends javax.swing.JFrame {
                 int checkday1 = Integer.parseInt(Checkinday1.getSelectedItem().toString());
               //  System.out.println(checkyear);
                 for (int i = 0; i < guestInfo.size(); i++) {
+                    if(guestInfo.get(i).getGuarantee().equals("예약취소")){
+                        i++;
+                    }
                     String guestDate = guestInfo.get(i).getcInYear() + "|" + guestInfo.get(i).getcInMonth() + "|" + guestInfo.get(i).getcInDay();
                     System.out.println(guestDate);
                     System.out.println(guestDate);
