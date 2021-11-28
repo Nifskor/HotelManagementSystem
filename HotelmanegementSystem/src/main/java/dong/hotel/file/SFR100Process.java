@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import dong.hotel.management.LoginDataInfo;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 /* 이클래스는 직원 , 관리자 아이디 패스워드 분활 처리하는 클래스입니다 */
 /**
  *
@@ -34,6 +36,7 @@ private String windowsstaffid = "C:\\DB\\staffID.txt";
 private String macosloginlog = "/Users/nifskorea/Desktop/DB/loginlog.txt";
 private String windowsloginlog = "C:\\DB\\loginlog.txt";
 private String line ="";  // 파일 공백시 
+private String dump ="";
 static int ossystem =0 ; // 코드 환경 변수 제어문 (맥 1 / 윈도우 2 )
 // --------------------------------------------------  ( 환경제어를 위한 get set)
 public int getOssystem(){
@@ -152,7 +155,6 @@ public void setOssystem(int os){
           String oslocation ="";
        if(ossystem ==1){
       oslocation = macosxstaffid;
-  
        }
        else if (ossystem ==2 ){
            oslocation = windowsstaffid;
@@ -160,11 +162,61 @@ public void setOssystem(int os){
        }
         BufferedWriter log = new BufferedWriter(new FileWriter( oslocation,false));
         //PrintWriter pw = new PrintWriter(log,true);
-        log.write(a+"\n"); // 출력  여유가 된다면 시간기록되게 하는거 한번 고려 
+        // 엔터 원래 있는대 뺌 파일 처리때문에 다른데서 문제생길 요지가있음 
+        //백업코드 :  log.write(a+"\n"); 
+        log.write(a); // 출력  여유가 된다면 시간기록되게 하는거 한번 고려 
         log.flush(); // 남아있는 데이터를 모두 출력 
         log.close(); // 스트림 클로스
     }
     
+    public void Inputvalue(String id , String ps) {
+        if(ossystem ==1){
+        try{
+            
+         BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(macosxstaffid)));
+        //BufferedWriter wr = new BufferedWriter(new FileWriter(macosxstaffid,true));
+        FileWriter fw = new FileWriter(macosxstaffid, false);
+        input.readLine();
+        dump += id+ " " + ps +"\r\n"; //일단 엔터안씀 
+        System.out.println(dump);
+        
+       /* while ((line = input.readLine()) != null) {
+                dump += (line + "\r\n");
+
+            }*/
+        System.out.println(dump);
+        fw.write(dump);
+        fw.close();
+        input.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+        else if (ossystem ==2){
+             try{
+            
+         BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream(windowsstaffid)));
+        //BufferedWriter wr = new BufferedWriter(new FileWriter(macosxstaffid,true));
+        FileWriter fw = new FileWriter(windowsstaffid, false);
+        input.readLine();
+        dump += id+ " " + ps +"\r\n"; //일단 엔터안씀 
+        System.out.println(dump);
+        
+       /* while ((line = input.readLine()) != null) {
+                dump += (line + "\r\n");
+
+            }*/
+        System.out.println(dump);
+        fw.write(dump);
+        fw.close();
+        input.close();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        }
+    }
     @Override
     public void sPlite() {
         String line;

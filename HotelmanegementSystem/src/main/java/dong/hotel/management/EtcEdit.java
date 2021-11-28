@@ -475,41 +475,43 @@ public class EtcEdit extends javax.swing.JFrame {
           //System.out.println(staffinfo.size());
           for(int i = 0 ; i< staffinfo.size(); i++){
              // System.out.println(staffinfo.get(i).getPs().equals(changepw));
-          System.out.println(Id);
-          
               if(staffinfo.get(i).getId().equals(Id)){
+                  String str = staffinfo.get(i).getId() + " " + staffinfo.get(i).getPs();
                    System.out.println("if조건문 들감 ");
                   if(i==0){ // 관리자인지 직원인지 객체배열 거기따라 들어감 
-                      try{// admin은 새로추가 삭제 불가능 하기때문에 항상 고정위치 
+                      //try{// admin은 새로추가 삭제 불가능 하기때문에 항상 고정위치 
                           sr.AWrite(staffinfo.get(i).getId() + " "+ psFiled.getText());
                            System.out.println("if조건문 들감1 ");
-                      }catch(IOException e){
-                          e.getStackTrace();
-                      }
+                     // }catch(IOException e){
+                      //    e.getStackTrace();
+                     // }
                   }else {
                       System.out.println("if조건문 들감2 ");
-                      try{
-                       //   BufferedWriter log = new BufferedWriter(new FileWriter("/Users/nifskorea/Desktop/DB/staffID.txt", false));
-                           //     log.close();
-                           
+                     // try{
+                       //  BufferedWriter log = new BufferedWriter(new FileWriter("/Users/nifskorea/Desktop/DB/staffID.txt", false));
+                         //       log.close();
+                          
                       for(int j = 1; j<staffinfo.size(); j++){
                           if(staffinfo.get(j).getId().equals(Id)){
-                              String str = staffinfo.get(j).getId() + " " + psFiled.getText();
-                              sr.SWrite(str);
+                              System.out.println("if조건문 들감2 ");
+                              // str = staffinfo.get(j).getId() + " " + psFiled.getText();
+                            // System.out.println(str);
+                              sr.Inputvalue(staffinfo.get(j).getId(), psFiled.getText());
                           }else{
-                               String str = staffinfo.get(j).getId() + " " + staffinfo.get(j).getPs();
-                                sr.SWrite(str);
+                            // str = staffinfo.get(j).getId() + " " + staffinfo.get(j).getPs();
+                         // System.out.println(str);
+                               sr.Inputvalue(staffinfo.get(j).getId(), staffinfo.get(j).getPs());
                           } //else
+                           
                       }//for
-                      } //try
-                      catch(IOException ex){
-                          ex.getStackTrace();
-                      }
+                     // } //try
+                     // catch(IOException ex){
+                     //     ex.getStackTrace();
+                    //  }
                   }//else
                    JOptionPane.showMessageDialog(null, "변경 완료");
                     idFiled.setText("");
                     psFiled.setText("");
-                  
               }
           }
           
