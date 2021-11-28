@@ -198,10 +198,10 @@ public class DesignatedPeriodShare extends javax.swing.JFrame {
 
             try {
 
-                int compare1 = 0;
-                int compare2 = 0;
-                float count = 0;
-                int fee = 0;
+               // int compare1 = 0;
+               // int compare2 = 0;
+              //  float count = 0;
+                long fee = 0;
 
                 int cy1 = Integer.parseInt(outyear1.getSelectedItem().toString());
                 int cy2 = Integer.parseInt(outyear2.getSelectedItem().toString());
@@ -218,16 +218,19 @@ public class DesignatedPeriodShare extends javax.swing.JFrame {
                     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
                     Date out = df.parse(outDate);
-                    compare1 = outDate1.compareTo(outDate);//첨값이랑 날짜비교한거
-                    compare2 = outDate2.compareTo(outDate);//후값이랑 날짜비교한거
+                    Date out1 = df.parse(outDate1);
+                    Date out2 = df.parse(outDate2);
+                   int compare1 = out1.compareTo(out);//첨값이랑 날짜비교한거
+                   int compare2 = out2.compareTo(out);//후값이랑 날짜비교한거
+                    System.out.println(outDate+" "+compare1+" "+compare2);
                     //         오ㅘ 미친 
                     //  이게 첨날 이후부터 후값날 이전날까지
                     if (compare1 <= 0 && compare2 >= 0) {
                         //그날들의 가격받아옴
                         String pay = moneyInfo.get(i).getMoney();
-                        int money = Integer.parseInt(pay);
+                        long money = Long.parseLong(pay);
                         //  카운트올리고 총액더함
-                        count += 1.0;
+                       // count += 1.0;
                         fee += money;
                     }
                 }
@@ -238,12 +241,14 @@ public class DesignatedPeriodShare extends javax.swing.JFrame {
                 } else if (cy1 == cy2 && cm2 == cm1 && cd2 < cd1) {
                     JOptionPane.showMessageDialog(null, "잘못된 날짜 값 입니다.");
                 }
-                if (count != 0) {
+               // if (count != 0) {
                     search.insertRow(search.getRowCount(), new Object[]{
-                        term, Integer.toString(fee)
+                        term, Long.toString(fee)
                     });
 
-                }
+              //  }else{
+                    
+              //  }
 
             } catch (ParseException e) {
             }
