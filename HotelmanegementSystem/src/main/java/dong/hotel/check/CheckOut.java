@@ -692,12 +692,12 @@ public class CheckOut extends javax.swing.JFrame {
                     if (m > 0) {
                         a++;
                         if (a == 0) {
-                            over = String.format("%n분", m);
+                            over = String.format("%s분", Integer.toString(m));
                         } else {
-                            over = String.format("%n시간%n분", a, m);
+                            over = String.format("%s시간%s분", Integer.toString(a), Integer.toString(m));
                         }
                     } else {
-                        over = String.format("%n시간", a);
+                        over = String.format("%s시간", Integer.toString(a));
                     }
                     ef = 10000 * a;
                 } else {

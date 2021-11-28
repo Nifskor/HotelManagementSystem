@@ -4,40 +4,27 @@
  */
 package dong.hotel.management;
 
-import dong.hotel.check.CheckOutInformation;
-import dong.hotel.check.RoomState;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
 import dong.hotel.file.ExceptionReportFile;
-import dong.hotel.file.PeakSeasonPayProcess;
-import dong.hotel.file.Sfr300Process;
-import dong.hotel.reservation.PeakSeasonChargeInfo;
 import java.io.IOException;
-import java.lang.System.Logger;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author nifskorea
  */
 public class ExceptionReport extends javax.swing.JFrame {
-    private ArrayList<ExceptionReportInfo> reportinfo = new ArrayList<>();
-    private ArrayList<RoomState> roomstate = new ArrayList<>();
-    private ArrayList<CheckOutInformation> checkout = new ArrayList<>();
-    private ArrayList<PeakSeasonChargeInfo> chargeInfo = new ArrayList<>();
 
-  /**
+    /**
      * Creates new form ExceptionReport
      */
+    private ArrayList<ExceptionReportInfo> reportinfo = new ArrayList<>();
+
     public ExceptionReport() {
         initComponents();
-         DefaultTableCellRenderer renderer
-                = (DefaultTableCellRenderer) reporttable.getTableHeader().getDefaultRenderer();
-        renderer.setHorizontalAlignment(SwingConstants.CENTER);
-        reporttable.getTableHeader().setDefaultRenderer(renderer);
+
     }
 
     /**
@@ -53,6 +40,7 @@ public class ExceptionReport extends javax.swing.JFrame {
         B_Back = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         reporttable = new javax.swing.JTable();
+        SearchB = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +73,13 @@ public class ExceptionReport extends javax.swing.JFrame {
         reporttable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(reporttable);
 
+        SearchB.setText("조회");
+        SearchB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchBActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,17 +87,17 @@ public class ExceptionReport extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(171, 171, 171)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(372, 372, 372)
-                                .addComponent(B_Back, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 14, Short.MAX_VALUE))
+                        .addGap(171, 171, 171)
+                        .addComponent(jLabel1)
+                        .addGap(0, 172, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(B_Back, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(SearchB, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -110,11 +105,13 @@ public class ExceptionReport extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(B_Back)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(B_Back)
+                    .addComponent(SearchB))
+                .addGap(38, 38, 38))
         );
 
         pack();
@@ -125,100 +122,30 @@ public class ExceptionReport extends javax.swing.JFrame {
         back.setVisible(true);
         dispose();
     }//GEN-LAST:event_B_BackActionPerformed
-public void Reporttableadd(java.awt.event.ActionEvent evt){
-     try {
+
+    private void SearchBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBActionPerformed
+        try {
+            // TODO add your handling code here:
             DefaultTableModel report = (DefaultTableModel) reporttable.getModel();
-            report.setNumRows(0);
-
-            ExceptionReportFile freport = new ExceptionReportFile();
-            freport.fRead();
-            freport.sPlite();
-            reportinfo = freport.returnExceptionReportInfo();
-
+            report.setNumRows(0);//reservationTable초기화
+            ExceptionReportFile rF = new ExceptionReportFile();
+            rF.fRead();
+            rF.sPlite();
+            reportinfo = rF.returnExceptionReportInfo();
             for (int i = 0; i < reportinfo.size(); i++) {
                 report.insertRow(report.getRowCount(), new Object[]{
-                    reportinfo.get(i).getRoom(),
-                    reportinfo.get(i).getOver(),
-                    reportinfo.get(i).getExtra()
-                });
+                    reportinfo.get(i).getOutDate(), reportinfo.get(i).getRoom(),
+                     reportinfo.get(i).getOver(), reportinfo.get(i).getExtra()});
             }
+
         } catch (IOException ex) {
-            //Logger.getLogger(ExceptionReport.class.getName()).log(Level.SEVERE, null, ex);
-            ex.printStackTrace();
+            Logger.getLogger(ExceptionReport.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-}
-public void Addtionalcustom() throws IOException{
-   PeakSeasonPayProcess sr = new PeakSeasonPayProcess();
+    }//GEN-LAST:event_SearchBActionPerformed
 
-        Sfr300Process a = new Sfr300Process();
-        a.fRead();
-        a.sPlite();
-
-        roomstate = a.returnRoomState();
-
-        String state = "full";
-        String checkindate = null;
-        String[] name = new String[2];
-        int num = 0;
-
-        a.CRead();
-        a.CSplite();
-        checkout = a.returnGuestInfo();
-        String checkoutdate = null;
-/*
-        for (int i = 0; i < roomstate.size(); i++) {
-            for (int j = 0; j < checkout.size(); j++) {
-                if (roomstate.get(i).getRoomState().equals(state)
-                        && roomstate.get(i).getBooker().equals(checkout.get(j).getBooker())
-                        && roomstate.get(i).getRoom().equals(checkout.get(j).getRoom())) {
-                    checkindate = roomstate.get(i).getDate();
-                    String[] firstdate = checkindate.split("-");
-                    Calendar FirstDate = new GregorianCalendar(Integer.parseInt(firstdate[0]),
-                            Integer.parseInt(firstdate[1]), Integer.parseInt(firstdate[2])); //체크인시간
-
-                    checkoutdate = checkout.get(j).getDate();
-                    String[] seconddate = checkoutdate.split("-");
-                    Calendar SecondDate = new GregorianCalendar(Integer.parseInt(seconddate[0]),
-                            Integer.parseInt(seconddate[1]), Integer.parseInt(seconddate[2])); //체크아웃시간
-                    long diffSec = (SecondDate.getTimeInMillis() - FirstDate.getTimeInMillis()) / 1000; //계산
-                    long diffDays = Math.abs(diffSec / (24 * 60 * 60) + 1); //계산
-
-                    int overNum = 0, extraFee = 0;
-                    long fee = 0;
-                    num = Integer.parseInt(checkout.get(j).getRoom());
-                    sr.fRead(); //객실
-                    sr.sPlite();
-                    chargeInfo = sr.returnChargeInfo();
-                    for (int k = 0; k < chargeInfo.size(); k++) {
-
-                        if (chargeInfo.get(k).getRoom() == num && diffDays >= 1) { //객실 번호랑 번호가 같으면
-                            if (Integer.parseInt(roomstate.get(i).getNum()) > Integer.parseInt(chargeInfo.get(i).getNumpeople())
-                                    && Integer.parseInt(roomstate.get(i).getNum()) <= Integer.parseInt(chargeInfo.get(i).getMaxpeople())) {
-
-                                overNum = Integer.parseInt(roomstate.get(i).getNum()) - Integer.parseInt(chargeInfo.get(i).getNumpeople());
-                                extraFee = Integer.parseInt(chargeInfo.get(i).getExtracharge()) * overNum;
-                                fee = diffDays * (Long.parseLong(chargeInfo.get(i).getRoomcharge()) + extraFee);
-                                ExceptionReportFile exceptions = new ExceptionReportFile();
-                                String in = null;
-                                in = "객실 " + roomstate.get(i).getRoomNum() + " 추가인원" + " +" + (diffDays * extraFee);
-
-                                if (in != null) {
-                                    exceptions.fWrite(in);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }*/
-}
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-       try {
+        try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -244,6 +171,7 @@ public void Addtionalcustom() throws IOException{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton B_Back;
+    private javax.swing.JButton SearchB;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable reporttable;
