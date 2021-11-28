@@ -4,18 +4,29 @@
  */
 package dong.hotel.management;
 
+import dong.hotel.check.CheckOutInformation;
+import dong.hotel.check.RoomState;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import dong.hotel.file.ExceptionReport2working;
+import dong.hotel.file.PeakSeasonPayProcess;
+import dong.hotel.file.Sfr300Process;
+import dong.hotel.reservation.PeakSeasonChargeInfo;
+import java.io.IOException;
+import java.lang.System.Logger;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.logging.Level;
 import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author nifskorea
  */
 public class ExceptionReport extends javax.swing.JFrame {
-    private ArrayList<ReportInfo> reportinfo = new ArrayList<>();
+    private ArrayList<ExceptionReportInfo> reportinfo = new ArrayList<>();
     private ArrayList<RoomState> roomstate = new ArrayList<>();
-    private ArrayList<CheckOutInfo> checkout = new ArrayList<>();
+    private ArrayList<CheckOutInformation> checkout = new ArrayList<>();
     private ArrayList<PeakSeasonChargeInfo> chargeInfo = new ArrayList<>();
 
   /**
@@ -116,37 +127,98 @@ public class ExceptionReport extends javax.swing.JFrame {
     }//GEN-LAST:event_B_BackActionPerformed
 public void Reporttableadd(java.awt.event.ActionEvent evt){
      try {
-            DefaultTableModel report = (DefaultTableModel) ReportTable.getModel();
+            DefaultTableModel report = (DefaultTableModel) reporttable.getModel();
             report.setNumRows(0);
 
             ExceptionReport2working freport = new ExceptionReport2working();
             freport.fRead();
             freport.sPlite();
-            reportinfo = freport.returnReportInfo();
+            reportinfo = freport.returnExceptionReportInfo();
 
             for (int i = 0; i < reportinfo.size(); i++) {
                 report.insertRow(report.getRowCount(), new Object[]{
-                    reportinfo.get(i).getDivide(),
-                    reportinfo.get(i).getType(),
-                    reportinfo.get(i).getPricetype(),
-                    reportinfo.get(i).getPrice()
+                    reportinfo.get(i).getRoom(),
+                    reportinfo.get(i).getOver(),
+                    reportinfo.get(i).getExtra()
                 });
             }
         } catch (IOException ex) {
-            Logger.getLogger(Report.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(ExceptionReport.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     
+}
+public void Addtionalcustom() throws IOException{
+   PeakSeasonPayProcess sr = new PeakSeasonPayProcess();
+
+        Sfr300Process a = new Sfr300Process();
+        a.fRead();
+        a.sPlite();
+
+        roomstate = a.returnRoomState();
+
+        String state = "full";
+        String checkindate = null;
+        String[] name = new String[2];
+        int num = 0;
+
+        a.CRead();
+        a.CSplite();
+        checkout = a.returnGuestInfo();
+        String checkoutdate = null;
+/*
+        for (int i = 0; i < roomstate.size(); i++) {
+            for (int j = 0; j < checkout.size(); j++) {
+                if (roomstate.get(i).getRoomState().equals(state)
+                        && roomstate.get(i).getBooker().equals(checkout.get(j).getBooker())
+                        && roomstate.get(i).getRoom().equals(checkout.get(j).getRoom())) {
+                    checkindate = roomstate.get(i).getDate();
+                    String[] firstdate = checkindate.split("-");
+                    Calendar FirstDate = new GregorianCalendar(Integer.parseInt(firstdate[0]),
+                            Integer.parseInt(firstdate[1]), Integer.parseInt(firstdate[2])); //체크인시간
+
+                    checkoutdate = checkout.get(j).getDate();
+                    String[] seconddate = checkoutdate.split("-");
+                    Calendar SecondDate = new GregorianCalendar(Integer.parseInt(seconddate[0]),
+                            Integer.parseInt(seconddate[1]), Integer.parseInt(seconddate[2])); //체크아웃시간
+                    long diffSec = (SecondDate.getTimeInMillis() - FirstDate.getTimeInMillis()) / 1000; //계산
+                    long diffDays = Math.abs(diffSec / (24 * 60 * 60) + 1); //계산
+
+                    int overNum = 0, extraFee = 0;
+                    long fee = 0;
+                    num = Integer.parseInt(checkout.get(j).getRoom());
+                    sr.fRead(); //객실
+                    sr.sPlite();
+                    chargeInfo = sr.returnChargeInfo();
+                    for (int k = 0; k < chargeInfo.size(); k++) {
+
+                        if (chargeInfo.get(k).getRoom() == num && diffDays >= 1) { //객실 번호랑 번호가 같으면
+                            if (Integer.parseInt(roomstate.get(i).getNum()) > Integer.parseInt(chargeInfo.get(i).getNumpeople())
+                                    && Integer.parseInt(roomstate.get(i).getNum()) <= Integer.parseInt(chargeInfo.get(i).getMaxpeople())) {
+
+                                overNum = Integer.parseInt(roomstate.get(i).getNum()) - Integer.parseInt(chargeInfo.get(i).getNumpeople());
+                                extraFee = Integer.parseInt(chargeInfo.get(i).getExtracharge()) * overNum;
+                                fee = diffDays * (Long.parseLong(chargeInfo.get(i).getRoomcharge()) + extraFee);
+                                ExceptionReport2working exceptions = new ExceptionReport2working();
+                                String in = null;
+                                in = "객실 " + roomstate.get(i).getRoomNum() + " 추가인원" + " +" + (diffDays * extraFee);
+
+                                if (in != null) {
+                                    exceptions.fWrite(in);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }*/
 }
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
+       try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -162,10 +234,8 @@ public void Reporttableadd(java.awt.event.ActionEvent evt){
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ExceptionReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new ExceptionReport().setVisible(true);
             }
