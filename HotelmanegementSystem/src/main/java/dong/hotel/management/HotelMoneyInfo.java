@@ -9,46 +9,18 @@ package dong.hotel.management;
  * @author nifskorea
  */
 public class HotelMoneyInfo {
-    private String name;//이름
     private String room;// 방번호
-    private String num; 
-    private String money;
-    private String date;
-    private String time;
-    private String type;
+    private String name;//이름
+    private String date;//퇴실일
+    private String money;//총요금
+    private String type;//결제타입
 
-    public HotelMoneyInfo(String name, String room, String num,String money, String date, String time, String type) {
-        this.name = name;
+    public HotelMoneyInfo(String room, String name, String date, String money, String type) {
         this.room = room;
-        this.num = num;
-        this.money = money;
-        this.date = date;
-        this.time = time;
-        this.type = type;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getMoney() {
-        return money;
-    }
-
-    public void setMoney(String money) {
-        this.money = money;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
+        this.date = date;
+        this.money = money;
+        this.type = type;
     }
 
     public String getRoom() {
@@ -59,12 +31,12 @@ public class HotelMoneyInfo {
         this.room = room;
     }
 
-    public String getNum() {
-        return num;
+    public String getName() {
+        return name;
     }
 
-    public void setNum(String num) {
-        this.num = num;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDate() {
@@ -75,13 +47,22 @@ public class HotelMoneyInfo {
         this.date = date;
     }
 
-    public String getTime() {
-        return time;
+    public String getMoney() {
+        return money;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setMoney(String money) {
+        this.money = money;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+    
+    
+
 }
-
-

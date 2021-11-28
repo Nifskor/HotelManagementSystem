@@ -4,6 +4,7 @@
  */
 package dong.hotel.management;
 
+import dong.hotel.file.HotelMoneyData;
 import dong.hotel.file.Sfr200Process;
 import dong.hotel.reservation.CustomerInfor;
 import java.io.IOException;
@@ -19,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  * @author nifskorea
  */
 public class DesignatedPeriodShare extends javax.swing.JFrame {
-
+    private ArrayList<HotelMoneyInfo> moneyInfo = new ArrayList<>();
     /**
      * Creates new form DesignatedPeriodShare
      */
@@ -172,11 +173,11 @@ public class DesignatedPeriodShare extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             //hotelpay읽는 파일처리클래스
-            Sfr200Process sr = new Sfr200Process();
-            sr.fRead();
-            sr.sPlite();
+            HotelMoneyData mF = new HotelMoneyData();
+            mF.fRead();
+            mF.sPlite();
 
-            ArrayList<CustomerInfor>guestInfo = sr.returnGuestInfo();
+            moneyInfo = mF.returnHotelmoneyInfo();
             
             //콤보박스 입력값
             String oyear1 = outyear1.getSelectedItem().toString();
@@ -185,13 +186,16 @@ public class DesignatedPeriodShare extends javax.swing.JFrame {
             String oyear2 = outyear2.getSelectedItem().toString();
             String omonth2 = outmonth2.getSelectedItem().toString();
             String oday2 = outday2.getSelectedItem().toString();
+            
+            DefaultTableModel search = (DefaultTableModel) incomeT.getModel();
+
             //날짜 포맷
             String outDate1=String.format("%s-%s-%s", oyear1,omonth1,oday1);
             String outDate2=String.format("%s-%s-%s", oyear2,omonth2,oday2);
             
             String term = String.format("%s ~ %s", outDate1,outDate2);
+            /*
             
-            DefaultTableModel search = (DefaultTableModel) incomeT.getModel();
             try {
                 SimpleDateFormat format = new SimpleDateFormat("yyyy|mm|dd");
                 String Indate = oyear2 + "|" + omonth1 + "|" + oday1;
@@ -244,7 +248,7 @@ public class DesignatedPeriodShare extends javax.swing.JFrame {
                 }
                 
             } catch (ParseException e) {
-            }
+            }*/
         }
         catch(IOException ex ){
             
