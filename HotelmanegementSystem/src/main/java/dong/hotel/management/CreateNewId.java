@@ -4,18 +4,25 @@
  */
 package dong.hotel.management;
 
+import dong.hotel.file.CreateStaffId;
+import java.io.IOException;
+import java.lang.System.Logger;
+import java.util.ArrayList;
+import java.util.logging.Level;
+
 /**
  *
  * @author nifskorea
  */
 public class CreateNewId extends javax.swing.JFrame {
-
+ ArrayList<LoginDataInfo> staffinfo = new ArrayList<>();
     /**
      * Creates new form CreateNewId
      */
     public CreateNewId() {
         initComponents();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -116,9 +123,46 @@ public class CreateNewId extends javax.swing.JFrame {
     private void CreateBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateBActionPerformed
         // TODO add your handling code here:
         //중복 id아니고 새로운아이디일경우 생성되었다는 창뜨고 확인누르면 관리메뉴로 넘어감
+      /*   CreateStaffId create = new CreateStaffId();
+        create.fRead();
+        try {
+            create.sPlite();
+            staffinfo = create.returnStaffInfo();
+        } catch (IOException ex) {
+            Logger.getLogger(CreateNewId.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String id = ID_Field.getText();
+        String pw = PW_Field.getText();
+        String a = id + " " + pw;
+
+        int count = 1;
+        for (int j = 0; j < staffinfo.size(); j++) {
+            if (staffinfo.get(j).getId().equals(id)) {
+                JOptionPane.showMessageDialog(null, "중복아이디입니다.");
+                ID_Field.setText("");
+                PW_Field.setText("");
+                count = 0;
+                break;
+            }
+        }
+        try {
+            if (!"".equals(id) && !"".equals(pw)) {
+                if (count == 1) {
+                    create.FWrite(a);
+                    JOptionPane.showMessageDialog(null, "직원 아이디 생성 완료");
+                    ID_Field.setText("");
+                    PW_Field.setText("");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "아이디와 패스워드를 확인해주세요");
+            }
+
+        } catch (IOException ex) {
+            Logger.getLogger(CreateId.class.getName()).log(Level.SEVERE, null, ex);
+        }
         ManagementMainMenu back = new ManagementMainMenu();
         back.setVisible(true);
-        dispose();
+        dispose();*/
     }//GEN-LAST:event_CreateBActionPerformed
 
     /**
@@ -147,9 +191,25 @@ public class CreateNewId extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CreateNewId.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(CreateNewId.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(CreateNewId.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(CreateNewId.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(CreateNewId.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new CreateNewId().setVisible(true);
             }
