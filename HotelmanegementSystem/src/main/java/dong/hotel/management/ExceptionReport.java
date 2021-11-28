@@ -4,17 +4,29 @@
  */
 package dong.hotel.management;
 
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+import dong.hotel.file.ExceptionReport2working;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author nifskorea
  */
 public class ExceptionReport extends javax.swing.JFrame {
+    private ArrayList<ReportInfo> reportinfo = new ArrayList<>();
+    private ArrayList<RoomState> roomstate = new ArrayList<>();
+    private ArrayList<CheckOutInfo> checkout = new ArrayList<>();
+    private ArrayList<PeakSeasonChargeInfo> chargeInfo = new ArrayList<>();
 
-    /**
+  /**
      * Creates new form ExceptionReport
      */
     public ExceptionReport() {
         initComponents();
+         DefaultTableCellRenderer renderer
+                = (DefaultTableCellRenderer) reporttable.getTableHeader().getDefaultRenderer();
+        renderer.setHorizontalAlignment(SwingConstants.CENTER);
+        reporttable.getTableHeader().setDefaultRenderer(renderer);
     }
 
     /**
@@ -29,7 +41,7 @@ public class ExceptionReport extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         B_Back = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        reporttable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,7 +55,7 @@ public class ExceptionReport extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        reporttable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -59,8 +71,8 @@ public class ExceptionReport extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane1.setViewportView(jTable1);
+        reporttable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane1.setViewportView(reporttable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,7 +114,29 @@ public class ExceptionReport extends javax.swing.JFrame {
         back.setVisible(true);
         dispose();
     }//GEN-LAST:event_B_BackActionPerformed
+public void Reporttableadd(java.awt.event.ActionEvent evt){
+     try {
+            DefaultTableModel report = (DefaultTableModel) ReportTable.getModel();
+            report.setNumRows(0);
 
+            ExceptionReport2working freport = new ExceptionReport2working();
+            freport.fRead();
+            freport.sPlite();
+            reportinfo = freport.returnReportInfo();
+
+            for (int i = 0; i < reportinfo.size(); i++) {
+                report.insertRow(report.getRowCount(), new Object[]{
+                    reportinfo.get(i).getDivide(),
+                    reportinfo.get(i).getType(),
+                    reportinfo.get(i).getPricetype(),
+                    reportinfo.get(i).getPrice()
+                });
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Report.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+}
     /**
      * @param args the command line arguments
      */
@@ -142,6 +176,6 @@ public class ExceptionReport extends javax.swing.JFrame {
     private javax.swing.JButton B_Back;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable reporttable;
     // End of variables declaration//GEN-END:variables
 }
