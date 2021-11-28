@@ -465,33 +465,35 @@ public class EtcEdit extends javax.swing.JFrame {
          String changepw =null;
          String Id =null;
          SFR100Process sr = new SFR100Process();
-         changepw  = idFiled.getText();
-         Id = psFiled.getText();
+         Id  = idFiled.getText();
+        changepw = psFiled.getText();
         // CreateStaffId stass = new CreateStaffId();
             sr.fRead();
             sr.sPlite();
             
           staffinfo = sr.returnLoginDataInfo();
-          
+          //System.out.println(staffinfo.size());
           for(int i = 0 ; i< staffinfo.size(); i++){
-              System.out.println(staffinfo.get(i).getPs().equals(changepw));
-          System.out.println(staffinfo.get(i).getId().equals(Id));
+             // System.out.println(staffinfo.get(i).getPs().equals(changepw));
+          System.out.println(Id);
           
-              if(staffinfo.get(i).getPs().equals(changepw)&&staffinfo.get(i).getId().equals(Id)){
+              if(staffinfo.get(i).getId().equals(Id)){
                    System.out.println("if조건문 들감 ");
                   if(i==0){ // 관리자인지 직원인지 객체배열 거기따라 들어감 
                       try{// admin은 새로추가 삭제 불가능 하기때문에 항상 고정위치 
                           sr.AWrite(staffinfo.get(i).getId() + " "+ psFiled.getText());
-                          
+                           System.out.println("if조건문 들감1 ");
                       }catch(IOException e){
                           e.getStackTrace();
                       }
                   }else {
+                      System.out.println("if조건문 들감2 ");
                       try{
-                          BufferedWriter log = new BufferedWriter(new FileWriter("/Users/nifskorea/Desktop/DB/staffID.txt", false));
-                                log.close();
+                       //   BufferedWriter log = new BufferedWriter(new FileWriter("/Users/nifskorea/Desktop/DB/staffID.txt", false));
+                           //     log.close();
+                           
                       for(int j = 1; j<staffinfo.size(); j++){
-                          if(staffinfo.get(j).getPs().equals(changepw)&&staffinfo.get(j).getId().equals(Id)){
+                          if(staffinfo.get(j).getId().equals(Id)){
                               String str = staffinfo.get(j).getId() + " " + psFiled.getText();
                               sr.SWrite(str);
                           }else{
