@@ -177,15 +177,17 @@ public void setOssystem(int os){
         //BufferedWriter wr = new BufferedWriter(new FileWriter(macosxstaffid,true));
         FileWriter fw = new FileWriter(macosxstaffid, false);
         input.readLine();
-        dump += id+ " " + ps +"\r\n"; //일단 엔터안씀 
+        dump += id+ " " + ps+"\r\n"; //일단 엔터안씀 
         System.out.println(dump);
         
-       /* while ((line = input.readLine()) != null) {
-                dump += (line + "\r\n");
+       // while ((line = input.readLine()) != null) {
+           //     dump += (line + "\r\n");
 
-            }*/
+        //    }
+       // dump.replace(  System.getProperty("line.separator").toString());
         System.out.println(dump);
         fw.write(dump);
+      
         fw.close();
         input.close();
         }
@@ -200,7 +202,7 @@ public void setOssystem(int os){
         //BufferedWriter wr = new BufferedWriter(new FileWriter(macosxstaffid,true));
         FileWriter fw = new FileWriter(windowsstaffid, false);
         input.readLine();
-        dump += id+ " " + ps +"\r\n"; //일단 엔터안씀 
+        dump += id+ " " + ps ; //일단 엔터안씀 
         System.out.println(dump);
         
        /* while ((line = input.readLine()) != null) {

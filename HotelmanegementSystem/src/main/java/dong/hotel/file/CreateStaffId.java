@@ -35,6 +35,8 @@ private String windowsbooking = "C:\\DB\\staffID.txt";
         }
          BufferedWriter log = new BufferedWriter(new FileWriter( oslocation,true));
         //PrintWriter pw = new PrintWriter(log,true);
+       
+        
         log.write(a); // 출력  여유가 된다면 시간기록되게 하는거 한번 고려 
         log.flush(); // 남아있는 데이터를 모두 출력 
         log.close(); // 스트림 클로스 
