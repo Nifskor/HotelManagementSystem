@@ -23,7 +23,7 @@ public class Sfr400Process implements Fileinterface {
     private ArrayList<String> readInfo = new ArrayList();
     private ArrayList<CheckOutInformation> checkout = new ArrayList<>();
 
-    private String macosxroom = "/Users/nifskorea/Desktop/DB/roomState.txt";
+    private String macosxroom = "/Applications/DB/roomState.txt";
     private String windowsroom = "C:\\DB\\roomState.txt";
     private String line = "";  // 파일 공백시 
 

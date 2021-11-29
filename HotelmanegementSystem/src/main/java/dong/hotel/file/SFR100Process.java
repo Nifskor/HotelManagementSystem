@@ -29,11 +29,11 @@ public class SFR100Process  implements Fileinterface {
 ArrayList<String> readinformaton = new ArrayList<String>(); // 문장형 타입으로 고정 설정 
 ArrayList<LoginDataInfo> logininformation = new ArrayList<LoginDataInfo>(); // logindatainfo클래스에 데이터형 타입 설정 
   /* 개발 환경 차이로인해 사전 환경 경로 지정 */ 
-private String macosxadmin = "/Users/nifskorea/Desktop/DB/adminID.txt"; 
-private String macosxstaffid = "/Users/nifskorea/Desktop/DB/staffID.txt"; 
+private String macosxadmin = "/Applications/DB/adminID.txt"; 
+private String macosxstaffid = "/Applications/DB/staffID.txt"; 
 private String windowsadminid = "C:\\DB\\adminID.txt";
 private String windowsstaffid = "C:\\DB\\staffID.txt";
-private String macosloginlog = "/Users/nifskorea/Desktop/DB/loginlog.txt";
+private String macosloginlog = "/Applications/DB/loginlog.txt";
 private String windowsloginlog = "C:\\DB\\loginlog.txt";
 private String line ="";  // 파일 공백시 
 private String dump ="";

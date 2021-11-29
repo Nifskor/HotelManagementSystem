@@ -19,7 +19,7 @@ import java.io.InputStreamReader;
 /* 환경변수 추가해야함 */ 
 public class RoomStateSave {
              /* 개발 환경 차이로인해 사전 환경 경로 지정 */ 
-private String macosxroomstata = "/Users/nifskorea/Desktop/DB/roomState.txt";  // 
+private String macosxroomstata = "/Applications/DB/roomState.txt";  // 
 private String windowsroomstate = "C:\\DB\\roomState.txt";
  private String line ="";  // 파일 공백시 데이터를 채워줌  
  SFR100Process fileae = new SFR100Process();

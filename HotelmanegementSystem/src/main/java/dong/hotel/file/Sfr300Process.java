@@ -27,9 +27,9 @@ public class Sfr300Process implements Fileinterface { // 체크인 관련 처리
     private ArrayList<CheckOutInformation> checkout = new ArrayList<>();
 
     //checkout파일을 sfr400으로 가져가야하나?
-    private String macosxroom = "/Users/nifskorea/Desktop/DB/roomState.txt";
+    private String macosxroom = "/Applications/DB/roomState.txt";
     private String windowsroom = "C:\\DB\\roomState.txt";
-    private String macosxcheckout = "/Users/nifskorea/Desktop/DB/checkout.txt";
+    private String macosxcheckout = "/Applications/DB/checkout.txt";
     private String windowscheckout = "C:\\DB\\checkout.txt";
     private String line = "";  // 파일 공백시 
 

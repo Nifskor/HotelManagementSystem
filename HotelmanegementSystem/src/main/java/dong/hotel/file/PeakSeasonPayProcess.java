@@ -22,7 +22,7 @@ public class PeakSeasonPayProcess implements Fileinterface  {
        private ArrayList<String> readInfo = new ArrayList();
     private ArrayList<PeakSeasonChargeInfo> guestInfo = new ArrayList<PeakSeasonChargeInfo>();
     
-private String macosxbooking = "/Users/nifskorea/Desktop/DB/peakpayinfo.txt";  // 
+private String macosxbooking = "/Applications/DB/peakpayinfo.txt";  // 
 private String windowsbooking = "C:\\DB\\peakpayinfo.txt";
  private String line ="";  // 파일 공백시 데이터를 채워줌  
  SFR100Process fileae = new SFR100Process();

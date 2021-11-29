@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat;
  */
 public class ExceptionReportSave {
 
-    private String macosxreport = "/Users/nifskorea/Desktop/DB/exeptionreport.txt";
+    private String macosxreport = "/Applications/DB/exeptionreport.txt";
     private String windowsreport = "C:\\DB\\exeptionreport.txt";
     private String line = "";  // 파일 공백시 
     private String oslocation = "";

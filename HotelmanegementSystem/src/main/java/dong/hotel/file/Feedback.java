@@ -30,7 +30,7 @@ public class Feedback implements Fileinterface {
     private ArrayList<String> readInfo = new ArrayList<>();
     private ArrayList<String> feedInfo = new ArrayList<>();
     
-    private String macosxfeed = "/Users/nifskorea/Desktop/DB/feedback.txt";
+    private String macosxfeed = "/Applications/DB/feedback.txt";
     private String windowsfeed = "C:\\DB\\feedback.txt";
     private String line = "";  // 파일 공백시 
     private String oslocation = "";

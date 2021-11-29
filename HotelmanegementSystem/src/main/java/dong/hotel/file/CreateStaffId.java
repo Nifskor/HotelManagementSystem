@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class CreateStaffId implements Fileinterface {
      ArrayList<String> readInfo = new ArrayList<>();
     ArrayList<LoginDataInfo> staffinfo = new ArrayList<>();
-private String macosxbooking = "/Users/nifskorea/Desktop/DB/staffID.txt";  // 
+private String macosxbooking = "/Applications/DB/staffID.txt";  // 
 private String windowsbooking = "C:\\DB\\staffID.txt";
  private String line ="";  // 파일 공백시 데이터를 채워줌  
  SFR100Process fileae = new SFR100Process();

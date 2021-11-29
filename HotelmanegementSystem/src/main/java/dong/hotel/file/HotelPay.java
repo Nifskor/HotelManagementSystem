@@ -16,7 +16,7 @@ import java.io.InputStreamReader;
  * @author nifskorea
  */
 public class HotelPay {
-    private String macosxreport = "/Users/nifskorea/Desktop/DB/hotelpay.txt";
+    private String macosxreport = "/Applications/DB/hotelpay.txt";
     private String windowsreport = "C:\\DB\\hotelpay.txt";
     private String line = "";  // 파일 공백시 
     private String oslocation = "";

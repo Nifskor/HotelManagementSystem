@@ -22,7 +22,7 @@ import java.io.InputStreamReader;
 public class CustomerInforSave { // 고객 정보 저장 담당 클래스 
 
     /* os system 환경변수 공간 */
-    private String macosxcustom = "/Users/nifskorea/Desktop/DB/booking_cus_info.txt";
+    private String macosxcustom = "/Applications/DB/booking_cus_info.txt";
     private String windowscustom = "C:\\DB\\booking_cus_info.txt";
     private String line = "";  // 파일 공백시 
     private String oslocation = "";

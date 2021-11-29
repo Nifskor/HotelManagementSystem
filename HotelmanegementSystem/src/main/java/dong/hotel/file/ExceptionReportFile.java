@@ -25,7 +25,7 @@ public class ExceptionReportFile implements Fileinterface {
     private ArrayList<String> readInfo = new ArrayList();
     private ArrayList<ExceptionReportInfo> exceptionreportinfo = new ArrayList<>();
     
-    private String macosxreport = "/Users/nifskorea/Desktop/DB/exeptionreport.txt";
+    private String macosxreport = "/Applications/DB/exeptionreport.txt";
     private String windowsreport = "C:\\DB\\exeptionreport.txt";
     private String line = "";  // 파일 공백시 
     private String oslocation = "";

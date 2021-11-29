@@ -23,7 +23,7 @@ public class HotelMoneyData implements Fileinterface {
     private ArrayList<String> readInfo = new ArrayList<>();
     private ArrayList<HotelMoneyInfo> hotelmoneyInfo = new ArrayList<>();
     
-    private String macosxmoney = "/Users/nifskorea/Desktop/DB/hotelpay.txt";
+    private String macosxmoney = "/Applications/DB/hotelpay.txt";
     private String windowsmoney = "C:\\DB\\hotelpay.txt";
     private String line = "";  // 파일 공백시 
     private String oslocation = "";
