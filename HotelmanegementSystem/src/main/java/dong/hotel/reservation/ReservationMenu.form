@@ -581,12 +581,16 @@
         <Component class="javax.swing.JTextField" name="Cusname">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CusnameActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="CusnameKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="phone">
           <Properties>
             <Property name="text" type="java.lang.String" value="010"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="phoneKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="printPrice_BUTT">
           <Properties>
@@ -620,6 +624,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="phthree">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="phthreeKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel10">
           <Properties>
@@ -664,9 +671,13 @@
         <Component class="javax.swing.JTextField" name="RoomText">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RoomTextActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="RoomTextKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="phtwo">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="phtwoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="ShowPrice_BUTT">
           <Properties>
@@ -870,6 +881,7 @@
         <Component class="javax.swing.JTextField" name="carNumOne">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="carNumOneActionPerformed"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="carNumOneKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel20">
@@ -878,6 +890,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="carNumTwo">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="carNumTwoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel21">
           <Properties>
@@ -885,8 +900,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="carNumFor">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="carNumForKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="carNumThree">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="carNumThreeKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel22">
           <Properties>
@@ -894,6 +915,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="carLastNuOne">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="carLastNuOneKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel23">
           <Properties>
@@ -901,6 +925,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="carLastNumTwo">
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="carLastNumTwoKeyTyped"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="checkPersonalData">
           <Properties>

@@ -312,8 +312,18 @@ public class ReservationMenu extends javax.swing.JFrame {
                 CusnameActionPerformed(evt);
             }
         });
+        Cusname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                CusnameKeyTyped(evt);
+            }
+        });
 
         phone.setText("010");
+        phone.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                phoneKeyTyped(evt);
+            }
+        });
 
         printPrice_BUTT.setText("예상 금액 확인");
         printPrice_BUTT.addActionListener(new java.awt.event.ActionListener() {
@@ -331,6 +341,12 @@ public class ReservationMenu extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("굴림", 0, 14)); // NOI18N
         jLabel1.setText("고객정보");
 
+        phthree.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                phthreeKeyTyped(evt);
+            }
+        });
+
         jLabel10.setText("-");
 
         jLabel11.setText("-");
@@ -347,6 +363,17 @@ public class ReservationMenu extends javax.swing.JFrame {
         RoomText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RoomTextActionPerformed(evt);
+            }
+        });
+        RoomText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                RoomTextKeyTyped(evt);
+            }
+        });
+
+        phtwo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                phtwoKeyTyped(evt);
             }
         });
 
@@ -479,14 +506,49 @@ public class ReservationMenu extends javax.swing.JFrame {
                 carNumOneActionPerformed(evt);
             }
         });
+        carNumOne.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                carNumOneKeyTyped(evt);
+            }
+        });
 
         jLabel20.setText("-");
 
+        carNumTwo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                carNumTwoKeyTyped(evt);
+            }
+        });
+
         jLabel21.setText("-");
+
+        carNumFor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                carNumForKeyTyped(evt);
+            }
+        });
+
+        carNumThree.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                carNumThreeKeyTyped(evt);
+            }
+        });
 
         jLabel22.setText("-");
 
+        carLastNuOne.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                carLastNuOneKeyTyped(evt);
+            }
+        });
+
         jLabel23.setText("-");
+
+        carLastNumTwo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                carLastNumTwoKeyTyped(evt);
+            }
+        });
 
         checkPersonalData.setText("개인정보 수집 및 이용에 동의합니다.");
 
@@ -843,6 +905,7 @@ public class ReservationMenu extends javax.swing.JFrame {
                         //버튼안누르면 머라한9)다 
                         if(namea.isEmpty()){
                             System.out.println("이름을 입력해주세요  ");
+                           // count = 5;
                         }else if(roomNum.isEmpty()){
                             System.out.println("호실을 입력해주세요 ");
                         }
@@ -1355,6 +1418,81 @@ for (int i = 0; i < chargeInfo.size(); i++) {
 
         
     }//GEN-LAST:event_printPrice_BUTTActionPerformed
+
+    private void RoomTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_RoomTextKeyTyped
+        // TODO add your handling code here:
+        if (RoomText.getText().length() == 4 || !(evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_RoomTextKeyTyped
+
+    private void CusnameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CusnameKeyTyped
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_CusnameKeyTyped
+
+    private void phoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phoneKeyTyped
+        // TODO add your handling code here:
+         if (phone.getText().length() == 3 || !(evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_phoneKeyTyped
+
+    private void phtwoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phtwoKeyTyped
+        // TODO add your handling code here:
+         if (phtwo.getText().length() == 4 || !(evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_phtwoKeyTyped
+
+    private void phthreeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_phthreeKeyTyped
+        // TODO add your handling code here:
+         if (phthree.getText().length() == 4 || !(evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_phthreeKeyTyped
+
+    private void carNumOneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_carNumOneKeyTyped
+        // TODO add your handling code here:
+         if (carNumOne.getText().length() == 4 || !(evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_carNumOneKeyTyped
+
+    private void carNumTwoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_carNumTwoKeyTyped
+        // TODO add your handling code here:
+         if (carNumTwo.getText().length() == 4 || !(evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_carNumTwoKeyTyped
+
+    private void carNumThreeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_carNumThreeKeyTyped
+        // TODO add your handling code here:
+         if (carNumThree.getText().length() == 4 || !(evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_carNumThreeKeyTyped
+
+    private void carNumForKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_carNumForKeyTyped
+        // TODO add your handling code here:
+         if (carNumFor.getText().length() == 4 || !(evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_carNumForKeyTyped
+
+    private void carLastNuOneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_carLastNuOneKeyTyped
+        // TODO add your handling code here:
+         if (carLastNuOne.getText().length() == 2 || !(evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_carLastNuOneKeyTyped
+
+    private void carLastNumTwoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_carLastNumTwoKeyTyped
+        // TODO add your handling code here:
+         if (carLastNumTwo.getText().length() == 2 || !(evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9')) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_carLastNumTwoKeyTyped
 
     /* 카드 처리 함수 */ 
     private void cardworkingproce() {
