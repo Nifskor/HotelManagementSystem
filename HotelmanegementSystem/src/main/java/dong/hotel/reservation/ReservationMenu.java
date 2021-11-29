@@ -1215,9 +1215,11 @@ public class ReservationMenu extends javax.swing.JFrame {
        }
        else if(count ==0 ){
              JOptionPane.showMessageDialog(null, "예약된 방입니다 다른방을 확인해주세요.");
+              count =5 ; // 입력을 수행할수없게 임의로 지정한 코드 
        }
        else if(count ==2){
             JOptionPane.showMessageDialog(null, "날짜를 잘못입력하셨습니다 재입력 하십시오.");
+             count =5 ; // 입력을 수행할수없게 임의로 지정한 코드 
        /*else if(count2 == 3){
          /*   JOptionPane.showMessageDialog(this, "정확하게 입력해주세요 입력값이 유효하지않습니다.", "카드 오류",
                     JOptionPane.ERROR_MESSAGE);*/
@@ -1385,7 +1387,7 @@ for (int i = 0; i < chargeInfo.size(); i++) {
                  else if (logintypecheck == 1 ){
                      loginuser = "직원";
                  }
-                 JOptionPane.showMessageDialog(this, loginuser+ "님이 개인정보 이용을 동의하셨습니다. " , "개인정보",JOptionPane.INFORMATION_MESSAGE);
+                 //JOptionPane.showMessageDialog(this, loginuser+ "님이 개인정보 이용을 동의하셨습니다. " , "개인정보",JOptionPane.INFORMATION_MESSAGE);
                  cardInfo.add(getcard);
                  count2 =1;
                  
