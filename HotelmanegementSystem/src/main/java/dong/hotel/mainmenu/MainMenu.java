@@ -233,6 +233,8 @@ public class MainMenu extends javax.swing.JFrame {
                 for (int i = 0; i < customerinfo.size(); i++) {
                     if(customerinfo.get(i).getGuarantee().equals("예약취소")){
                         i++;
+                        if(i==customerinfo.size())
+                            break;
                     }
                     //예약일 포맷
                     String checkIn = String.format("%s-%s-%s", customerinfo.get(i).getcInYear(), customerinfo.get(i).getcInMonth(), customerinfo.get(i).getcInDay());

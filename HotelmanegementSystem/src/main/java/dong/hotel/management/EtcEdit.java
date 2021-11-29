@@ -492,7 +492,7 @@ public class EtcEdit extends javax.swing.JFrame {
         // CreateStaffId stass = new CreateStaffId();
             sr.fRead();
             sr.sPlite();
-            
+            int n=0;
           staffinfo = sr.returnLoginDataInfo();
           //System.out.println(staffinfo.size());
           for(int i = 0 ; i< staffinfo.size(); i++){
@@ -505,6 +505,7 @@ public class EtcEdit extends javax.swing.JFrame {
                           sr.AWrite(staffinfo.get(i).getId() + " "+ psFiled.getText());
                            System.out.println("if조건문 들감1 ");
                            JOptionPane.showMessageDialog(null, "관리자 변경완료");
+                           n++;
                      // }catch(IOException e){
                       //    e.getStackTrace();
                      // }
@@ -534,10 +535,13 @@ public class EtcEdit extends javax.swing.JFrame {
                     //  }
                   }//else
                    JOptionPane.showMessageDialog(null, "변경 완료");
+                              n++;
                     idFiled.setText("");
                     psFiled.setText("");
               }
-          }
+          }if(n==0){
+                  JOptionPane.showMessageDialog(null, "변경할려는 아이디가 일치하지않습니다");
+              }
           
           
         }
