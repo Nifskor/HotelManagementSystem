@@ -31,6 +31,7 @@ public class CheckIN extends javax.swing.JFrame {
 
     public CheckIN() {
         initComponents();
+        
     }
 
     @SuppressWarnings("unchecked")

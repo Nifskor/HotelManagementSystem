@@ -231,8 +231,8 @@ try{
 
                 for (int i = 0; i < guestInfo.size(); i++) {
                     if(guestInfo.get(i).getGuarantee().equals("예약취소")){
-                        i++;
-                    }
+                        
+                    }else{
                     String guestDate = guestInfo.get(i).getcInYear() + "|" + guestInfo.get(i).getcInMonth() + "|" + guestInfo.get(i).getcInDay();
                     Date date2 = format.parse(guestDate);
                     compare = date.compareTo(date2);
@@ -241,11 +241,18 @@ try{
                         count += 1.0;
                       
                     }
+                    }
                 }
                 if (count != 0) {
                     search.insertRow(search.getRowCount(), new Object[]{
                         ogg,
-                        count / 100,
+                        count / 100
+                    });
+                }
+                else{
+                    search.insertRow(search.getRowCount(), new Object[]{
+                        ogg,
+                       "0"
                     });
                 }
             
