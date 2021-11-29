@@ -198,6 +198,9 @@ public class Search extends javax.swing.JFrame {
             search.setNumRows(0);
 
             for (int i = 0; i < customerinfo.size(); i++) {
+                if(customerinfo.get(i).getGuarantee().equals("예약취소")){
+                        i++;
+                    }
                 //호실 이름 둘다 입력한경우
                 if (!room.equals("") && !name.equals("") && !phone.equals("")) {
                     if (customerinfo.get(i).getName().equals(name) && customerinfo.get(i).getRoomNum().equals(room) && customerinfo.get(i).getPhoneNum().equals(phone)) {
@@ -250,6 +253,7 @@ public class Search extends javax.swing.JFrame {
                     }
                 }
             }
+            
             //잘못된 입력값 팝업
             if (caution != 0) {
                 JOptionPane.showMessageDialog(null, "검색 내용을 정확히 입력해주세요");
