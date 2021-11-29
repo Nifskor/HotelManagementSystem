@@ -1,5 +1,5 @@
 ### 호텔 정보관리 시스템 (가상) Hotel ManegementSystem 설계 프로젝트 
-<img src="https://user-images.githubusercontent.com/92977647/143884670-6cba730c-125c-4f75-8496-e05ebedf6ba8.png" width="300" height="900"/>
+<img src="https://user-images.githubusercontent.com/92977647/143884670-6cba730c-125c-4f75-8496-e05ebedf6ba8.png" width="1500" height="500"/>
 
 >동의대학교 S/W 공학과 이종민  교수님이 진행하는 객체지향 프로그래밍 2 강의에서 수행하는 호텔 정보관리 시스템 프로젝트입니다. 
 
