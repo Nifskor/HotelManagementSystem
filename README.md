@@ -15,7 +15,7 @@
 >1. Nifskor
 >2. hj592
 
-### 피피티 및 보고서 작성 팀원
+### 문서작업 팀원 
 
 >1. sseong-min
 >2. KingMugyeong
