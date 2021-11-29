@@ -540,7 +540,7 @@ public class EtcEdit extends javax.swing.JFrame {
                     psFiled.setText("");
               }
           }if(n==0){
-                  JOptionPane.showMessageDialog(null, "변경할려는 아이디가 일치하지않습니다");
+                  JOptionPane.showMessageDialog(null, "변경하려는 아이디가 일치하지 않습니다");
               }
           
           
