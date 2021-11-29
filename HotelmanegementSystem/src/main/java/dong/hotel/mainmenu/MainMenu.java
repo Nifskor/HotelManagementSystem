@@ -231,6 +231,9 @@ public class MainMenu extends javax.swing.JFrame {
                 int d=0;
                 int u=0;
                 for (int i = 0; i < customerinfo.size(); i++) {
+                    if(customerinfo.get(i).getGuarantee().equals("예약취소")){
+                        i++;
+                    }
                     //예약일 포맷
                     String checkIn = String.format("%s-%s-%s", customerinfo.get(i).getcInYear(), customerinfo.get(i).getcInMonth(), customerinfo.get(i).getcInDay());
                     Date inDate = df.parse(checkIn);
