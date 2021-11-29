@@ -135,7 +135,7 @@ public class ReservationMenu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "호실", "인원", "요금", "할증요금(수정중)"
+                "호실", "인원", "요금", "할증요금"
             }
         ) {
             boolean[] canEdit = new boolean [] {

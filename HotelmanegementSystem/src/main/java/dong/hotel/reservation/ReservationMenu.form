@@ -59,7 +59,7 @@
                     <Column editable="false" title="&#xd638;&#xc2e4;" type="java.lang.Object"/>
                     <Column editable="false" title="&#xc778;&#xc6d0;" type="java.lang.Object"/>
                     <Column editable="false" title="&#xc694;&#xae08;" type="java.lang.Object"/>
-                    <Column editable="false" title="&#xd560;&#xc99d;&#xc694;&#xae08;(&#xc218;&#xc815;&#xc911;)" type="java.lang.Object"/>
+                    <Column editable="false" title="&#xd560;&#xc99d;&#xc694;&#xae08;" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
