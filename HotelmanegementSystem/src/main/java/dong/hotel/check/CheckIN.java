@@ -31,7 +31,7 @@ public class CheckIN extends javax.swing.JFrame {
 
     public CheckIN() {
         initComponents();
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -336,7 +336,7 @@ public class CheckIN extends javax.swing.JFrame {
 
                 for (int i = 0; i < customerinfor.size(); i++) {
                     //예약일 포맷
-                    if(customerinfor.get(i).getGuarantee().equals("예약취소")){
+                    if (customerinfor.get(i).getGuarantee().equals("예약취소")) {
                         i++;
                     }
                     String checkIn = String.format("%s-%s-%s", customerinfor.get(i).getcInYear(), customerinfor.get(i).getcInMonth(), customerinfor.get(i).getcInDay());
@@ -458,49 +458,40 @@ public class CheckIN extends javax.swing.JFrame {
         String room = SearchRoom.getText();
         int caution = -1;
         //room이랑 name이 빈칸이라면 오류메세지출력
-        if (room.equals("") && name.equals("")) {
-            JOptionPane.showMessageDialog(null, "이름 또는 호실을 입력해주세요");
-        }
         for (int i = 0; i < customerinfor.size(); i++) {
-            caution = 0;
-            //호실 이름 둘다 입력한경우
-            if (!room.equals("") && !name.equals("")) {//둘 다 입력된 경우
+        if (!room.equals("") && !name.equals("")) {
+           // for (int i = 0; i < customerinfor.size(); i++) {
+                //호실 이름 둘다 입력한경우
+                // if (!room.equals("") && !name.equals("")) {//둘 다 입력된 경우
                 if (customerinfor.get(i).getName().equals(name) && customerinfor.get(i).getRoomNum().equals(room)) {
                     reservationTable.changeSelection(i, 0, false, false);
+                    caution = 0;
                     break;
 
                 } else {
                     caution = 1;
-                }
-            } else if (!room.equals("") || !name.equals("")) {//이름만 입력된 경우
+              //  }
+            }
+        } else if (!room.equals("") || !name.equals("")) {//이름만 입력된 경우
+           // for (int i = 0; i < customerinfor.size(); i++) {
                 if (customerinfor.get(i).getName().equals(name) || customerinfor.get(i).getRoomNum().equals(room)) {
                     reservationTable.changeSelection(i, 0, false, false);
+                    caution = 0;
                     break;
                 } else {
                     caution = 2;
                 }
             }
-            /*else if (!room.equals("") && name.equals("")) {//호실만 입력된경우
-                ///////////호실찾는과정에서 오류남///////////////////
-                //몇개는 찾고 몇개는 안찾고 지맘대로임 ㅡ3ㅡ 일단 대충은 돌아감 발표할때 돌아가는거로만하면 ㄱㄴ일듯 근데 일단은 안완벽하단뜻.
-                if (customerinfor.get(i).getRoomNum().equals(room)) { 
-                    reservationTable.changeSelection(i-1, 0, false, false);
-                    break;
-                } else {
-                    caution = 3;
-                }
-            }*/
-
+            //잘못된 입력값으로 테이블에 선택이 안된경우 팝업
+            if (caution == -1) {
+                JOptionPane.showMessageDialog(null, "이름 또는 호실을 입력해주세요");
+            } else if (caution == 1) {
+                JOptionPane.showMessageDialog(null, "이름 및 호실을 정확히 입력해주세요");
+            } else if (caution == 2) {
+                JOptionPane.showMessageDialog(null, "이름 또는 호실을 정확히 입력해주세요");
+            }
+      //  }
         }
-        //잘못된 입력값으로 테이블에 선택이 안된경우 팝업
-        if (caution == 1) {
-            JOptionPane.showMessageDialog(null, "이름 및 호실을 정확히 입력해주세요");
-        } else if (caution == 2) {
-            JOptionPane.showMessageDialog(null, "이름 또는 호실을 정확히 입력해주세요");
-        }
-        /*else if (caution == 3) {
-            JOptionPane.showMessageDialog(null, "호실을 정확히 입력해주세요");
-        }*/
     }//GEN-LAST:event_BsearchActionPerformed
 
     private void NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameActionPerformed
