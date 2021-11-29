@@ -211,7 +211,17 @@ public class CheckIN extends javax.swing.JFrame {
 
         jLabel4.setText("호실");
 
+        Name.setEditable(false);
         Name.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NameActionPerformed(evt);
+            }
+        });
+
+        Room_Num.setEditable(false);
+
+        Guest_Num.setEditable(false);
 
         Back_BUTT.setText("이전");
         Back_BUTT.addActionListener(new java.awt.event.ActionListener() {
@@ -492,6 +502,10 @@ public class CheckIN extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "호실을 정확히 입력해주세요");
         }*/
     }//GEN-LAST:event_BsearchActionPerformed
+
+    private void NameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NameActionPerformed
 
     /**
      * @param args the command line arguments
