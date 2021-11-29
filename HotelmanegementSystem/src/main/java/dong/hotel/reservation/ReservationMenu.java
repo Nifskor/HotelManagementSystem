@@ -1043,10 +1043,10 @@ public class ReservationMenu extends javax.swing.JFrame {
         /* 숫자 작게 입력했을때 오류일으키는 예외 처리 */
               String roomNuma, nameaa , cusPhonenuma ,cusPhonenum2a,cusPhonenum3a,cardNuma,cardNum2a,cardNum3a,cardNum4a,exprMontha,expYeara;
         roomNuma = RoomText.getText(); //호실 정보 가져옴
-       nameaa = Cusname.getText();
-       cusPhonenuma = phone.getText() ;
-        cusPhonenum2a=phtwo.getText() ;
-        cusPhonenum3a=phthree.getText();
+       nameaa = Cusname.getText(); // 이름
+       cusPhonenuma = phone.getText() ; //전화번호 1
+        cusPhonenum2a=phtwo.getText() ; // 전화번호 2 
+        cusPhonenum3a=phthree.getText();// 전화번호 3 
         cardNuma = carNumOne.getText() ;
         cardNum2a   =     carNumTwo.getText() ;
         cardNum3a    =    carNumThree.getText() ;
@@ -1209,6 +1209,7 @@ public class ReservationMenu extends javax.swing.JFrame {
          int tema = Integer.parseInt(roomNum);
        if(tema <=100){
            JOptionPane.showMessageDialog(null, "없는 호실입니다 호실은 101번부터 시작입니다 .");
+           count =5 ; // 입력을 수행할수없게 임의로 지정한 코드 
        }else if (tema == 99){
            
        }
@@ -1225,8 +1226,29 @@ public class ReservationMenu extends javax.swing.JFrame {
        } else if(count2 == 4){
            JOptionPane.showMessageDialog(this, "개인정보 수집 및 이용에 대해 "+ "동의하지않으면 예약을진행할수 없습니다.", "오류발생",JOptionPane.ERROR_MESSAGE);
            count =5 ; // 입력을 수행할수없게 임의로 지정한 코드 
+           
+       }else if (nameaa.isEmpty()){
+           JOptionPane.showMessageDialog(null, "이름을 입력해주세요.");
+            count =5 ; // 입력을 수행할수없게 임의로 지정한 코드 
        }
-      
+       else if (cusPhonenum2a.isEmpty()){
+           JOptionPane.showMessageDialog(null, "전화번호를 올바르게 입력해주세요. ");
+            count =5 ; // 입력을 수행할수없게 임의로 지정한 코드 
+       }
+       else if (cusPhonenum3a.isEmpty()){
+           JOptionPane.showMessageDialog(null, "전화를 올바르게 입력해주세요 .");
+            count =5 ; // 입력을 수행할수없게 임의로 지정한 코드 
+       }
+       else if (money.equals("예상금액표시")){
+           JOptionPane.showMessageDialog(null, "예상금액버튼을 눌러 금액을 확인해주세요 .");
+            count =5 ; // 입력을 수행할수없게 임의로 지정한 코드 
+       }
+           roomNuma = RoomText.getText(); //호실 정보 가져옴
+       nameaa = Cusname.getText(); // 이름
+       cusPhonenuma = phone.getText() ; //전화번호 1
+        cusPhonenum2a=phtwo.getText() ; // 전화번호 2 
+        cusPhonenum3a=phthree.getText();// 전화번호 3 
+        money = exMoney.getText(); // 예상금액 뜨는 표시부분 
     if (isOverNuma == true) { //인원수가 클래스보다 많을경우 
             JOptionPane.showMessageDialog(null, "해당 호실의 최대 인원수를 초과합니다.");
             count = 0; // 오류나는경우 카운팅 초기화 
