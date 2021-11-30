@@ -14,11 +14,8 @@
 
 >1. Nifskor
 >2. hj592
-
-### 문서작업 팀원 
-
->1. sseong-min
->2. KingMugyeong
+>3. sseong-min
+>4. KingMugyeong
 
 ### 현재 알려진 버그 
 >1. 아이디 생성까지 문제가없지만 (staff) / 아이디생성후 -> 다시 (직원) 아이디 비밀번호 변경후 새로생성시 널문자 오류로 인한 오류 발생 
