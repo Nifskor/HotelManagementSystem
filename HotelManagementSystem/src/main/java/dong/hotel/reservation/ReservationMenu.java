@@ -1102,6 +1102,10 @@ public class ReservationMenu extends javax.swing.JFrame {
         String syear = Integer.toString(year);
         String smonth = Integer.toString(month);
         String sday = Integer.toString(day);
+        if(sday.length() <=1){ // 문자열 비교시 오류로인한 예외 잡기위한 코드 12.01
+          //String tempa ;
+            sday= "0"+sday;
+        }
         String today = syear + "|" +  smonth + "|" +  sday; //(오늘 날짜 출력 )
         /* 숫자 작게 입력했을때 오류일으키는 예외 처리 */
               String roomNuma, nameaa , cusPhonenuma ,cusPhonenum2a,cusPhonenum3a,cardNuma,cardNum2a,cardNum3a,cardNum4a,exprMontha,expYeara;
@@ -1244,22 +1248,25 @@ public class ReservationMenu extends javax.swing.JFrame {
         }catch (Exception e){ } //위에 처리후 애러가 날경우 에러 처리 
         
         compare5 = inDatea.compareTo(today); //오늘날짜  
+        System.out.println(today);
+        System.out.println(inDatea);
         compare7 = outDatea.compareTo(today); //오늘날짜 
         //System.out.println(inDatea);
         //System.out.println(today);
        compare6 = inDatea.compareTo(outDatea);// 애는 체크아웃 
       // compare8 = outDatea.compareTo(inDatea);
        System.out.println("컴페어값6 : "+compare6);
-      
+      //  System.out.println(compare5);
        if(compare5<0){ // 날자를 잘못입력한경우 변수 0보다 작은경우  채크인 
            count = 2; 
            
        }
+       System.out.println(compare7);
        if(compare7 <0){ // 체크아웃 
             count = 2; 
        } // 체크인 체크아웃은 현재날자보다는 뒤여야하고 그러면서 체크인 날짜보다 체크아웃날짜가 뒤여야함 
        // 따라서 조건문은 반드시 3중 조건문으로 들어가야할듯 
-      
+      System.out.println(compare6);
        if(compare6 >=0){ // 0보다 같거나 체크아웃날짜가 큰경우  애는 한번 봐야할듯 
            count =2;
            
@@ -1377,7 +1384,7 @@ long pay =0; isOverNuma = false;
         }
      int tema = Integer.parseInt(roomNum);
        if(tema <=100){
-           JOptionPane.showMessageDialog(null, "없는 호실입니다 호실은 101번 부터 시작입니.");
+           JOptionPane.showMessageDialog(null, "없는 호실입니다 호실은 101번 부터 시작입니다.");
        }
  sa.fRead();
 sa.sPlite();
