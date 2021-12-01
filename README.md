@@ -11,6 +11,9 @@
 >4. 소프트웨어 안정성 : 현재 알려진버그가 존재함 
 >5. 기능요구사항 : 테스팅완료 11.29 (97% 구현완료 평가)
 
+### 기능요구사항별 완성도
+<img src="https://user-images.githubusercontent.com/92977647/144167468-3ba13ece-4854-4fb8-9cbb-d9e31808e125.png" width="1079" height="264"/>
+
 ### 개발팀원 
 
 >1. Nifskor
