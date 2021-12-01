@@ -1102,6 +1102,10 @@ public class ReservationMenu extends javax.swing.JFrame {
         String syear = Integer.toString(year);
         String smonth = Integer.toString(month);
         String sday = Integer.toString(day);
+         if(sday.length() <=1){ // 문자열 비교시 오류로인한 예외 잡기위한 코드 12.01
+          //String tempa ;
+            sday= "0"+sday;
+        }
         String today = syear + "|" +  smonth + "|" +  sday; //(오늘 날짜 출력 )
         /* 숫자 작게 입력했을때 오류일으키는 예외 처리 */
               String roomNuma, nameaa , cusPhonenuma ,cusPhonenum2a,cusPhonenum3a,cardNuma,cardNum2a,cardNum3a,cardNum4a,exprMontha,expYeara;
